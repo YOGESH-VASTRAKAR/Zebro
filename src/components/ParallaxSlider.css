@@ -1,0 +1,314 @@
+/* Parallax Slider Section */
+.parallax-slider-parallax-slider-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  margin-top: 0;
+  background: #000; /* Fallback background */
+}
+
+.parallax-slider-parallax-slider-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Individual Slide */
+.parallax-slider-parallax-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  will-change: opacity;
+}
+
+/* Image Styling */
+.parallax-slider-slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Navigation Arrows - Bottom Right Position */
+.parallax-slider-slider-nav-arrows-bottom {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  display: flex;
+  gap: 15px;
+  z-index: 30;
+}
+
+.parallax-slider-nav-arrow {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  font-size: 1.2rem;
+  z-index: 31;
+}
+
+.parallax-slider-nav-arrow:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+/* Performance optimizations */
+.parallax-slider-parallax-slide {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000;
+}
+
+/* ========== ENHANCED RESPONSIVE DESIGN ========== */
+
+/* Large Desktop (1400px+) */
+@media (min-width: 1400px) {
+  .parallax-slider-parallax-slider-section {
+    height: 100vh;
+  }
+  
+  .parallax-slider-nav-arrow {
+    width: 55px;
+    height: 55px;
+    font-size: 1.3rem;
+  }
+  
+  .parallax-slider-slider-nav-arrows-bottom {
+    bottom: 3rem;
+    right: 3rem;
+  }
+}
+
+/* Desktop (1200px - 1399px) */
+@media (max-width: 1399px) and (min-width: 1200px) {
+  .parallax-slider-parallax-slider-section {
+    height: 95vh;
+  }
+  
+  .parallax-slider-nav-arrow {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+  
+  .parallax-slider-slider-nav-arrows-bottom {
+    bottom: 2.5rem;
+    right: 2.5rem;
+  }
+}
+
+/* Small Desktop (992px - 1199px) */
+@media (max-width: 1199px) and (min-width: 992px) {
+  .parallax-slider-parallax-slider-section {
+    height: 85vh;
+  }
+  
+  .parallax-slider-nav-arrow {
+    width: 48px;
+    height: 48px;
+    font-size: 1.1rem;
+  }
+  
+  .parallax-slider-slider-nav-arrows-bottom {
+    bottom: 2rem;
+    right: 2rem;
+    gap: 12px;
+  }
+}
+
+/* Tablet Landscape (768px - 991px) */
+@media (max-width: 991px) and (min-width: 768px) {
+  .parallax-slider-parallax-slider-section {
+    height: 75vh;
+  }
+  
+  .parallax-slider-nav-arrow {
+    width: 44px;
+    height: 44px;
+    font-size: 1rem;
+  }
+  
+  .parallax-slider-slider-nav-arrows-bottom {
+    bottom: 1.8rem;
+    right: 1.8rem;
+    gap: 10px;
+  }
+}
+
+/* Tablet Portrait (576px - 767px) */
+@media (max-width: 767px) and (min-width: 576px) {
+  .parallax-slider-parallax-slider-section {
+    height: 65vh;
+  }
+  
+  .parallax-slider-nav-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 0.9rem;
+  }
+  
+  .parallax-slider-slider-nav-arrows-bottom {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    gap: 8px;
+  }
+}
+
+/* Mobile (480px - 575px) */
+@media (max-width: 575px) and (min-width: 480px) {
+  .parallax-slider-parallax-slider-section {
+    height: 55vh;
+  }
+  
+  .parallax-slider-nav-arrow {
+    width: 38px;
+    height: 38px;
+    font-size: 0.85rem;
+  }
+  
+  .parallax-slider-slider-nav-arrows-bottom {
+    bottom: 1.2rem;
+    right: 1.2rem;
+    gap: 6px;
+  }
+}
+
+/* Small Mobile (375px - 479px) */
+@media (max-width: 479px) and (min-width: 375px) {
+  .parallax-slider-parallax-slider-section {
+    height: 50vh;
+  }
+  
+  .parallax-slider-nav-arrow {
+    width: 35px;
+    height: 35px;
+    font-size: 0.8rem;
+  }
+  
+  .parallax-slider-slider-nav-arrows-bottom {
+    bottom: 1rem;
+    right: 1rem;
+    gap: 5px;
+  }
+}
+
+/* Extra Small Mobile (320px - 374px) */
+@media (max-width: 374px) {
+  .parallax-slider-parallax-slider-section {
+    height: 45vh;
+  }
+  
+  .parallax-slider-nav-arrow {
+    width: 32px;
+    height: 32px;
+    font-size: 0.75rem;
+  }
+  
+  .parallax-slider-slider-nav-arrows-bottom {
+    bottom: 0.8rem;
+    right: 0.8rem;
+    gap: 4px;
+  }
+}
+
+/* ========== TOUCH DEVICE OPTIMIZATIONS ========== */
+
+/* Touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .parallax-slider-nav-arrow:hover {
+    transform: none;
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Larger touch targets for mobile */
+  @media (max-width: 768px) {
+    .parallax-slider-nav-arrow {
+      min-width: 44px;
+      min-height: 44px;
+    }
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .parallax-slider-nav-arrow {
+    transition: none;
+  }
+  
+  .parallax-slider-nav-arrow:hover {
+    transform: none;
+  }
+}
+
+/* Landscape orientation for mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .parallax-slider-parallax-slider-section {
+    height: 100vh;
+  }
+  
+  .parallax-slider-slider-nav-arrows-bottom {
+    bottom: 1rem;
+  }
+}
+
+/* Focus styles for accessibility */
+.parallax-slider-nav-arrow:focus {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .parallax-slider-nav-arrow {
+    border: 2px solid white;
+    background: rgba(0, 0, 0, 0.8);
+  }
+}
+
+/* Loading state for images */
+.parallax-slider-slide-image {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+}
+
+@keyframes parallax-slider-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.parallax-slider-slide-image:not([src]),
+.parallax-slider-slide-image[src=""] {
+  animation: parallax-slider-loading 1.5s infinite;
+}
+
+/* Animation for smooth transitions */
+@keyframes parallax-slider-fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.parallax-slider-parallax-slide {
+  animation: parallax-slider-fadeIn 0.5s ease-out;
+}

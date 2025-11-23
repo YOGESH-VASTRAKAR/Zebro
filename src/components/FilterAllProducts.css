@@ -1,0 +1,467 @@
+/* Filter All Products Modal Styles with Parent Class Wrapper */
+.filter-all-products-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.filter-all-products-modal-content {
+  background: white;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 800px;
+  max-height: 85vh; /* Reduced max-height */
+  overflow: hidden; /* Changed from overflow-y: auto */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  animation: filter-all-products-modalSlideIn 0.3s ease-out;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes filter-all-products-modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.filter-all-products-wider-modal {
+  max-width: 800px;
+}
+
+.filter-all-products-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e9ecef;
+  background: white;
+  flex-shrink: 0; /* Prevent header from shrinking */
+}
+
+.filter-all-products-modal-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-all-products-modal-title-icon {
+  width: 20px;
+  height: 20px;
+  color: #0662aa;
+}
+
+.filter-all-products-modal-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.filter-all-products-close-btn {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-all-products-close-btn:hover {
+  background: #f8f9fa;
+}
+
+.filter-all-products-close-icon {
+  width: 20px;
+  height: 20px;
+  color: #666;
+}
+
+.filter-all-products-modal-body {
+  padding: 24px;
+  overflow-y: auto; /* Scroll only inside body */
+  flex: 1; /* Take remaining space */
+  max-height: calc(85vh - 140px); /* Calculate height considering header and footer */
+}
+
+/* Information Note */
+.filter-all-products-note {
+  background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+  border-left: 4px solid #0662aa;
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin-bottom: 25px;
+}
+
+.filter-all-products-note-text {
+  color: #455a64;
+  font-size: 0.9rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.filter-all-products-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.filter-all-products-wider-form {
+  max-width: 100%;
+}
+
+.filter-all-products-form-row-wide {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  align-items: start;
+}
+
+.filter-all-products-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.filter-all-products-form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.filter-all-products-form-label-icon {
+  width: 14px;
+  height: 14px;
+  color: #0662aa;
+}
+
+.filter-all-products-options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.filter-all-products-option-btn {
+  padding: 10px 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: white;
+  color: #495057;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.filter-all-products-option-btn:hover {
+  border-color: #0662aa;
+  color: #0662aa;
+  background: #f8f9fa;
+}
+
+.filter-all-products-option-btn.selected {
+  background: #0662aa;
+  border-color: #0662aa;
+  color: white;
+}
+
+/* Price Inputs */
+.filter-all-products-price-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.filter-all-products-price-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-all-products-form-input {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 13px;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.filter-all-products-form-input:focus {
+  outline: none;
+  border-color: #0662aa;
+  box-shadow: 0 0 0 2px rgba(6, 98, 170, 0.1);
+}
+
+/* Checkbox Styles */
+.filter-all-products-form-group-checkbox {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #e9ecef;
+}
+
+.filter-all-products-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+.filter-all-products-checkbox-input {
+  display: none;
+}
+
+.filter-all-products-checkbox-custom {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.filter-all-products-checkbox-input:checked + .filter-all-products-checkbox-custom {
+  background: #0662aa;
+  border-color: #0662aa;
+}
+
+.filter-all-products-checkbox-icon {
+  width: 12px;
+  height: 12px;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.filter-all-products-checkbox-input:checked + .filter-all-products-checkbox-custom .filter-all-products-checkbox-icon {
+  opacity: 1;
+}
+
+/* Modal Footer */
+.filter-all-products-modal-footer {
+  display: flex;
+  gap: 12px;
+  padding: 20px 24px;
+  border-top: 1px solid #e9ecef;
+  background: #f8f9fa;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  flex-shrink: 0; /* Prevent footer from shrinking */
+}
+
+.filter-all-products-cancel-btn,
+.filter-all-products-apply-btn {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.filter-all-products-cancel-btn {
+  background: #6c757d;
+  color: white;
+}
+
+.filter-all-products-cancel-btn:hover {
+  background: #5a6268;
+  transform: translateY(-1px);
+}
+
+.filter-all-products-apply-btn {
+  background: linear-gradient(135deg, #0662aa 0%, #37aa50 100%);
+  color: white;
+}
+
+.filter-all-products-apply-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(6, 98, 170, 0.3);
+}
+
+.filter-all-products-apply-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.filter-all-products-btn-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Custom Scrollbar for Modal Body */
+.filter-all-products-modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.filter-all-products-modal-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.filter-all-products-modal-body::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.filter-all-products-modal-body::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Firefox Scrollbar */
+.filter-all-products-modal-body {
+  scrollbar-width: thin;
+  scrollbar-color: #c1c1c1 #f1f1f1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .filter-all-products-modal-content {
+    max-width: 95%;
+    max-height: 90vh;
+    margin: 20px;
+  }
+  
+  .filter-all-products-wider-modal {
+    max-width: 95%;
+  }
+  
+  .filter-all-products-form-row-wide {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .filter-all-products-options-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .filter-all-products-modal-body {
+    padding: 20px;
+    max-height: calc(90vh - 140px);
+  }
+  
+  .filter-all-products-modal-header,
+  .filter-all-products-modal-footer {
+    padding: 16px 20px;
+  }
+  
+  .filter-all-products-form {
+    gap: 20px;
+  }
+  
+  .filter-all-products-note {
+    padding: 12px 15px;
+  }
+  
+  .filter-all-products-note-text {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .filter-all-products-modal-overlay {
+    padding: 10px;
+  }
+  
+  .filter-all-products-modal-content {
+    max-width: 100%;
+    margin: 10px;
+    max-height: 95vh;
+  }
+  
+  .filter-all-products-modal-body {
+    padding: 15px;
+    max-height: calc(95vh - 140px);
+  }
+  
+  .filter-all-products-modal-header,
+  .filter-all-products-modal-footer {
+    padding: 12px 15px;
+  }
+  
+  .filter-all-products-form-input {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+  
+  .filter-all-products-option-btn {
+    padding: 8px 6px;
+    font-size: 11px;
+  }
+  
+  .filter-all-products-cancel-btn,
+  .filter-all-products-apply-btn {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  .filter-all-products-btn-icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Focus states for accessibility */
+.filter-all-products-close-btn:focus,
+.filter-all-products-cancel-btn:focus,
+.filter-all-products-apply-btn:focus {
+  outline: 2px solid #0662aa;
+  outline-offset: 2px;
+}
+
+.filter-all-products-form-input:focus {
+  outline: none;
+  border-color: #0662aa;
+  box-shadow: 0 0 0 2px rgba(6, 98, 170, 0.1);
+}
+
+.filter-all-products-checkbox-input:focus + .filter-all-products-checkbox-custom {
+  outline: 2px solid #0662aa;
+  outline-offset: 2px;
+}
+
+.filter-all-products-option-btn:focus {
+  outline: 2px solid #0662aa;
+  outline-offset: 1px;
+}

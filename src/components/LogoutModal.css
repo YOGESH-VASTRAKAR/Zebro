@@ -1,0 +1,358 @@
+/* Logout Modal Styles with Parent Class Wrapper */
+.logout-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.logout-modal-content {
+  background: white;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  animation: logout-modalSlideIn 0.3s ease-out;
+}
+
+@keyframes logout-modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.logout-wider-modal {
+  max-width: 500px;
+}
+
+.logout-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e9ecef;
+  background: linear-gradient(135deg, #fff3cd 0%, #f8d7da 100%);
+}
+
+.logout-modal-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logout-modal-title-icon {
+  width: 20px;
+  height: 20px;
+  color: #dc3545;
+}
+
+.logout-modal-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #721c24;
+}
+
+.logout-close-btn {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logout-close-btn:hover {
+  background: rgba(220, 53, 69, 0.1);
+}
+
+.logout-close-icon {
+  width: 20px;
+  height: 20px;
+  color: #dc3545;
+}
+
+.logout-modal-body {
+  padding: 24px;
+}
+
+/* Warning Section */
+.logout-warning-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+.logout-warning-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #dc3545 0%, #e65c52 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logout-warning-icon-svg {
+  width: 20px;
+  height: 20px;
+  color: white;
+}
+
+.logout-warning-content {
+  flex: 1;
+}
+
+.logout-warning-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #dc3545;
+  margin: 0 0 8px 0;
+}
+
+.logout-warning-text {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Confirmation Checkbox */
+.logout-confirm-section {
+  margin-top: 20px;
+}
+
+.logout-confirm-checkbox {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.logout-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+  margin: 0;
+}
+
+.logout-checkbox-input {
+  display: none;
+}
+
+.logout-checkbox-custom {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  background: white;
+  position: relative;
+}
+
+.logout-checkbox-input:checked + .logout-checkbox-custom {
+  background: #dc3545;
+  border-color: #dc3545;
+}
+
+.logout-checkbox-icon {
+  width: 12px;
+  height: 12px;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.logout-checkbox-input:checked + .logout-checkbox-custom .logout-checkbox-icon {
+  opacity: 1;
+}
+
+.logout-checkbox-text {
+  font-weight: 600;
+  color: #333;
+}
+
+/* Modal Footer */
+.logout-modal-footer {
+  display: flex;
+  gap: 12px;
+  padding: 20px 24px;
+  border-top: 1px solid #e9ecef;
+  background: #f8f9fa;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.logout-cancel-btn,
+.logout-confirm-btn {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.logout-cancel-btn {
+  background: #6c757d;
+  color: white;
+}
+
+.logout-cancel-btn:hover {
+  background: #5a6268;
+  transform: translateY(-1px);
+}
+
+.logout-confirm-btn {
+  background: linear-gradient(135deg, #dc3545 0%, #e65c52 100%);
+  color: white;
+}
+
+.logout-confirm-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+.logout-confirm-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.logout-btn-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .logout-modal-content {
+    max-width: 95%;
+    max-height: 85vh;
+    margin: 20px;
+  }
+  
+  .logout-wider-modal {
+    max-width: 95%;
+  }
+  
+  .logout-modal-body {
+    padding: 20px;
+  }
+  
+  .logout-modal-header,
+  .logout-modal-footer {
+    padding: 16px 20px;
+  }
+  
+  .logout-warning-section {
+    padding: 15px;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .logout-warning-icon {
+    align-self: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .logout-modal-overlay {
+    padding: 10px;
+  }
+  
+  .logout-modal-content {
+    max-width: 100%;
+    margin: 10px;
+  }
+  
+  .logout-modal-body {
+    padding: 15px;
+  }
+  
+  .logout-modal-header,
+  .logout-modal-footer {
+    padding: 12px 15px;
+  }
+  
+  .logout-warning-section {
+    padding: 12px;
+  }
+  
+  .logout-confirm-checkbox {
+    padding: 12px;
+  }
+  
+  .logout-cancel-btn,
+  .logout-confirm-btn {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  .logout-btn-icon {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .logout-modal-footer {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .logout-cancel-btn,
+  .logout-confirm-btn {
+    width: 100%;
+  }
+}
+
+/* Focus states for accessibility */
+.logout-close-btn:focus,
+.logout-cancel-btn:focus,
+.logout-confirm-btn:focus {
+  outline: 2px solid #dc3545;
+  outline-offset: 2px;
+}
+
+.logout-checkbox-input:focus + .logout-checkbox-custom {
+  outline: 2px solid #dc3545;
+  outline-offset: 2px;
+}

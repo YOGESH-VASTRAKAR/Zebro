@@ -1,0 +1,382 @@
+/* OtherSettings.css - With Parent Classes */
+.other-settings-page {
+  background: #fff;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+}
+
+.other-settings-content-section {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  padding: 0;
+}
+
+.other-settings-content-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 0px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #f1f3f4;
+  background: transparent;
+}
+
+.other-settings-content-scrollable {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: transparent;
+  padding-right: 0;
+}
+
+.other-settings-container {
+  background: #fff;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+}
+
+.other-settings-header {
+  padding: 20px 25px;
+  border-bottom: 1px solid #e9ecef;
+  margin-bottom: 0;
+}
+
+.other-settings-header-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.other-settings-header-icon {
+  width: 20px;
+  height: 20px;
+  color: #0662aa;
+}
+
+.other-settings-title-text {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.other-settings-content {
+  padding: 25px;
+  flex: 1;
+}
+
+.other-settings-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  padding: 25px;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  background: #fff;
+  transition: all 0.3s ease;
+  margin-bottom: 0;
+}
+
+.other-settings-item:hover {
+  border-color: #0662aa;
+  box-shadow: 0 4px 15px rgba(6, 98, 170, 0.1);
+  transform: translateY(-2px);
+}
+
+.other-settings-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.other-settings-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.other-settings-description {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.other-settings-control {
+  flex: 0 0 auto;
+}
+
+.other-settings-radio-options {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.other-settings-radio-option {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px 0;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.other-settings-radio-input {
+  display: none;
+}
+
+.other-settings-radio-custom {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  background: #fff;
+}
+
+.other-settings-radio-icon {
+  width: 12px;
+  height: 12px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  color: #fff;
+}
+
+.other-settings-radio-input:checked + .other-settings-radio-custom {
+  border-color: #37aa50;
+  background: #37aa50;
+}
+
+.other-settings-radio-input:checked + .other-settings-radio-custom .other-settings-radio-icon {
+  opacity: 1;
+}
+
+.other-settings-radio-label {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.other-settings-radio-option:hover .other-settings-radio-label {
+  color: #333;
+}
+
+.other-settings-radio-option:hover .other-settings-radio-custom {
+  border-color: #0662aa;
+}
+
+.other-settings-radio-input:checked + .other-settings-radio-custom + .other-settings-radio-label {
+  color: #37aa50;
+  font-weight: 600;
+}
+
+/* Settings Actions */
+.other-settings-actions {
+  padding: 20px 25px;
+}
+
+.other-settings-save-btn {
+  background: linear-gradient(135deg, #0662aa 0%, #37aa50 100%);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+.other-settings-save-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(6, 98, 170, 0.3);
+}
+
+.other-settings-save-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.other-settings-save-btn.other-settings-saving {
+  background: linear-gradient(135deg, #0662aa 0%, #0662aa 100%);
+}
+
+.other-settings-loading-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: other-settings-spin 1s linear infinite;
+}
+
+@keyframes other-settings-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Scrollbar Styling */
+.other-settings-content-scrollable::-webkit-scrollbar {
+  width: 6px;
+}
+
+.other-settings-content-scrollable::-webkit-scrollbar-track {
+  background: #f8f9fa;
+  border-radius: 3px;
+}
+
+.other-settings-content-scrollable::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #0662aa 0%, #764ba2 100%);
+  border-radius: 3px;
+}
+
+.other-settings-content-scrollable::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #05518f 0%, #6a4190 100%);
+}
+
+/* Firefox Scrollbar */
+.other-settings-content-scrollable {
+  scrollbar-width: thin;
+  scrollbar-color: #0662aa #f8f9fa;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .other-settings-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .other-settings-info {
+    width: 100%;
+  }
+  
+  .other-settings-control {
+    width: 100%;
+  }
+  
+  .other-settings-radio-options {
+    justify-content: flex-start;
+    width: 100%;
+  }
+  
+  .other-settings-header {
+    padding: 15px 20px;
+  }
+  
+  .other-settings-content {
+    padding: 20px;
+  }
+  
+  .other-settings-actions {
+    padding: 15px 20px;
+  }
+  
+  .other-settings-save-btn {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .other-settings-content-title {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
+  
+  .other-settings-content {
+    padding: 15px;
+  }
+  
+  .other-settings-item {
+    padding: 15px;
+    gap: 15px;
+  }
+  
+  .other-settings-radio-options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .other-settings-radio-option {
+    width: 100%;
+    padding: 10px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .other-settings-header {
+    padding: 12px 15px;
+  }
+  
+  .other-settings-content {
+    padding: 12px;
+  }
+  
+  .other-settings-item {
+    padding: 12px;
+  }
+  
+  .other-settings-actions {
+    padding: 12px 15px;
+  }
+  
+  .other-settings-save-btn {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+}
+
+/* Focus states for accessibility */
+.other-settings-save-btn:focus,
+.other-settings-radio-option:focus-within .other-settings-radio-custom {
+  outline: 2px solid #0662aa;
+  outline-offset: 2px;
+}
+
+/* Animation for smooth transitions */
+.other-settings-item {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.other-settings-save-btn,
+.other-settings-radio-option {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Success state animation */
+.other-settings-save-btn.other-settings-saved {
+  background: linear-gradient(135deg, #37aa50 0%, #2e8b47 100%);
+}
+
+/* Button hover effects enhancement */
+.other-settings-save-btn:hover:not(:disabled) .other-settings-loading-spinner {
+  border-top-color: #f0f0f0;
+}

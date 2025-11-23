@@ -1,0 +1,138 @@
+/* Pagination Styles */
+.categories-pagination-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+  padding: 15px 0 5px;
+  width: 100%;
+}
+
+.categories-pagination-info {
+  font-size: 0.9rem;
+  color: #6E6E6E;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.categories-pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 0;
+}
+
+.categories-pagination-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: #0662aa;
+  border: 2px solid #0662aa;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.categories-pagination-btn:hover:not(.disabled) {
+  background: #0662aa;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(6, 98, 170, 0.3);
+}
+
+.categories-pagination-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: #BFBFBF;
+  color: #BFBFBF;
+}
+
+.categories-pagination-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.categories-pagination-numbers {
+  display: flex;
+  gap: 8px;
+}
+
+.categories-pagination-number {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: #0662aa;
+  border: 2px solid #0662aa;
+  border-radius: 50%;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.categories-pagination-number:hover {
+  background: #0662aa;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(6, 98, 170, 0.3);
+}
+
+.categories-pagination-number.active {
+  background: #0662aa;
+  color: white;
+  border-color: #0662aa;
+  transform: scale(1.1);
+}
+
+/* Responsive Pagination */
+@media (max-width: 768px) {
+  .categories-pagination-controls {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .categories-pagination-numbers {
+    order: -1;
+  }
+  
+  .categories-pagination-btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+  
+  .categories-pagination-number {
+    width: 35px;
+    height: 35px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .categories-pagination-numbers {
+    gap: 5px;
+  }
+  
+  .categories-pagination-number {
+    width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+  }
+  
+  .categories-pagination-info {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+  
+  .categories-pagination-container {
+    gap: 10px;
+    padding: 10px 0 0;
+  }
+}
