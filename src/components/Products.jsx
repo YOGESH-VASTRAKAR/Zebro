@@ -46,16 +46,19 @@ const Products = () => {
         <Container>
           <Row className="align-items-center">
             {/* Left Side - Products Title */}
-            <Col md={6} className="products-title-col">
+            <Col lg={6} md={12} className="products-title-col">
               <div className="products-title-content">
                 <h1 className="products-main-title">
-                  <span className="products-title-word products-title-word-1">Our</span>
-                  <span className="products-title-word products-title-word-2">Products</span>
+                  <span className="products-title-text">
+                    <span className="products-title-word products-title-word-1">Our</span>
+                    {' '}
+                    <span className="products-title-word products-title-word-2">Products</span>
+                  </span>
                 </h1>
                 <div className="products-breadcrumb">
                   <a href="/" className="products-breadcrumb-link">
                     <HomeIcon className="products-breadcrumb-icon" />
-                    <span>Home</span>
+                    <span className="breadcrumb-text">Home</span>
                   </a>
                   <ChevronRightIcon className="products-breadcrumb-separator" />
                   <span className="products-breadcrumb-link">Products</span>
@@ -72,7 +75,7 @@ const Products = () => {
             </Col>
             
             {/* Right Side - Products Stats */}
-            <Col md={6} className="products-stats-col">
+            <Col lg={6} md={12} className="products-stats-col">
               <div className="products-stats-card">
                 <div className="products-stats-icon">
                   <ShoppingBagIcon className="products-stats-icon-svg" />

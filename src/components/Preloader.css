@@ -1,4 +1,4 @@
-/* Preloader Base Styles - White Background */
+/* Preloader Base Styles - Original White Background */
 .preloader {
   position: fixed;
   top: 0;
@@ -7,36 +7,69 @@
   height: 100%;
   background: #ffffff;
   z-index: 9999;
+  overflow: hidden;
 }
 
-/* Common step styles - Each step takes full screen */
-.preloader__step {
-  position: absolute;
+/* Section Styles - Inspired by reference */
+.preloader-section {
+  height: 100%;
+  width: 100%;
   top: 0;
-  left: 0;
+  position: fixed;
+  visibility: hidden;
+}
+
+.preloader-section .outer,
+.preloader-section .inner {
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  overflow-y: hidden;
 }
 
-/* Step 1: Logo Styles - Full Screen */
-.preloader__step--logo {
+.preloader-section .bg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.preloader-section .content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+/* Section-specific backgrounds - Original White */
+.section-logo .bg {
   background: #ffffff;
 }
 
+.section-svg .bg {
+  background: #ffffff;
+}
+
+.section-text .bg {
+  background: #ffffff;
+}
+
+/* Logo Styles - Original */
 .preloader__logo {
   width: 300px;
   height: 300px;
   object-fit: contain;
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.15));
 }
 
-/* Step 2: SVG Styles - Full Screen */
-.preloader__step--svg {
-  background: #ffffff;
-}
-
+/* SVG Animation Styles - Original */
 .preloader__animation {
   display: flex;
   justify-content: center;
@@ -45,7 +78,6 @@
   height: 100%;
 }
 
-/* Smiley Animation Styles - Larger for full screen */
 .smiley {
   width: 12em;
   height: 12em;
@@ -77,11 +109,7 @@
   visibility: hidden;
 }
 
-/* Step 3: Text Styles - Full Screen */
-.preloader__step--text {
-  background: #ffffff;
-}
-
+/* Text Styles - Original Colors */
 .preloader__text {
   display: flex;
   justify-content: center;
@@ -90,7 +118,6 @@
   height: 100%;
 }
 
-/* Colorful Title Styles - Larger for full screen */
 .preloader__title {
   font-size: 4.5rem;
   font-weight: 800;
@@ -108,9 +135,9 @@
   font-weight: 800;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
   padding: 0 10px;
-  /* GSAP will animate these individually if needed */
 }
 
+/* Original Color Combination */
 .preloader-title-word-1 {
   color: #0662aa;  /* Blue */
 }
@@ -127,7 +154,7 @@
   color: #f5c662;  /* Yellow */
 }
 
-/* SVG Animations (keep these for the smiley face) */
+/* SVG Animations - Original */
 @keyframes eye1 {
   from {
     transform: rotate(-260deg) translate(0, -56px);
@@ -200,7 +227,7 @@
   }
 }
 
-/* Responsive Design */
+/* Responsive Design - Original */
 @media (max-width: 768px) {
   .preloader__logo {
     width: 250px;

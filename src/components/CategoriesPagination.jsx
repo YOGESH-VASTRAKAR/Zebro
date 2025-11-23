@@ -1,8 +1,10 @@
 import React from 'react';
 import { 
+  ChevronDoubleLeftIcon,
   ChevronLeftIcon, 
-  ChevronRightIcon 
-} from '@heroicons/react/24/solid';
+  ChevronRightIcon,
+  ChevronDoubleRightIcon
+} from '@heroicons/react/24/outline';
 import './CategoriesPagination.css';
 
 const CategoriesPagination = ({ 
@@ -12,70 +14,99 @@ const CategoriesPagination = ({
   totalProducts,
   productsPerPage 
 }) => {
-  const getPageNumbers = () => {
-    const pages = [];
-    const maxVisiblePages = 5;
-    
-    if (totalPages <= maxVisiblePages) {
-      for (let i = 1; i <= totalPages; i++) {
-        pages.push(i);
-      }
-    } else {
-      const startPage = Math.max(1, currentPage - 2);
-      const endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-      
-      for (let i = startPage; i <= endPage; i++) {
-        pages.push(i);
-      }
-    }
-    
-    return pages;
-  };
-
-  const startProduct = (currentPage - 1) * productsPerPage + 1;
+  const startIndex = (currentPage - 1) * productsPerPage;
+  const startProduct = startIndex + 1;
   const endProduct = Math.min(currentPage * productsPerPage, totalProducts);
+
+  const renderPageNumbers = () => {
+    return Array.from(
+      { length: Math.min(5, totalPages) },
+      (_, i) => {
+        let pageNum;
+        if (totalPages <= 5) pageNum = i + 1;
+        else if (currentPage <= 3) pageNum = i + 1;
+        else if (currentPage >= totalPages - 2)
+          pageNum = totalPages - 4 + i;
+        else pageNum = currentPage - 2 + i;
+
+        return (
+          <button
+            key={pageNum}
+            onClick={() => onPageChange(pageNum)}
+            className={`categories-pagination-number ${
+              currentPage === pageNum
+                ? "active"
+                : ""
+            }`}
+          >
+            {pageNum}
+          </button>
+        );
+      }
+    );
+  };
 
   return (
     <div className="categories-pagination-container">
-      {/* Products Count */}
+      {/* Showing entries info - Left side */}
       <div className="categories-pagination-info">
-        Showing {startProduct}-{endProduct} of {totalProducts} products
+        Showing {startProduct} to {endProduct} of {totalProducts} products
       </div>
 
-      {/* Pagination Controls */}
+      {/* Pagination buttons - Right side */}
       <div className="categories-pagination-controls">
-        {/* Previous Button */}
-        <button
-          className={`categories-pagination-btn ${currentPage === 1 ? 'disabled' : ''}`}
-          onClick={() => onPageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-        >
-          <ChevronLeftIcon className="categories-pagination-icon" />
-          Previous
-        </button>
+        {/* Pagination buttons */}
+        <div className="categories-pagination-buttons">
+          <button
+            onClick={() => onPageChange(1)}
+            disabled={currentPage === 1}
+            className={`pagination-nav-btn ${
+              currentPage === 1
+                ? "disabled"
+                : ""
+            }`}
+          >
+            <ChevronDoubleLeftIcon className="nav-icon" />
+          </button>
 
-        {/* Page Numbers */}
-        <div className="categories-pagination-numbers">
-          {getPageNumbers().map((page) => (
-            <button
-              key={page}
-              className={`categories-pagination-number ${currentPage === page ? 'active' : ''}`}
-              onClick={() => onPageChange(page)}
-            >
-              {page}
-            </button>
-          ))}
+          <button
+            onClick={() => onPageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className={`pagination-nav-btn ${
+              currentPage === 1
+                ? "disabled"
+                : ""
+            }`}
+          >
+            <ChevronLeftIcon className="nav-icon" />
+          </button>
+
+          {renderPageNumbers()}
+
+          <button
+            onClick={() => onPageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className={`pagination-nav-btn ${
+              currentPage === totalPages
+                ? "disabled"
+                : ""
+            }`}
+          >
+            <ChevronRightIcon className="nav-icon" />
+          </button>
+
+          <button
+            onClick={() => onPageChange(totalPages)}
+            disabled={currentPage === totalPages}
+            className={`pagination-nav-btn ${
+              currentPage === totalPages
+                ? "disabled"
+                : ""
+            }`}
+          >
+            <ChevronDoubleRightIcon className="nav-icon" />
+          </button>
         </div>
-
-        {/* Next Button */}
-        <button
-          className={`categories-pagination-btn ${currentPage === totalPages ? 'disabled' : ''}`}
-          onClick={() => onPageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-        >
-          Next
-          <ChevronRightIcon className="categories-pagination-icon" />
-        </button>
       </div>
     </div>
   );

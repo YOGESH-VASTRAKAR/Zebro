@@ -1,22 +1,11 @@
-/* LoginRegistration.css - With Parent Classes */
-
-/* Color Variables */
-:root {
-  --login-blue: #0662aa;
-  --login-green: #37aa50;
-  --login-red: #e65c52;
-  --login-yellow: #f5c662;
-  --login-purple: #764ba2;
-  --login-text-dark: #333;
-  --login-background: #FFFFFF;
-}
+/* LoginRegistration.css */
 
 /* Account Banner Section */
 .login-account-banner-section {
   background: white;
-  padding: 30px 0;
-  border-bottom: 1px solid #e9ecef;
+  padding: 40px 0;
   margin-top: 95px;
+  border-bottom: 1px solid #e9ecef;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
 }
 
@@ -29,15 +18,17 @@
   flex: 1;
 }
 
-/* Colorful Main Title - Similar to Dashboard */
 .login-account-main-title {
-  font-size: 2.2rem;
+  font-size: 2.8rem;
   font-weight: 700;
   margin-bottom: 10px;
   display: flex;
   justify-content: flex-start;
-  flex-wrap: wrap;
-  gap: 10px;
+}
+
+.login-title-text {
+  display: inline-block;
+  white-space: nowrap;
 }
 
 .login-title-word {
@@ -61,45 +52,57 @@
 .login-account-breadcrumb {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  flex-wrap: wrap;
 }
 
 .login-breadcrumb-link {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   color: #6c757d;
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   transition: color 0.3s ease;
 }
 
 .login-breadcrumb-link:hover {
-  color: var(--login-blue);
+  color: #0662aa;
 }
 
 .login-breadcrumb-icon {
-  width: 16px;
-  height: 16px;
-  color: var(--login-blue);
+  width: 14px;
+  height: 14px;
+  color: #0662aa;
+  flex-shrink: 0;
+}
+
+.breadcrumb-text {
+  white-space: nowrap;
 }
 
 .login-breadcrumb-separator {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   color: #adb5bd;
+  flex-shrink: 0;
 }
 
 .login-breadcrumb-current {
   color: #495057;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
 }
 
-/* Account Navigation */
+/* Account Navigation - Desktop: Right side, Mobile: Center */
 .login-account-nav-col {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .login-account-navigation {
@@ -113,27 +116,34 @@
   padding: 6px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   border: 1px solid #e9ecef;
+  display: flex;
+  gap: 4px;
 }
 
-.login-account-nav-link {
-  padding: 12px 35px !important;
-  border-radius: 50px !important;
+.login-account-nav-btn {
+  padding: 12px 35px;
+  border-radius: 50px;
   font-weight: 600;
-  color: #6c757d !important;
-  border: none !important;
+  color: #6c757d;
+  border: none;
+  background: transparent;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-family: inherit;
+  white-space: nowrap;
 }
 
-.login-account-nav-link:hover {
-  color: #495057 !important;
-  background: rgba(6, 98, 170, 0.1) !important;
+.login-account-nav-btn:hover {
+  color: #495057;
+  background: rgba(6, 98, 170, 0.1);
 }
 
-.login-account-nav-link.active {
-  background: linear-gradient(135deg, var(--login-blue) 0%, var(--login-green) 100%) !important;
-  color: white !important;
+.login-account-nav-btn.active {
+  background: linear-gradient(135deg, #0662aa 0%, #37aa50 100%);
+  color: white;
   box-shadow: 0 4px 15px rgba(6, 98, 170, 0.4);
   transform: translateY(-1px);
 }
@@ -169,7 +179,7 @@
   margin-bottom: 0;
 }
 
-/* Colorful Form Titles - Similar to Dashboard */
+/* Form Titles */
 .login-form-header {
   text-align: center;
   margin-bottom: 2rem;
@@ -182,8 +192,11 @@
   margin-bottom: 0.5rem;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px;
+}
+
+.login-form-title-text {
+  display: inline-block;
+  white-space: nowrap;
 }
 
 .login-form-title .login-title-word-1 {
@@ -204,7 +217,7 @@
   margin-bottom: 0;
 }
 
-/* Wider form layout */
+/* Form Layout */
 .login-form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -238,7 +251,7 @@
 
 .login-form-input:focus {
   outline: none;
-  border-color: var(--login-blue);
+  border-color: #0662aa;
   background: white;
   box-shadow: 0 0 0 3px rgba(6, 98, 170, 0.1);
 }
@@ -266,7 +279,7 @@
 .login-remember-checkbox {
   width: 16px;
   height: 16px;
-  accent-color: var(--login-blue);
+  accent-color: #0662aa;
   border-radius: 3px;
 }
 
@@ -274,25 +287,27 @@
   font-size: 0.9rem;
   color: #6c757d;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .login-forgot-password {
-  color: var(--login-blue);
+  color: #0662aa;
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
 .login-forgot-password:hover {
-  color: var(--login-green);
+  color: #37aa50;
   text-decoration: underline;
 }
 
-/* Submit Button with Colorful Text */
+/* Submit Button */
 .login-submit-btn {
   width: 100%;
-  background: linear-gradient(135deg, var(--login-blue) 0%, var(--login-green) 100%);
+  background: linear-gradient(135deg, #0662aa 0%, #37aa50 100%);
   color: white;
   border: none;
   padding: 12px;
@@ -309,7 +324,7 @@
 .login-submit-btn:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(6, 98, 170, 0.3);
-  background: linear-gradient(135deg, var(--login-green) 0%, var(--login-blue) 100%);
+  background: linear-gradient(135deg, #37aa50 0%, #0662aa 100%);
 }
 
 .login-btn-text {
@@ -318,7 +333,7 @@
   color: white;
 }
 
-/* External Social Section (Outside Card) */
+/* Social Section */
 .login-external-social-section {
   margin: 2rem 0;
   padding: 0 1rem;
@@ -337,6 +352,7 @@
   font-size: 0.9rem;
   position: relative;
   z-index: 1;
+  white-space: nowrap;
 }
 
 .login-social-divider::before {
@@ -372,6 +388,7 @@
   transition: all 0.3s ease;
   color: #495057;
   font-family: inherit;
+  white-space: nowrap;
 }
 
 .login-social-btn:hover {
@@ -393,6 +410,7 @@
   width: 20px;
   height: 20px;
   transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
 .login-google-icon {
@@ -412,7 +430,7 @@
   font-weight: 600;
 }
 
-/* External Auth Switch Links */
+/* Auth Switch Links */
 .login-auth-switch-external {
   text-align: center;
   margin-top: 1.5rem;
@@ -426,41 +444,84 @@
 }
 
 .login-switch-link {
-  color: var(--login-blue);
+  color: #0662aa;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease;
+  white-space: nowrap;
 }
 
 .login-switch-link:hover {
-  color: var(--login-green);
+  color: #37aa50;
   text-decoration: underline;
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (min-width: 1400px) {
   .login-account-banner-section {
-    padding: 30px 0;
-    margin-top: 70px;
+    padding: 50px 0;
   }
   
   .login-account-main-title {
-    font-size: 2rem;
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 1199px) {
+  .login-account-main-title {
+    font-size: 2.8rem;
+  }
+}
+
+/* Tablet and Mobile - Center everything */
+@media (max-width: 991px) {
+  .login-account-nav-col {
+    justify-content: center;
+    margin-top: 25px;
   }
   
-  .login-account-nav-col {
-    justify-content: flex-start;
-    margin-top: 20px;
+  .login-account-nav-tabs {
+    margin-left: 0;
+    max-width: 100%;
+    justify-content: center;
+  }
+  
+  .login-account-main-title {
+    justify-content: center;
+    text-align: center;
+    font-size: 2.6rem;
+  }
+  
+  .login-account-breadcrumb {
+    justify-content: center;
+  }
+  
+  .login-account-title-col {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-account-banner-section {
+    padding: 30px 0;
+    margin-top: 80px;
+  }
+  
+  .login-account-main-title {
+    font-size: 2.4rem;
+    justify-content: center;
   }
   
   .login-account-nav-tabs {
     width: 100%;
+    max-width: 300px;
+    justify-content: center;
   }
   
-  .login-account-nav-link {
-    flex: 1;
-    text-align: center;
-    padding: 10px 20px !important;
+  .login-account-nav-btn {
+    padding: 10px 25px;
+    font-size: 0.85rem;
   }
 
   .login-auth-form-section {
@@ -469,6 +530,7 @@
 
   .login-auth-form {
     padding: 2rem;
+    border-radius: 40px;
   }
 
   .login-form-title {
@@ -481,7 +543,7 @@
   }
 
   .login-form-options {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     gap: 15px;
   }
@@ -498,17 +560,26 @@
 }
 
 @media (max-width: 576px) {
+  .login-account-banner-section {
+    padding: 25px 0;
+    margin-top: 70px;
+  }
+  
   .login-account-main-title {
-    font-size: 1.8rem;
-    flex-direction: column;
-    gap: 5px;
-    text-align: center;
+    font-size: 2.2rem;
+  }
+
+  .login-account-nav-tabs {
+    max-width: 280px;
+  }
+
+  .login-account-nav-btn {
+    padding: 10px 20px;
+    font-size: 0.8rem;
   }
 
   .login-form-title {
     font-size: 1.5rem;
-    flex-direction: column;
-    gap: 3px;
   }
 
   .login-auth-form {
@@ -540,6 +611,110 @@
   }
 }
 
+@media (max-width: 480px) {
+  .login-account-banner-section {
+    padding: 20px 0;
+    margin-top: 65px;
+  }
+  
+  .login-account-main-title {
+    font-size: 2rem;
+  }
+  
+  .login-account-nav-tabs {
+    max-width: 250px;
+  }
+  
+  .login-account-nav-btn {
+    padding: 8px 16px;
+    font-size: 0.75rem;
+  }
+  
+  .login-account-breadcrumb {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: center;
+    padding-bottom: 5px;
+  }
+  
+  .login-account-breadcrumb::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .login-account-breadcrumb {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .login-auth-form {
+    padding: 1.25rem;
+    border-radius: 25px;
+  }
+  
+  .login-form-title {
+    font-size: 1.4rem;
+  }
+  
+  .login-form-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .login-social-btn {
+    padding: 9px 12px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .login-account-main-title {
+    font-size: 1.8rem;
+  }
+  
+  .login-account-nav-tabs {
+    max-width: 220px;
+  }
+  
+  .login-account-nav-btn {
+    padding: 6px 12px;
+    font-size: 0.7rem;
+  }
+  
+  .login-breadcrumb-link span {
+    display: none;
+  }
+  
+  .login-breadcrumb-link:first-child .breadcrumb-text {
+    display: inline;
+  }
+  
+  .login-auth-form {
+    padding: 1rem;
+    border-radius: 20px;
+  }
+  
+  .login-form-title {
+    font-size: 1.3rem;
+  }
+  
+  .login-social-btn {
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px;
+  }
+  
+  .login-social-text {
+    font-size: 0.8rem;
+  }
+}
+
+/* Safe area support for notched devices */
+@supports(padding: max(0px)) {
+  .login-account-banner-section {
+    padding-left: max(15px, env(safe-area-inset-left));
+    padding-right: max(15px, env(safe-area-inset-right));
+  }
+}
+
 /* Animation for tab switching */
 .login-auth-form {
   animation: login-fadeInUp 0.4s ease;
@@ -553,130 +728,5 @@
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-/* Additional Utility Classes */
-.login-text-center {
-  text-align: center;
-}
-
-.login-mt-1 {
-  margin-top: 0.5rem;
-}
-
-.login-mt-2 {
-  margin-top: 1rem;
-}
-
-.login-mt-3 {
-  margin-top: 1.5rem;
-}
-
-.login-mb-1 {
-  margin-bottom: 0.5rem;
-}
-
-.login-mb-2 {
-  margin-bottom: 1rem;
-}
-
-.login-mb-3 {
-  margin-bottom: 1.5rem;
-}
-
-/* Loading State */
-.login-submit-btn:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-  transform: none;
-}
-
-.login-submit-btn:disabled:hover {
-  transform: none;
-  box-shadow: none;
-}
-
-/* Error States */
-.login-form-input.error {
-  border-color: var(--login-red);
-  box-shadow: 0 0 0 3px rgba(230, 92, 82, 0.1);
-}
-
-.login-error-message {
-  color: var(--login-red);
-  font-size: 0.8rem;
-  margin-top: 0.25rem;
-  display: block;
-}
-
-/* Success States */
-.login-success-message {
-  color: var(--login-green);
-  font-size: 0.9rem;
-  text-align: center;
-  padding: 10px;
-  background: rgba(55, 170, 80, 0.1);
-  border-radius: 8px;
-  margin: 1rem 0;
-}
-
-/* Password Strength Indicator */
-.login-password-strength {
-  margin-top: 0.5rem;
-  font-size: 0.8rem;
-}
-
-.login-password-weak {
-  color: var(--login-red);
-}
-
-.login-password-medium {
-  color: var(--login-yellow);
-}
-
-.login-password-strong {
-  color: var(--login-green);
-}
-
-/* Custom Checkbox Styling */
-.login-remember-checkbox {
-  position: relative;
-  cursor: pointer;
-}
-
-.login-remember-checkbox:checked {
-  background-color: var(--login-blue);
-}
-
-/* Focus States for Accessibility */
-.login-account-nav-link:focus,
-.login-form-input:focus,
-.login-submit-btn:focus,
-.login-social-btn:focus,
-.login-remember-checkbox:focus {
-  outline: 2px solid var(--login-blue);
-  outline-offset: 2px;
-}
-
-/* Print Styles */
-@media print {
-  .login-account-banner-section,
-  .login-auth-form-section {
-    background: white !important;
-    box-shadow: none !important;
-    border: none !important;
-  }
-  
-  .login-auth-form {
-    box-shadow: none !important;
-    border: 1px solid #ccc !important;
-  }
-  
-  .login-submit-btn,
-  .login-social-btn {
-    background: #f8f9fa !important;
-    color: #333 !important;
-    border: 1px solid #ccc !important;
   }
 }

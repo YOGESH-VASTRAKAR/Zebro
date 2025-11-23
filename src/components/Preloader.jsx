@@ -4,163 +4,227 @@ import './Preloader.css';
 
 const Preloader = () => {
   const preloaderRef = useRef(null);
-  const logoRef = useRef(null);
-  const svgRef = useRef(null);
-  const textRef = useRef(null);
+  const sectionsRef = useRef([]);
+  const outerWrappersRef = useRef([]);
+  const innerWrappersRef = useRef([]);
+  const currentIndex = useRef(-1);
+  const animating = useRef(false);
+
+  // Add refs to arrays
+  const addToRefs = (el, refArray) => {
+    if (el && !refArray.current.includes(el)) {
+      refArray.current.push(el);
+    }
+  };
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Sequence timeline
-      const tl = gsap.timeline();
+    const sections = sectionsRef.current;
+    const outerWrappers = outerWrappersRef.current;
+    const innerWrappers = innerWrappersRef.current;
 
-      // Step 1: Logo animation
-      tl.fromTo(logoRef.current, 
-        {
-          opacity: 0,
-          scale: 0.5,
-          rotation: -10
-        },
-        {
-          opacity: 1,
-          scale: 1,
-          rotation: 0,
-          duration: 1,
-          ease: "back.out(1.7)"
-        }
-      )
+    // Initialize animations
+    gsap.set(outerWrappers, { yPercent: 100 });
+    gsap.set(innerWrappers, { yPercent: -100 });
+    gsap.set(sections, { autoAlpha: 0 });
 
-      // Step 2: Hide logo and show SVG
-      .to(logoRef.current, {
-        opacity: 0,
-        scale: 0.8,
-        duration: 0.5,
-        ease: "power2.in"
-      })
-      .set(logoRef.current, { display: 'none' })
-      .set(svgRef.current, { display: 'flex' })
-      .fromTo(svgRef.current, 
-        {
-          opacity: 0,
-          scale: 0.8,
-          rotationY: 90
-        },
-        {
-          opacity: 1,
-          scale: 1,
-          rotationY: 0,
-          duration: 1,
-          ease: "power3.out"
-        }
-      )
+    const gotoSection = (index, direction) => {
+      if (animating.current) return;
+      
+      animating.current = true;
+      const fromTop = direction === -1;
+      const dFactor = fromTop ? -1 : 1;
 
-      // Step 3: Hide SVG and show text
-      .to(svgRef.current, {
-        opacity: 0,
-        scale: 1.2,
-        duration: 0.5,
-        ease: "power2.in"
-      })
-      .set(svgRef.current, { display: 'none' })
-      .set(textRef.current, { display: 'flex' })
-      .fromTo(textRef.current, 
-        {
-          opacity: 0,
-          y: 100,
-          scale: 0.8
-        },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 1,
-          ease: "elastic.out(1, 0.5)"
-        }
-      )
-
-      // Step 4: Hide entire preloader
-      .to(preloaderRef.current, {
-        opacity: 0,
-        duration: 0.5,
-        ease: "power2.out",
+      const tl = gsap.timeline({
+        defaults: { duration: 1.2, ease: "power2.inOut" },
         onComplete: () => {
-          // Optional: Remove from DOM after animation
-          if (preloaderRef.current) {
-            preloaderRef.current.style.display = 'none';
+          animating.current = false;
+          
+          // If it's the last section, hide preloader
+          if (index === sections.length - 1) {
+            setTimeout(() => {
+              gsap.to(preloaderRef.current, {
+                opacity: 0,
+                duration: 0.8,
+                onComplete: () => {
+                  if (preloaderRef.current) {
+                    preloaderRef.current.style.display = 'none';
+                  }
+                }
+              });
+            }, 1500);
           }
         }
       });
 
-    }, preloaderRef);
+      // Hide current section
+      if (currentIndex.current >= 0) {
+        gsap.set(sections[currentIndex.current], { zIndex: 0 });
+        tl.to(sections[currentIndex.current], { autoAlpha: 0 }, 0);
+      }
 
-    return () => ctx.revert();
+      // Show new section
+      gsap.set(sections[index], { autoAlpha: 1, zIndex: 1 });
+      
+      tl.fromTo([outerWrappers[index], innerWrappers[index]], 
+        { 
+          yPercent: i => i ? -100 * dFactor : 100 * dFactor 
+        },
+        { 
+          yPercent: 0 
+        }, 0
+      );
+
+      currentIndex.current = index;
+    };
+
+    // Auto-advance through sections
+    const autoAdvance = () => {
+      let index = 0;
+      const totalSections = sections.length;
+      
+      const nextSection = () => {
+        if (index < totalSections) {
+          gotoSection(index, 1);
+          index++;
+          if (index < totalSections) {
+            setTimeout(nextSection, 2000); // 2 second delay between sections
+          }
+        }
+      };
+      
+      // Start with first section
+      setTimeout(() => {
+        gotoSection(0, 1);
+        index = 1;
+        setTimeout(nextSection, 2000);
+      }, 500);
+    };
+
+    autoAdvance();
+
+    return () => {
+      // Cleanup
+      animating.current = false;
+    };
   }, []);
 
   return (
     <div className="preloader" ref={preloaderRef}>
-      {/* Step 1: Only Logo - Full Screen */}
-      <div className="preloader__step preloader__step--logo" ref={logoRef}>
-        <img 
-          src="/logo.png" 
-          alt="Zebro Kids Logo" 
-          className="preloader__logo"
-        />
-      </div>
-
-      {/* Step 2: Only SVG - Full Screen (initially hidden) */}
-      <div className="preloader__step preloader__step--svg" ref={svgRef} style={{display: 'none'}}>
-        <div className="preloader__animation">
-          <svg 
-            role="img" 
-            aria-label="Mouth and eyes come from 9:00 and rotate clockwise into position, right eye blinks, then all parts rotate and merge into 3:00" 
-            className="smiley" 
-            viewBox="0 0 128 128" 
-            width="128px" 
-            height="128px"
+      {/* Section 1: Logo */}
+      <section 
+        className="preloader-section section-logo" 
+        ref={el => addToRefs(el, sectionsRef)}
+      >
+        <div 
+          className="outer" 
+          ref={el => addToRefs(el, outerWrappersRef)}
+        >
+          <div 
+            className="inner" 
+            ref={el => addToRefs(el, innerWrappersRef)}
           >
-            <defs>
-              <clipPath id="smiley-eyes">
-                <circle className="smiley__eye1" cx="64" cy="64" r="8" transform="rotate(-40,64,64) translate(0,-56)" />
-                <circle className="smiley__eye2" cx="64" cy="64" r="8" transform="rotate(40,64,64) translate(0,-56)" />
-              </clipPath>
-              <linearGradient id="smiley-grad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#000" />
-                <stop offset="100%" stopColor="#fff" />
-              </linearGradient>
-              <mask id="smiley-mask">
-                <rect x="0" y="0" width="128" height="128" fill="url(#smiley-grad)" />
-              </mask>
-            </defs>
-            <g strokeLinecap="round" strokeWidth="12" strokeDasharray="175.93 351.86">
-              <g>
-                <rect fill="hsl(193,90%,50%)" width="128" height="64" clipPath="url(#smiley-eyes)" />
-                <g fill="none" stroke="hsl(193,90%,50%)">
-                  <circle className="smiley__mouth1" cx="64" cy="64" r="56" transform="rotate(180,64,64)" />
-                  <circle className="smiley__mouth2" cx="64" cy="64" r="56" transform="rotate(0,64,64)" />
-                </g>
-              </g>
-              <g mask="url(#smiley-mask)">
-                <rect fill="hsl(223,90%,50%)" width="128" height="64" clipPath="url(#smiley-eyes)" />
-                <g fill="none" stroke="hsl(223,90%,50%)">
-                  <circle className="smiley__mouth1" cx="64" cy="64" r="56" transform="rotate(180,64,64)" />
-                  <circle className="smiley__mouth2" cx="64" cy="64" r="56" transform="rotate(0,64,64)" />
-                </g>
-              </g>
-            </g>
-          </svg>
+            <div className="bg logo-bg">
+              <div className="content">
+                <img 
+                  src="/logo.png" 
+                  alt="Zebro Kids Logo" 
+                  className="preloader__logo"
+                />
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Step 3: Only Text - Full Screen (initially hidden) */}
-      <div className="preloader__step preloader__step--text" ref={textRef} style={{display: 'none'}}>
-        <div className="preloader__text">
-          <h2 className="preloader__title">
-            <span className="preloader-title-word preloader-title-word-1">Welcome</span>
-            <span className="preloader-title-word preloader-title-word-2">To</span>
-            <span className="preloader-title-word preloader-title-word-3">Zebro</span>
-            <span className="preloader-title-word preloader-title-word-4">Kids</span>
-          </h2>
+      {/* Section 2: SVG Animation */}
+      <section 
+        className="preloader-section section-svg" 
+        ref={el => addToRefs(el, sectionsRef)}
+      >
+        <div 
+          className="outer" 
+          ref={el => addToRefs(el, outerWrappersRef)}
+        >
+          <div 
+            className="inner" 
+            ref={el => addToRefs(el, innerWrappersRef)}
+          >
+            <div className="bg svg-bg">
+              <div className="content">
+                <div className="preloader__animation">
+                  <svg 
+                    role="img" 
+                    aria-label="Animated smiley face" 
+                    className="smiley" 
+                    viewBox="0 0 128 128" 
+                    width="128px" 
+                    height="128px"
+                  >
+                    <defs>
+                      <clipPath id="smiley-eyes">
+                        <circle className="smiley__eye1" cx="64" cy="64" r="8" transform="rotate(-40,64,64) translate(0,-56)" />
+                        <circle className="smiley__eye2" cx="64" cy="64" r="8" transform="rotate(40,64,64) translate(0,-56)" />
+                      </clipPath>
+                      <linearGradient id="smiley-grad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#000" />
+                        <stop offset="100%" stopColor="#fff" />
+                      </linearGradient>
+                      <mask id="smiley-mask">
+                        <rect x="0" y="0" width="128" height="128" fill="url(#smiley-grad)" />
+                      </mask>
+                    </defs>
+                    <g strokeLinecap="round" strokeWidth="12" strokeDasharray="175.93 351.86">
+                      <g>
+                        <rect fill="hsl(193,90%,50%)" width="128" height="64" clipPath="url(#smiley-eyes)" />
+                        <g fill="none" stroke="hsl(193,90%,50%)">
+                          <circle className="smiley__mouth1" cx="64" cy="64" r="56" transform="rotate(180,64,64)" />
+                          <circle className="smiley__mouth2" cx="64" cy="64" r="56" transform="rotate(0,64,64)" />
+                        </g>
+                      </g>
+                      <g mask="url(#smiley-mask)">
+                        <rect fill="hsl(223,90%,50%)" width="128" height="64" clipPath="url(#smiley-eyes)" />
+                        <g fill="none" stroke="hsl(223,90%,50%)">
+                          <circle className="smiley__mouth1" cx="64" cy="64" r="56" transform="rotate(180,64,64)" />
+                          <circle className="smiley__mouth2" cx="64" cy="64" r="56" transform="rotate(0,64,64)" />
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
+
+      {/* Section 3: Text */}
+      <section 
+        className="preloader-section section-text" 
+        ref={el => addToRefs(el, sectionsRef)}
+      >
+        <div 
+          className="outer" 
+          ref={el => addToRefs(el, outerWrappersRef)}
+        >
+          <div 
+            className="inner" 
+            ref={el => addToRefs(el, innerWrappersRef)}
+          >
+            <div className="bg text-bg">
+              <div className="content">
+                <div className="preloader__text">
+                  <h2 className="preloader__title">
+                    <span className="preloader-title-word preloader-title-word-1">Welcome</span>
+                    <span className="preloader-title-word preloader-title-word-2">To</span>
+                    <span className="preloader-title-word preloader-title-word-3">Zebro</span>
+                    <span className="preloader-title-word preloader-title-word-4">Kids</span>
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

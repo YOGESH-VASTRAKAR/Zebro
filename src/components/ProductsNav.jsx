@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { 
   FunnelIcon,
-  ChevronDownIcon
+  ChevronDownIcon,
+  Bars3Icon
 } from '@heroicons/react/24/outline';
 import FilterAllProducts from './FilterAllProducts';
 import './ProductsNav.css';
 
-// Custom Grid Icons (same as before)
+// Custom Grid Icons
 const Grid4x4Icon = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
     <rect x="1" y="1" width="3" height="3" rx="0.5"/>
@@ -53,6 +54,7 @@ const ProductsNav = ({ onGridViewChange, currentGridView }) => {
   const [showFilters, setShowFilters] = useState(false);
   const [showSortDropdown, setShowSortDropdown] = useState(false);
   const [showFilterModal, setShowFilterModal] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   const sortOptions = [
     { value: 'default', label: 'Default' },
@@ -76,14 +78,20 @@ const ProductsNav = ({ onGridViewChange, currentGridView }) => {
 
   const handleFilterClick = () => {
     setShowFilterModal(true);
-    setShowFilters(false); // Close the filter panel if open
+    setShowFilters(false);
+    setShowMobileMenu(false);
+  };
+
+  const toggleMobileMenu = () => {
+    setShowMobileMenu(!showMobileMenu);
   };
 
   return (
     <>
       <div className="products-nav-section">
         <Container>
-          <Row className="align-items-center">
+          {/* Desktop Layout */}
+          <Row className="align-items-center products-nav-desktop">
             {/* Left Side - Grid View Options */}
             <Col md={6} className="products-nav-left-col">
               <div className="products-grid-options">
@@ -95,7 +103,7 @@ const ProductsNav = ({ onGridViewChange, currentGridView }) => {
                     title="4x4 Grid View"
                   >
                     <Grid4x4Icon />
-                    <span>4×4 Grid</span>
+                    <span className="btn-text">4×4 Grid</span>
                   </button>
                   <button 
                     className={`products-grid-btn ${currentGridView === '3x3' ? 'active' : ''}`}
@@ -103,7 +111,7 @@ const ProductsNav = ({ onGridViewChange, currentGridView }) => {
                     title="3x3 Grid View"
                   >
                     <Grid3x3Icon />
-                    <span>3×3 Grid</span>
+                    <span className="btn-text">3×3 Grid</span>
                   </button>
                 </div>
               </div>
@@ -148,14 +156,86 @@ const ProductsNav = ({ onGridViewChange, currentGridView }) => {
                   onClick={handleFilterClick}
                 >
                   <FunnelIcon className="products-filter-icon" />
-                  <span>Filter</span>
+                  <span className="btn-text">Filter</span>
                 </button>
               </div>
             </Col>
           </Row>
+
+          {/* Mobile Layout */}
+          <div className="products-nav-mobile">
+            <div className="products-mobile-header">
+              <button 
+                className="products-mobile-menu-btn"
+                onClick={toggleMobileMenu}
+              >
+                <Bars3Icon className="mobile-menu-icon" />
+                <span>Options</span>
+              </button>
+              
+              <button 
+                className="products-mobile-filter-btn"
+                onClick={handleFilterClick}
+              >
+                <FunnelIcon className="mobile-filter-icon" />
+                <span>Filter</span>
+              </button>
+            </div>
+
+            {/* Mobile Dropdown Menu */}
+            {showMobileMenu && (
+              <div className="products-mobile-menu">
+                {/* Grid View Options */}
+                <div className="products-mobile-section">
+                  <label className="products-mobile-label">Grid View:</label>
+                  <div className="products-mobile-grid-buttons">
+                    <button 
+                      className={`products-mobile-grid-btn ${currentGridView === '4x4' ? 'active' : ''}`}
+                      onClick={() => {
+                        onGridViewChange('4x4');
+                        setShowMobileMenu(false);
+                      }}
+                    >
+                      <Grid4x4Icon />
+                      <span>4×4 Grid</span>
+                    </button>
+                    <button 
+                      className={`products-mobile-grid-btn ${currentGridView === '3x3' ? 'active' : ''}`}
+                      onClick={() => {
+                        onGridViewChange('3x3');
+                        setShowMobileMenu(false);
+                      }}
+                    >
+                      <Grid3x3Icon />
+                      <span>3×3 Grid</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Sort Options */}
+                <div className="products-mobile-section">
+                  <label className="products-mobile-label">Sort By:</label>
+                  <div className="products-mobile-sort-options">
+                    {sortOptions.map((option) => (
+                      <button
+                        key={option.value}
+                        className={`products-mobile-sort-btn ${sortBy === option.value ? 'active' : ''}`}
+                        onClick={() => {
+                          handleSortChange(option.value);
+                          setShowMobileMenu(false);
+                        }}
+                      >
+                        {option.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         </Container>
 
-        {/* Filter Panel (Optional - you can remove this if using modal only) */}
+        {/* Filter Panel */}
         {showFilters && (
           <div className="products-filter-panel">
             <Container>
@@ -173,6 +253,17 @@ const ProductsNav = ({ onGridViewChange, currentGridView }) => {
         show={showFilterModal}
         onHide={() => setShowFilterModal(false)}
       />
+
+      {/* Overlay for dropdowns */}
+      {(showSortDropdown || showMobileMenu) && (
+        <div 
+          className="products-nav-overlay"
+          onClick={() => {
+            setShowSortDropdown(false);
+            setShowMobileMenu(false);
+          }}
+        />
+      )}
     </>
   );
 };

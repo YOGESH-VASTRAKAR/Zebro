@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Container, Row, Col, Nav } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import { 
   HomeIcon,
   ChevronRightIcon
@@ -66,17 +66,20 @@ const LoginRegistration = () => {
       <div className="login-account-banner-section">
         <Container>
           <Row className="align-items-center">
-            {/* Left Side - My Account Title */}
-            <Col md={6} className="login-account-title-col">
+            {/* Left Side - Account Title */}
+            <Col lg={6} md={12} className="login-account-title-col">
               <div className="login-account-title-content">
                 <h1 className="login-account-main-title">
-                  <span className="login-title-word login-title-word-1">Account</span>
-                  <span className="login-title-word login-title-word-2">Setup</span>
+                  <span className="login-title-text">
+                    <span className="login-title-word login-title-word-1">Account</span>
+                    {' '}
+                    <span className="login-title-word login-title-word-2">Setup</span>
+                  </span>
                 </h1>
                 <div className="login-account-breadcrumb">
                   <a href="/" className="login-breadcrumb-link">
                     <HomeIcon className="login-breadcrumb-icon" />
-                    <span>Home</span>
+                    <span className="breadcrumb-text">Home</span>
                   </a>
                   <ChevronRightIcon className="login-breadcrumb-separator" />
                   <span className="login-breadcrumb-current">Account Setup</span>
@@ -85,25 +88,22 @@ const LoginRegistration = () => {
             </Col>
             
             {/* Right Side - Navigation */}
-            <Col md={6} className="login-account-nav-col">
+            <Col lg={6} md={12} className="login-account-nav-col">
               <div className="login-account-navigation">
-                <Nav 
-                  variant="pills" 
-                  className="login-account-nav-tabs"
-                  activeKey={activeTab}
-                  onSelect={(selectedKey) => setActiveTab(selectedKey)}
-                >
-                  <Nav.Item>
-                    <Nav.Link eventKey="login" className="login-account-nav-link">
-                      <span className="login-nav-text">Login</span>
-                    </Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link eventKey="register" className="login-account-nav-link">
-                      <span className="login-nav-text">Register</span>
-                    </Nav.Link>
-                  </Nav.Item>
-                </Nav>
+                <div className="login-account-nav-tabs">
+                  <button 
+                    className={`login-account-nav-btn ${activeTab === 'login' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('login')}
+                  >
+                    <span className="login-nav-text">Login</span>
+                  </button>
+                  <button 
+                    className={`login-account-nav-btn ${activeTab === 'register' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('register')}
+                  >
+                    <span className="login-nav-text">Register</span>
+                  </button>
+                </div>
               </div>
             </Col>
           </Row>
@@ -123,8 +123,11 @@ const LoginRegistration = () => {
                     <div className="login-auth-form login-login-form">
                       <div className="login-form-header">
                         <h2 className="login-form-title">
-                          <span className="login-title-word login-title-word-1">Welcome</span>
-                          <span className="login-title-word login-title-word-2">Back!</span>
+                          <span className="login-form-title-text">
+                            <span className="login-title-word login-title-word-1">Welcome</span>
+                            {' '}
+                            <span className="login-title-word login-title-word-2">Back!</span>
+                          </span>
                         </h2>
                         <p className="login-form-subtitle">Sign in to your account to continue</p>
                       </div>
@@ -228,8 +231,11 @@ const LoginRegistration = () => {
                     <div className="login-auth-form login-register-form">
                       <div className="login-form-header">
                         <h2 className="login-form-title">
-                          <span className="login-title-word login-title-word-1">Create</span>
-                          <span className="login-title-word login-title-word-2">Account</span>
+                          <span className="login-form-title-text">
+                            <span className="login-title-word login-title-word-1">Create</span>
+                            {' '}
+                            <span className="login-title-word login-title-word-2">Account</span>
+                          </span>
                         </h2>
                         <p className="login-form-subtitle">Sign up to get started with your account</p>
                       </div>

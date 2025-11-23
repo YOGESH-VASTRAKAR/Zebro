@@ -1,138 +1,136 @@
-/* Pagination Styles */
+/* Categories Pagination Styles - Reference Style */
 .categories-pagination-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 16px;
   margin-top: 20px;
-  padding: 15px 0 5px;
+  padding: 16px 0;
   width: 100%;
 }
 
+@media (min-width: 640px) {
+  .categories-pagination-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
 .categories-pagination-info {
-  font-size: 0.9rem;
-  color: #6E6E6E;
-  font-weight: 500;
+  font-size: 0.875rem;
+  color: #6b7280;
   margin-bottom: 0;
 }
 
 .categories-pagination-controls {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-top: 0;
+  gap: 16px;
 }
 
-.categories-pagination-btn {
+/* Pagination buttons */
+.categories-pagination-buttons {
   display: flex;
   align-items: center;
-  gap: 8px;
-  background: transparent;
-  color: #0662aa;
-  border: 2px solid #0662aa;
-  padding: 10px 20px;
-  border-radius: 25px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  gap: 4px;
 }
 
-.categories-pagination-btn:hover:not(.disabled) {
-  background: #0662aa;
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(6, 98, 170, 0.3);
-}
-
-.categories-pagination-btn.disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  border-color: #BFBFBF;
-  color: #BFBFBF;
-}
-
-.categories-pagination-icon {
-  width: 16px;
-  height: 16px;
-}
-
-.categories-pagination-numbers {
-  display: flex;
-  gap: 8px;
-}
-
-.categories-pagination-number {
-  width: 40px;
-  height: 40px;
+.pagination-nav-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
-  color: #0662aa;
-  border: 2px solid #0662aa;
-  border-radius: 50%;
-  font-weight: 600;
-  font-size: 0.9rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  border: none;
+  background: none;
+  color: #0769b3;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+}
+
+.pagination-nav-btn:hover:not(.disabled) {
+  background: #dbeafe;
+}
+
+.pagination-nav-btn.disabled {
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.pagination-nav-btn.disabled:hover {
+  background: none;
+}
+
+.nav-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.categories-pagination-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  border: none;
+  background: none;
+  font-size: 0.875rem;
+  color: #0769b3;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .categories-pagination-number:hover {
-  background: #0662aa;
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(6, 98, 170, 0.3);
+  background: #dbeafe;
 }
 
 .categories-pagination-number.active {
-  background: #0662aa;
+  background: #0769b3;
   color: white;
-  border-color: #0662aa;
-  transform: scale(1.1);
 }
 
-/* Responsive Pagination */
+/* Responsive Design */
 @media (max-width: 768px) {
-  .categories-pagination-controls {
+  .categories-pagination-container {
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
   }
   
-  .categories-pagination-numbers {
-    order: -1;
+  .categories-pagination-info {
+    order: 2;
   }
   
-  .categories-pagination-btn {
-    padding: 8px 16px;
-    font-size: 0.85rem;
-  }
-  
-  .categories-pagination-number {
-    width: 35px;
-    height: 35px;
-    font-size: 0.85rem;
+  .categories-pagination-controls {
+    order: 1;
   }
 }
 
 @media (max-width: 480px) {
-  .categories-pagination-numbers {
-    gap: 5px;
+  .categories-pagination-buttons {
+    gap: 2px;
   }
   
   .categories-pagination-number {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     font-size: 0.8rem;
+  }
+  
+  .pagination-nav-btn {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .nav-icon {
+    width: 16px;
+    height: 16px;
   }
   
   .categories-pagination-info {
     font-size: 0.8rem;
     text-align: center;
-  }
-  
-  .categories-pagination-container {
-    gap: 10px;
-    padding: 10px 0 0;
   }
 }
