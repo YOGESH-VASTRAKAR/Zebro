@@ -13,7 +13,30 @@ import './Products.css';
 const Products = () => {
   const [gridView, setGridView] = useState('4x4');
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [isMobile, setIsMobile] = useState(false);
   const location = useLocation();
+
+  // Mobile detection
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+      
+      // Auto-set grid view based on screen size
+      if (mobile && (gridView === '4x4' || gridView === '3x3')) {
+        setGridView('2x2'); // Default to 2x2 on mobile
+      } else if (!mobile && (gridView === '2x2' || gridView === '1x1')) {
+        setGridView('4x4'); // Default to 4x4 on desktop
+      }
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, [gridView]);
 
   // URL se category extract karo
   useEffect(() => {
@@ -36,6 +59,7 @@ const Products = () => {
   }, [location.search]);
 
   const handleGridViewChange = (view) => {
+    console.log('Changing grid view to:', view);
     setGridView(view);
   };
 
@@ -99,12 +123,14 @@ const Products = () => {
         onGridViewChange={handleGridViewChange}
         currentGridView={gridView}
         selectedCategory={selectedCategory}
+        isMobile={isMobile}
       />
 
       {/* Categories Products Grid */}
       <CategoriesProducts 
         gridView={gridView} 
         selectedCategory={selectedCategory}
+        isMobile={isMobile}
       />
     </>
   );

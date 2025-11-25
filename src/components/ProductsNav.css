@@ -237,6 +237,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 10px;
+  margin-bottom: 12px;
 }
 
 .products-mobile-menu-btn {
@@ -286,6 +287,43 @@
 .mobile-filter-icon {
   width: 18px;
   height: 18px;
+}
+
+/* Mobile Visible Grid Buttons */
+.products-mobile-grid-buttons-visible {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.products-mobile-grid-buttons-visible .products-mobile-grid-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  background: white;
+  color: #6c757d;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  max-width: 120px;
+}
+
+.products-mobile-grid-buttons-visible .products-mobile-grid-btn:hover {
+  border-color: #0662aa;
+  color: #0662aa;
+  background: #f8f9fa;
+}
+
+.products-mobile-grid-buttons-visible .products-mobile-grid-btn.active {
+  background: #0662aa;
+  border-color: #0662aa;
+  color: white;
 }
 
 .products-mobile-menu {
@@ -440,7 +478,7 @@
 
 @media (max-width: 768px) {
   .products-nav-desktop {
-    display: none;
+    display: none !important;
   }
   
   .products-nav-mobile {
@@ -448,7 +486,7 @@
   }
   
   .products-mobile-grid-buttons {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -474,6 +512,10 @@
   
   .products-mobile-section {
     margin-bottom: 15px;
+  }
+  
+  .products-mobile-grid-buttons {
+    grid-template-columns: 1fr;
   }
 }
 

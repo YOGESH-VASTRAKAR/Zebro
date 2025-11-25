@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { 
   ShoppingCartIcon,
@@ -9,14 +9,46 @@ import {
 import CategoriesPagination from './CategoriesPagination';
 import './CategoriesProducts.css';
 
-const CategoriesProducts = ({ gridView }) => {
+const CategoriesProducts = ({ gridView, isMobile }) => {
   const [wishlist, setWishlist] = useState([]);
   const [viewedProducts, setViewedProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = gridView === '4x4' ? 12 : 9;
+  const [localIsMobile, setLocalIsMobile] = useState(false);
   const productsGridRef = useRef(null);
 
-  // Sample products data - 16 products for 4x4 grid
+  // Mobile detection with backup
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth <= 768;
+      setLocalIsMobile(mobile);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
+
+  // Use prop isMobile or local detection
+  const actualIsMobile = isMobile !== undefined ? isMobile : localIsMobile;
+
+  // Calculate products per page based on grid view and screen size
+  const productsPerPage = useMemo(() => {
+    if (actualIsMobile) {
+      // Mobile view - only 2x2 and 1x1
+      if (gridView === '1x1') return 4;
+      if (gridView === '2x2') return 8;
+      return 8; // default for mobile (2x2)
+    } else {
+      // Desktop view - only 4x4 and 3x3
+      if (gridView === '4x4') return 12;
+      if (gridView === '3x3') return 9;
+      return 9; // default for desktop (3x3)
+    }
+  }, [gridView, actualIsMobile]);
+
   const products = [
     {
       id: 1,
@@ -208,7 +240,6 @@ const CategoriesProducts = ({ gridView }) => {
   const handleDetailsClick = (productId, e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log('View details for product:', productId);
     
     // Add to viewed products if not already there
     if (!viewedProducts.includes(productId)) {
@@ -234,15 +265,32 @@ const CategoriesProducts = ({ gridView }) => {
     }, 50);
   };
 
+  // Determine grid class based on view and screen size
+  const getGridClass = () => {
+    if (actualIsMobile) {
+      // Mobile pe sirf 2x2 aur 1x1 allow karo
+      if (gridView === '1x1') return 'categories-products-grid-1x1';
+      if (gridView === '2x2') return 'categories-products-grid-2x2';
+      // Agar koi aur view hai mobile pe, to force 2x2
+      return 'categories-products-grid-2x2';
+    } else {
+      // Desktop pe sirf 4x4 aur 3x3 allow karo
+      if (gridView === '4x4') return 'categories-products-grid-4x4';
+      if (gridView === '3x3') return 'categories-products-grid-3x3';
+      // Agar koi aur view hai desktop pe, to force 3x3
+      return 'categories-products-grid-3x3';
+    }
+  };
+
   return (
     <div className="categories-products-page">
       <div className="categories-products-content-section">
         <div className="categories-products-section">
           <Container className="categories-products-container">
-            {/* Products Grid - Dynamic based on gridView */}
+            {/* Products Grid - Dynamic based on gridView and screen size */}
             <div 
               ref={productsGridRef}
-              className={`categories-products-grid ${gridView === '4x4' ? 'categories-products-grid-4x4' : 'categories-products-grid-3x3'}`}
+              className={`categories-products-grid ${getGridClass()}`}
             >
               {paginationData.currentProducts.map((product) => (
                 <div key={product.id} className="categories-products-deal-card">
@@ -285,8 +333,8 @@ const CategoriesProducts = ({ gridView }) => {
                         <a href="#" className="categories-products-iconBox"> 
                           <ShoppingCartIcon 
                             style={{
-                              width: '24px',
-                              height: '24px',
+                              width: actualIsMobile ? '20px' : '24px',
+                              height: actualIsMobile ? '20px' : '24px',
                               color: '#fff'
                             }}
                           />
@@ -308,8 +356,8 @@ const CategoriesProducts = ({ gridView }) => {
                             <StarIcon 
                               key={i}
                               style={{
-                                width: '14px',
-                                height: '14px',
+                                width: actualIsMobile ? '12px' : '14px',
+                                height: actualIsMobile ? '12px' : '14px',
                                 fill: i < Math.floor(product.rating) ? '#F2BB13' : 'none',
                                 stroke: i < product.rating ? '#F2BB13' : '#BFBFBF'
                               }}

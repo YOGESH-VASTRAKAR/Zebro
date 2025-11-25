@@ -65,6 +65,30 @@
   align-items: start; /* Align all cards to top */
 }
 
+/* 2x2 Products Grid - MOBILE CARDS */
+.categories-products-grid-2x2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-bottom: 20px;
+  min-height: auto;
+  width: 100%;
+  justify-items: center; /* Center all cards horizontally */
+  align-items: start; /* Align all cards to top */
+}
+
+/* 1x1 Products Grid - MOBILE SINGLE COLUMN */
+.categories-products-grid-1x1 {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 15px;
+  margin-bottom: 20px;
+  min-height: auto;
+  width: 100%;
+  justify-items: center; /* Center all cards horizontally */
+  align-items: start; /* Align all cards to top */
+}
+
 /* Deal Card Styles - EXACTLY SAME AS REFERENCE */
 .categories-products-deal-card {
   color: #111;
@@ -97,6 +121,18 @@
   min-width: 0; /* Allow cards to shrink properly */
 }
 
+.categories-products-grid-2x2 .categories-products-deal-card {
+  width: 100%;
+  max-width: auto; /* Let grid handle the width */
+  min-width: 0; /* Allow cards to shrink properly */
+}
+
+.categories-products-grid-1x1 .categories-products-deal-card {
+  width: 100%;
+  max-width: 400px; /* Single column ke liye max-width */
+  min-width: 0; /* Allow cards to shrink properly */
+}
+
 .categories-products-deal-card:hover {
   transform: translateY(-8px);
   background: rgba(255, 255, 255, 0.95);
@@ -119,6 +155,14 @@
 
 .categories-products-grid-3x3 .categories-products-card-inner {
   height: 280px; /* Restored original height */
+}
+
+.categories-products-grid-2x2 .categories-products-card-inner {
+  height: 180px; /* Mobile ke liye optimized height */
+}
+
+.categories-products-grid-1x1 .categories-products-card-inner {
+  height: 200px; /* Single column ke liye height */
 }
 
 .categories-products-card-inner .categories-products-box {
@@ -334,6 +378,32 @@
   flex-shrink: 0;
 }
 
+.categories-products-grid-2x2 .categories-products-deal-title {
+  font-size: 1rem; /* Mobile ke liye optimized font size */
+  margin-bottom: 6px;
+  line-height: 1.3;
+  height: auto;
+  min-height: 2.6em; /* Fixed height for 2 lines */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  flex-shrink: 0;
+}
+
+.categories-products-grid-1x1 .categories-products-deal-title {
+  font-size: 1.1rem; /* Single column ke liye font size */
+  margin-bottom: 8px;
+  line-height: 1.3;
+  height: auto;
+  min-height: 2.6em; /* Fixed height for 2 lines */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  flex-shrink: 0;
+}
+
 .categories-products-rating-price-container {
   display: flex;
   flex-direction: column;
@@ -377,6 +447,18 @@
 
 .categories-products-grid-3x3 .categories-products-current-price {
   font-size: 1.3rem; /* Restored original font size */
+  font-weight: 700;
+  color: #37aa50;
+}
+
+.categories-products-grid-2x2 .categories-products-current-price {
+  font-size: 1rem; /* Mobile ke liye optimized font size */
+  font-weight: 700;
+  color: #37aa50;
+}
+
+.categories-products-grid-1x1 .categories-products-current-price {
+  font-size: 1.1rem; /* Single column ke liye font size */
   font-weight: 700;
   color: #37aa50;
 }
@@ -555,6 +637,102 @@
   }
 }
 
+/* Mobile Specific Styles for 2x2 and 1x1 Grids */
+@media (max-width: 768px) {
+  .categories-products-grid-2x2 {
+    gap: 12px;
+  }
+  
+  .categories-products-grid-1x1 {
+    gap: 12px;
+  }
+  
+  .categories-products-grid-2x2 .categories-products-deal-card {
+    max-width: 100%;
+  }
+  
+  .categories-products-grid-1x1 .categories-products-deal-card {
+    max-width: 100%;
+  }
+  
+  /* Mobile pe hover effects disable */
+  .categories-products-deal-card:hover {
+    transform: none;
+  }
+  
+  .categories-products-deal-card:hover .categories-products-hover-overlay {
+    opacity: 0;
+  }
+  
+  /* Mobile pe always show icons */
+  .categories-products-hover-overlay {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.3);
+  }
+  
+  .categories-products-hover-icons {
+    flex-direction: row;
+    gap: 8px;
+  }
+  
+  .categories-products-details-btn,
+  .categories-products-wishlist-btn {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .categories-products-details-icon,
+  .categories-products-wishlist-icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .categories-products-grid-2x2 {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .categories-products-grid-2x2 .categories-products-deal-card {
+    max-width: 100%;
+  }
+  
+  .categories-products-grid-2x2 .categories-products-card-inner {
+    height: 160px;
+  }
+  
+  .categories-products-grid-1x1 .categories-products-card-inner {
+    height: 180px;
+  }
+  
+  .categories-products-content {
+    padding: 0.8rem 0.4rem 0.4rem;
+    min-height: 100px;
+  }
+  
+  .categories-products-grid-2x2 .categories-products-deal-title {
+    font-size: 0.9rem;
+  }
+  
+  .categories-products-grid-1x1 .categories-products-deal-title {
+    font-size: 1rem;
+  }
+  
+  .categories-products-grid-2x2 .categories-products-current-price {
+    font-size: 0.9rem;
+  }
+  
+  .categories-products-grid-1x1 .categories-products-current-price {
+    font-size: 1rem;
+  }
+  
+  .categories-products-rating-price-container {
+    min-height: 45px;
+    gap: 6px;
+  }
+}
+
 /* Focus states for accessibility */
 .categories-products-load-more-btn:focus {
   outline: 2px solid #0662aa;
@@ -595,4 +773,129 @@
 .categories-products-content-section {
   scrollbar-width: thin;
   scrollbar-color: #0662aa #f8f9fa;
+}
+
+/* Animation for product cards */
+@keyframes categories-products-fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.categories-products-deal-card {
+  animation: categories-products-fadeIn 0.5s ease-out;
+}
+
+/* Pagination Styles */
+.categories-products-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  padding: 20px 0;
+}
+
+.categories-products-pagination-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.categories-products-pagination-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border: 1px solid #E5E7EB;
+  border-radius: 6px;
+  background: white;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.categories-products-pagination-btn:hover:not(:disabled) {
+  background: #0D5BCF;
+  color: white;
+  border-color: #0D5BCF;
+}
+
+.categories-products-pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.categories-products-pagination-pages {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.categories-products-pagination-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid #E5E7EB;
+  border-radius: 6px;
+  background: white;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.categories-products-pagination-page:hover {
+  background: #F3F4F6;
+  border-color: #D1D5DB;
+}
+
+.categories-products-pagination-page.active {
+  background: #0D5BCF;
+  color: white;
+  border-color: #0D5BCF;
+}
+
+.categories-products-pagination-info {
+  font-size: 14px;
+  color: #6B7280;
+  margin-left: 15px;
+}
+
+/* Loading State */
+.categories-products-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  color: #6B7280;
+  font-size: 16px;
+}
+
+/* Empty State */
+.categories-products-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6B7280;
+}
+
+.categories-products-empty h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #374151;
+}
+
+.categories-products-empty p {
+  font-size: 14px;
+  margin-bottom: 20px;
 }
