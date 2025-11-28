@@ -192,7 +192,7 @@
   color: #0662aa;
 }
 
-/* 3.3 Delete Icon */
+/* 3.3 Delete Icon - FIXED */
 .cart-details-control-delete {
   display: flex;
   align-items: center;
@@ -214,8 +214,8 @@
 }
 
 .cart-details-remove-btn:hover {
-  background:  #ed685e;
-  color:white;
+  background: #ed685e;
+  color: white;
 }
 
 .cart-details-remove-icon {
@@ -562,14 +562,15 @@
     min-width: 120px;
   }
   
-  /* DELETE ICON 100% WIDTH */
+  /* DELETE ICON FIXED - Maintain circular button */
   .cart-details-control-delete {
-    width: 100%;
+    width: auto;
   }
   
   .cart-details-remove-btn {
-    width: 100%;
-    height: 38px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
   }
   
   .cart-details-item-image {
@@ -630,14 +631,15 @@
     min-width: auto;
   }
   
-  /* Mobile pe delete icon normal size */
+  /* Mobile pe delete icon normal size - FIXED */
   .cart-details-control-delete {
     width: auto;
   }
   
   .cart-details-remove-btn {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
   }
   
   .cart-details-item-image {
@@ -727,12 +729,13 @@
   
   .cart-details-control-delete {
     order: 3;
-    width: 100%;
+    width: auto; /* FIXED - Not full width */
   }
   
   .cart-details-remove-btn {
-    width: 100%;
-    height: 40px;
+    width: 36px; /* FIXED - Maintain circular button */
+    height: 36px;
+    border-radius: 50%;
   }
 
   /* New Sections Responsive */
@@ -801,6 +804,13 @@
   /* 480px pe bhi max allowed center */
   .cart-details-max-allowed-text {
     text-align: center;
+  }
+  
+  /* DELETE BUTTON FIXED - Maintain circular shape */
+  .cart-details-remove-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
   }
 
   /* New Sections Responsive */
