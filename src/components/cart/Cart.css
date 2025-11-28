@@ -8,9 +8,7 @@
 .cart-banner-section {
   background: white;
   padding: 40px 0;
-  border-bottom: 1px solid #e9ecef;
   margin-top: 95px;
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
 }
 
 .cart-title-col {
@@ -114,7 +112,7 @@
   background: white;
   border-radius: 15px;
   padding: 20px;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border: 1px solid #f1f3f4;
   display: flex;
   align-items: center;

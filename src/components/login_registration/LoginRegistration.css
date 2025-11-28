@@ -5,8 +5,6 @@
   background: white;
   padding: 40px 0;
   margin-top: 95px;
-  border-bottom: 1px solid #e9ecef;
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
 }
 
 .login-account-title-col {
@@ -114,7 +112,7 @@
   background: #f8f9fa;
   border-radius: 50px;
   padding: 6px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border: 1px solid #e9ecef;
   display: flex;
   gap: 4px;
@@ -174,7 +172,7 @@
   background: #fff;
   border-radius: 50px;
   padding: 2.5rem;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border: 1px solid #f1f3f4;
   margin-bottom: 0;
 }
@@ -389,6 +387,7 @@
   color: #495057;
   font-family: inherit;
   white-space: nowrap;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .login-social-btn:hover {
