@@ -6,10 +6,12 @@ import Footer from './components/Footer';
 import CartSidebar from './components/CartSidebar';
 import { CartProvider } from './components/CartContext';
 import Home from './pages/Home';
-import LoginRegistration from './components/LoginRegistration';
-import Dashboard from './components/Dashboard';
-import Products from './components/Products';
-import ProductDetails from './components/ProductDetails';
+import LoginRegistration from './components/login_registration/LoginRegistration';
+import Dashboard from './components/myaccount/Dashboard';
+import Products from './components/products/Products';
+import ProductDetails from './components/productdetail/ProductDetails';
+import Cart from './components/cart/Cart';
+import Checkout from './components/checkout/Checkout';
 
 // ScrollToTop Component - Har route change par top par scroll karega
 const ScrollToTop = () => {
@@ -40,11 +42,11 @@ function App() {
               {/* Home Route */}
               <Route path="/" element={<Home />} />
               <Route path="/profile" element={<LoginRegistration />} />
-              <Route path="/my_account" element={<Dashboard />} />
-              
+              <Route path="/my_account" element={<Dashboard />} />              
               <Route path="/products" element={<Products />} /> 
-             <Route path="/productdetails" element={<ProductDetails />} />
-              {/* <Route path="/contact" element={<Contact />} /> */}
+              <Route path="/productdetails" element={<ProductDetails />} />
+              <Route path="/cart" element={<Cart />} /> 
+              <Route path="/checkout" element={<Checkout />} /> 
             </Routes>
           </main>
           

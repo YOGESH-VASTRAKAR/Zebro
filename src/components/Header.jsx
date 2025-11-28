@@ -662,7 +662,7 @@ const Header = () => {
 
               {/* Help & Support */}
               <NavLink 
-                to="/help-support" 
+                to="/my_account?tab=support" 
                 className={({ isActive }) => `mobile-nav-link simple ${isActive ? 'active' : ''}`}
                 onClick={handleOffcanvasClose}
               >
@@ -933,7 +933,7 @@ const Header = () => {
 
                     <li>
                       <NavLink 
-                        to="/help-support" 
+                        to="/my_account?tab=support" 
                         className={({ isActive }) => isActive ? 'active' : ''}
                       >
                         <QuestionMarkCircleIcon className="nav-icon help-icon" />
@@ -976,7 +976,7 @@ const Header = () => {
                             </div>
                             <div 
                               className="user-dropdown-item"
-                              onClick={() => handleNavigation('/My_account')}
+                              onClick={() => handleNavigation('/my_account')}
                               style={{ '--accent-color': '#37aa50' }}
                             >
                               <div className="user-dropdown-icon-wrapper">

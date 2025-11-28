@@ -1,0 +1,713 @@
+:root {
+  --similar-products-blue: #0662aa;
+  --similar-products-red: #e65c52;
+  --similar-products-green: #37aa50;
+  --similar-products-yellow: #f5c662;
+  --similar-products-zebra-dark: #6E6E6E;
+  --similar-products-zebra-mid: #BFBFBF;
+  --similar-products-zebra-light: #EFEFEF;
+  --similar-products-light-brown: #fde2d1;
+  --similar-products-text-dark: #333;
+  --similar-products-background: #FFFFFF;
+}
+
+/* Similar Products Section - ProductDetails ke saath match */
+.similar-products-section {
+  padding: 30px 0;
+  margin: 0;
+}
+
+/* Section Header with proper spacing - ProductDetails ke saath match */
+.similar-products-header {
+  margin-bottom: 40px;
+  color: var(--similar-products-text-dark);
+}
+
+.similar-products-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 0 auto;
+}
+
+.similar-products-header-left {
+  flex: 1;
+  min-width: 300px;
+}
+
+.similar-products-header-right {
+  flex-shrink: 0;
+}
+
+/* Colorful Title Styles - ProductDetails ke saath match */
+.similar-products-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.similar-products-title-word {
+  display: inline-block;
+  font-weight: 800;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.similar-products-title-word-1 {
+  color: #0662aa !important;
+  background: none !important;
+  -webkit-text-fill-color: #0662aa !important;
+}
+
+.similar-products-title-word-2 {
+  color: #37aa50 !important;
+  background: none !important;
+  -webkit-text-fill-color: #37aa50 !important;
+}
+
+.similar-products-subtitle {
+  font-size: 1.1rem;
+  opacity: 0.8;
+  margin: 0;
+  color: var(--similar-products-zebra-dark);
+  text-align: left;
+}
+
+/* View More Button - Top Right */
+.similar-products-view-all-btn {
+  background: var(--similar-products-blue) !important;
+  border: 2px solid var(--similar-products-blue) !important;
+  color: white !important;
+  padding: 12px 30px !important;
+  border-radius: 25px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
+}
+
+.similar-products-view-all-btn:hover {
+  background: var(--similar-products-green) !important;
+  border-color: var(--similar-products-green) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(31, 165, 69, 0.3);
+}
+
+/* Swiper Container - FIXED: Proper container with max-width */
+.similar-products-swiper-container {
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  min-height: 450px;
+  max-width: 1400px;
+  padding: 0 80px;
+}
+
+.similar-products-swiper {
+  padding: 20px 10px;
+  flex: 1;
+  width: 100%;
+}
+
+/* Side Navigation Arrows - FIXED: Cards ke bahar position */
+.similar-products-swiper-button-prev-custom.similar-products-side-nav,
+.similar-products-swiper-button-next-custom.similar-products-side-nav {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 20 !important;
+  width: 60px !important;
+  height: 60px !important;
+  background: var(--similar-products-red) !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: white !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3) !important;
+  margin: 0 !important;
+}
+
+/* Left navigation - FIXED: Container ke bahar left side */
+.similar-products-swiper-button-prev-custom.similar-products-side-nav.similar-products-left-nav {
+  left: 10px !important;
+  right: auto !important;
+}
+
+/* Right navigation - FIXED: Container ke bahar right side */
+.similar-products-swiper-button-next-custom.similar-products-side-nav.similar-products-right-nav {
+  right: 10px !important;
+  left: auto !important;
+}
+
+/* Hover effects */
+.similar-products-swiper-button-prev-custom.similar-products-side-nav:hover,
+.similar-products-swiper-button-next-custom.similar-products-side-nav:hover {
+  background: var(--similar-products-green) !important;
+  transform: translateY(-50%) scale(1.1) !important;
+  box-shadow: 0 8px 25px rgba(31, 165, 69, 0.4) !important;
+}
+
+.similar-products-swiper-button-prev-custom.similar-products-side-nav:active,
+.similar-products-swiper-button-next-custom.similar-products-side-nav:active {
+  transform: translateY(-50%) scale(0.95) !important;
+}
+
+/* Remove default Swiper navigation styles */
+.similar-products-swiper-button-prev-custom::after,
+.similar-products-swiper-button-next-custom::after {
+  display: none !important;
+}
+
+/* Card Styles - ProductDetails ke design ke saath match */
+.similar-products-card {
+  color: #111;
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 20px;
+  border: 1px solid #f1f3f4;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.similar-products-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.similar-products-card-inner {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  border-radius: 20px 20px 0 0;
+  overflow: hidden;
+}
+
+.similar-products-card-inner .similar-products-box {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 20px 20px 0 0;
+  overflow: hidden;
+}
+
+.similar-products-card a {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.similar-products-card-inner .similar-products-box .similar-products-imgBox {
+  position: absolute;
+  inset: 0;
+}
+
+.similar-products-card-inner .similar-products-box .similar-products-imgBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Hover Overlay with Details and Wishlist Icons - TOP RIGHT */
+.similar-products-hover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 15px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  border-radius: 20px 20px 0 0;
+  z-index: 3;
+}
+
+.similar-products-card:hover .similar-products-hover-overlay {
+  opacity: 1;
+}
+
+.similar-products-hover-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.similar-products-details-btn,
+.similar-products-wishlist-btn {
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* View Details Button - Green on Hover */
+.similar-products-details-btn:hover {
+  background: #37aa50 !important;
+  transform: scale(1.1);
+}
+
+.similar-products-details-btn:hover .similar-products-details-icon {
+  color: white !important;
+}
+
+/* Wishlist Button - Red when active/clicked */
+.similar-products-wishlist-btn:hover {
+  background: #e65c52 !important;
+  transform: scale(1.1);
+}
+
+.similar-products-wishlist-btn:hover .similar-products-wishlist-icon {
+  color: white !important;
+}
+
+.similar-products-details-icon,
+.similar-products-wishlist-icon {
+  width: 18px;
+  height: 18px;
+  color: #0662aa;
+  transition: all 0.3s ease;
+}
+
+.similar-products-details-btn.active {
+  background: #37aa50;
+}
+
+.similar-products-details-btn.active .similar-products-details-icon {
+  color: white;
+}
+
+.similar-products-wishlist-btn.active {
+  background: #e65c52;
+}
+
+.similar-products-wishlist-btn.active .similar-products-wishlist-icon {
+  color: white;
+}
+
+/* Category and Age Badges */
+.similar-products-category-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: var(--similar-products-blue);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  z-index: 4;
+}
+
+.similar-products-age-badge {
+  position: absolute;
+  top: 40px;
+  left: 10px;
+  background: var(--similar-products-yellow);
+  color: var(--similar-products-text-dark);
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  z-index: 4;
+}
+
+.similar-products-card-inner .similar-products-box .similar-products-icon {
+  position: absolute;
+  bottom: -0.375rem;
+  right: -0.375rem;
+  width: 5rem;
+  height: 5rem;
+  background: var(--clr);
+  border-top-left-radius: 50%;
+  z-index: 4;
+}
+
+.similar-products-card-inner .similar-products-box .similar-products-icon:hover .similar-products-iconBox {
+  transform: scale(1.1);
+}
+
+.similar-products-card-inner .similar-products-box .similar-products-icon::before {
+  position: absolute;
+  content: "";
+  bottom: 0.375rem;
+  left: -1.25rem;
+  background: transparent;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-bottom-right-radius: 1.25rem;
+  box-shadow: 0.313rem 0.313rem 0 0.313rem #fff;
+}
+
+.similar-products-card-inner .similar-products-box .similar-products-icon::after {
+  position: absolute;
+  content: "";
+  top: -1.25rem;
+  right: 0.375rem;
+  background: transparent;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-bottom-right-radius: 1.25rem;
+  box-shadow: 0.313rem 0.313rem 0 0.313rem var(--clr);
+}
+
+.similar-products-card-inner .similar-products-box .similar-products-icon .similar-products-iconBox {
+  position: absolute;
+  inset: 0.625rem;
+  background: var(--similar-products-blue);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.similar-products-card-inner .similar-products-box .similar-products-icon .similar-products-iconBox:hover {
+  background: var(--similar-products-green);
+}
+
+.similar-products-card-inner .similar-products-box .similar-products-icon .similar-products-iconBox svg {
+  color: #fff;
+}
+
+/* Content */
+.similar-products-content {
+  padding: 1.2rem 1rem 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.similar-products-title-text {
+  text-transform: capitalize;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  line-height: 1.3;
+  height: auto;
+  min-height: 1em;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  flex-shrink: 0;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.similar-products-rating-price-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+.similar-products-rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 0;
+}
+
+.similar-products-stars {
+  display: flex;
+  gap: 1px;
+}
+
+.similar-products-rating-text {
+  font-size: 0.75rem;
+  color: var(--similar-products-zebra-dark);
+}
+
+.similar-products-price {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0;
+  flex-wrap: wrap;
+}
+
+.similar-products-current-price {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--similar-products-green);
+}
+
+.similar-products-original-price {
+  font-size: 0.85rem;
+  color: var(--similar-products-zebra-dark);
+  text-decoration: line-through;
+}
+
+.similar-products-discount {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--similar-products-red);
+  background: rgba(230, 50, 44, 0.1);
+  padding: 3px 6px;
+  border-radius: 6px;
+}
+
+/* ========== MOBILE VIEW - VIEW ALL BUTTON CARDS KE NICHE ========== */
+
+/* Desktop view - button header ke right mein */
+@media (min-width: 768px) {
+  .similar-products-header-content {
+    flex-direction: row;
+  }
+  
+  .similar-products-mobile-view-all-container {
+    display: none;
+  }
+}
+
+/* Mobile view - button cards ke niche */
+@media (max-width: 767px) {
+  .similar-products-header {
+    margin-bottom: 30px;
+  }
+  
+  .similar-products-header-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  .similar-products-header-left {
+    width: 100%;
+  }
+  
+  .similar-products-header-right {
+    display: none;
+  }
+  
+  .similar-products-title {
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .similar-products-subtitle {
+    text-align: center;
+  }
+  
+  /* Mobile View All Button - Cards ke niche */
+  .similar-products-mobile-view-all-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    padding: 0 20px;
+  }
+  
+  .similar-products-mobile-view-all-btn {
+    background: var(--similar-products-blue) !important;
+    border: 2px solid var(--similar-products-blue) !important;
+    color: white !important;
+    padding: 12px 30px !important;
+    border-radius: 25px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+    white-space: nowrap;
+    display: block;
+    width: auto;
+    min-width: 200px;
+  }
+  
+  .similar-products-mobile-view-all-btn:hover {
+    background: var(--similar-products-green) !important;
+    border-color: var(--similar-products-green) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(31, 165, 69, 0.3);
+  }
+}
+
+/* Responsive Design - FIXED: Proper symmetry for all screen sizes */
+@media (max-width: 1399px) {
+  .similar-products-swiper-container {
+    max-width: 1200px;
+    padding: 0 70px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .similar-products-swiper-container {
+    max-width: 1000px;
+    padding: 0 60px;
+  }
+  
+  .similar-products-title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 991px) {
+  .similar-products-section {
+    padding: 20px 0;
+  }
+  
+  .similar-products-swiper-container {
+    max-width: 800px;
+    padding: 0 50px;
+  }
+  
+  .similar-products-title {
+    font-size: 2rem;
+  }
+  
+  .similar-products-swiper-button-prev-custom.similar-products-side-nav,
+  .similar-products-swiper-button-next-custom.similar-products-side-nav {
+    width: 50px !important;
+    height: 50px !important;
+  }
+  
+  .similar-products-card-inner {
+    height: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .similar-products-section {
+    padding: 20px 0;
+  }
+  
+  .similar-products-swiper-container {
+    max-width: 600px;
+    padding: 0 40px;
+  }
+  
+  .similar-products-title {
+    font-size: 1.8rem;
+    flex-direction: row;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .similar-products-swiper-button-prev-custom.similar-products-side-nav,
+  .similar-products-swiper-button-next-custom.similar-products-side-nav {
+    width: 45px !important;
+    height: 45px !important;
+  }
+  
+  .similar-products-card-inner {
+    height: 200px;
+  }
+  
+  .similar-products-title-text {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .similar-products-section {
+    padding: 20px 0;
+  }
+  
+  .similar-products-swiper-container {
+    max-width: 100%;
+    padding: 0 30px;
+  }
+  
+  .similar-products-title {
+    font-size: 1.6rem;
+  }
+  
+  .similar-products-swiper-button-prev-custom.similar-products-side-nav,
+  .similar-products-swiper-button-next-custom.similar-products-side-nav {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  
+  .similar-products-card-inner {
+    height: 180px;
+  }
+  
+  .similar-products-card {
+    max-width: 100%;
+  }
+  
+  .similar-products-title-text {
+    font-size: 1rem;
+  }
+  
+  .similar-products-current-price {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .similar-products-swiper-container {
+    padding: 0 20px;
+  }
+  
+  .similar-products-title {
+    font-size: 1.4rem;
+    gap: 5px;
+  }
+  
+  .similar-products-swiper-button-prev-custom.similar-products-side-nav,
+  .similar-products-swiper-button-next-custom.similar-products-side-nav {
+    width: 35px !important;
+    height: 35px !important;
+  }
+  
+  .similar-products-card-inner {
+    height: 160px;
+  }
+  
+  .similar-products-category-badge,
+  .similar-products-age-badge {
+    font-size: 0.65rem;
+    padding: 3px 6px;
+  }
+  
+  .similar-products-age-badge {
+    top: 35px;
+  }
+  
+  .similar-products-title-text {
+    font-size: 0.95rem;
+  }
+  
+  .similar-products-content {
+    padding: 1rem 0.8rem 0.8rem;
+  }
+  
+  .similar-products-current-price {
+    font-size: 1rem;
+  }
+}
+
+/* Safe area support for notched devices */
+@supports(padding: max(0px)) {
+  .similar-products-section {
+    padding-left: max(15px, env(safe-area-inset-left));
+    padding-right: max(15px, env(safe-area-inset-right));
+  }
+}

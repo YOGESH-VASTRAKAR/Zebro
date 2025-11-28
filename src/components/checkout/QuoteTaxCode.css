@@ -1,0 +1,285 @@
+/* Quote Tax Code Section */
+.quote-tax-code-section {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  border: 1px solid #f1f3f4;
+  margin-bottom: 1.5rem;
+}
+
+.quote-tax-code-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* Tax Code Section */
+.tax-code-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.tax-code-header {
+  padding: 0 0.3rem;
+}
+
+.tax-code-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.tax-code-optional {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #6c757d;
+  font-style: italic;
+}
+
+/* Tax Code Input Card */
+.tax-code-input-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.2rem;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.tax-code-input-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Input Group */
+.tax-code-input-group {
+  display: flex;
+  gap: 0.8rem;
+  width: 100%;
+  align-items: center;
+}
+
+.tax-code-input-wrapper {
+  flex: 1;
+}
+
+.tax-code-input {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+  background: #f8f9fa;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.tax-code-input:focus {
+  outline: none;
+  border-color: #0662aa;
+  box-shadow: 0 0 0 2px rgba(6, 98, 170, 0.1);
+  background: white;
+}
+
+.tax-code-input::placeholder {
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.tax-code-apply-btn {
+  background: #0662aa;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+  min-width: 70px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+.tax-code-apply-btn:hover:not(:disabled) {
+  background: #054a80;
+}
+
+.tax-code-apply-btn:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+}
+
+/* Applied Card */
+.tax-code-applied-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.8rem;
+  width: 100%;
+}
+
+.tax-code-applied-content {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex: 1;
+}
+
+.tax-code-success-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tax-code-icon-container {
+  width: 32px;
+  height: 32px;
+  background: #27ae60;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+}
+
+.tax-code-icon-text {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.tax-code-applied-text {
+  flex: 1;
+}
+
+.tax-code-main-text {
+  color: #2c3e50;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+}
+
+.tax-code-main-text strong {
+  color: #27ae60;
+}
+
+.tax-code-sub-text {
+  color: #229954;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.tax-code-remove-btn {
+  background: rgba(231, 76, 60, 0.1);
+  border: 1px solid #e74c3c;
+  color: #e74c3c;
+  border-radius: 50px;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tax-code-remove-btn:hover {
+  background: #e74c3c;
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .quote-tax-code-section {
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .tax-code-input-card {
+    padding: 1rem;
+  }
+  
+  .tax-code-input-group {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .tax-code-apply-btn {
+    width: 100%;
+  }
+  
+  .tax-code-applied-card {
+    flex-direction: column;
+    gap: 0.8rem;
+    text-align: center;
+  }
+  
+  .tax-code-applied-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.8rem;
+  }
+  
+  .tax-code-remove-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .quote-tax-code-section {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .tax-code-input-card {
+    padding: 0.8rem;
+  }
+  
+  .tax-code-title {
+    font-size: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+  
+  .tax-code-optional {
+    font-size: 0.85rem;
+  }
+  
+  .tax-code-input {
+    padding: 0.5rem 0.6rem;
+    font-size: 0.85rem;
+  }
+  
+  .tax-code-apply-btn {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.75rem;
+  }
+  
+  .tax-code-icon-container {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .tax-code-icon-text {
+    font-size: 12px;
+  }
+  
+  .tax-code-main-text {
+    font-size: 0.85rem;
+  }
+  
+  .tax-code-sub-text {
+    font-size: 0.75rem;
+  }
+}

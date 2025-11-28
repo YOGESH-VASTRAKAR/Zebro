@@ -97,10 +97,10 @@ const AllCategories = () => {
     navigate(`/products?category=${categorySlug}`);
   };
 
-  // GSAP Animations
+  // GSAP Animations - ONLY HEADING ANIMATION RETAINED
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Section entrance animation
+      // Section entrance animation - RETAINED
       gsap.fromTo(sectionRef.current,
         {
           opacity: 0,
@@ -120,7 +120,7 @@ const AllCategories = () => {
         }
       );
 
-      // Title animation
+      // Title animation - RETAINED
       gsap.fromTo(titleRef.current,
         {
           opacity: 0,
@@ -140,7 +140,8 @@ const AllCategories = () => {
         }
       );
 
-      // Card stagger animation
+      // Card stagger animation - REMOVED (commented out)
+      /*
       gsap.fromTo('.categories-category-card',
         {
           opacity: 0,
@@ -159,6 +160,7 @@ const AllCategories = () => {
           }
         }
       );
+      */
 
     }, sectionRef);
 

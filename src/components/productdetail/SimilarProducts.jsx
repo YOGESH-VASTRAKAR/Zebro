@@ -10,18 +10,17 @@ import {
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Autoplay } from 'swiper/modules';
+import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import 'swiper/css/autoplay';
-import './BestSellers.css';
+import './SimilarProducts.css';
 
 // Import Cart Context
-import { useCart } from './CartContext';
+import { useCart } from '../CartContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const BestSellerGifting = () => {
+const SimilarProducts = () => {
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
   const swiperRef = useRef(null);
@@ -35,78 +34,102 @@ const BestSellerGifting = () => {
   // Use Cart Context
   const { addItemToCart, toggleCart } = useCart();
 
-  const gifts = [
+  const similarProducts = [
     {
       id: 1,
-      image: "Art Kit.jpg",
-      title: "Birthday Gift Hamper",
-      price: 1999,
-      originalPrice: 3999,
-      discount: "50% OFF",
-      rating: 4.6,
-      reviews: 89,
-      category: "Birthday",
-      occasion: "Birthday"
+      image: "RC Car.jpg",
+      title: "Educational Robot Toy",
+      price: 1299,
+      originalPrice: 2499,
+      discount: "48% OFF",
+      rating: 4.5,
+      reviews: 125,
+      category: "Educational",
+      age: "3-8 Years"
     },
     {
       id: 2,
-      image: "Art Kit.jpg",
-      title: "Premium Art Set",
-      price: 1499,
-      originalPrice: 2999,
+      image: "bg (4).jpg",
+      title: "Building Blocks Set",
+      price: 899,
+      originalPrice: 1799,
       discount: "50% OFF",
       rating: 4.8,
-      reviews: 67,
-      category: "Art & Craft",
-      occasion: "Any Occasion"
+      reviews: 89,
+      category: "Construction",
+      age: "4-10 Years"
     },
     {
       id: 3,
-      image: "Art Kit.jpg",
-      title: "Personalized Teddy Bear",
-      price: 799,
-      originalPrice: 1599,
-      discount: "50% OFF",
-      rating: 4.5,
-      reviews: 124,
-      category: "Soft Toys",
-      occasion: "Anniversary"
+      image: "bg (3).jpg",
+      title: "Remote Control Car",
+      price: 1599,
+      originalPrice: 2999,
+      discount: "47% OFF",
+      rating: 4.4,
+      reviews: 156,
+      category: "Remote Control",
+      age: "5-12 Years"
     },
     {
       id: 4,
-      image: "Art Kit.jpg",
-      title: "Educational Gift Box",
-      price: 2199,
-      originalPrice: 4399,
+      image: "bg.jpg",
+      title: "Doll House Set",
+      price: 2499,
+      originalPrice: 4999,
       discount: "50% OFF",
-      rating: 4.7,
-      reviews: 56,
-      category: "Educational",
-      occasion: "Achievement"
+      rating: 4.6,
+      reviews: 78,
+      category: "Dolls",
+      age: "3-8 Years"
     },
     {
       id: 5,
-      image: "Art Kit.jpg",
-      title: "Kids Jewelry Set",
-      price: 599,
-      originalPrice: 1199,
+      image: "Building Blocks.jpg",
+      title: "Musical Instrument Set",
+      price: 699,
+      originalPrice: 1399,
       discount: "50% OFF",
-      rating: 4.4,
-      reviews: 78,
-      category: "Accessories",
-      occasion: "Festival"
+      rating: 4.3,
+      reviews: 92,
+      category: "Musical",
+      age: "2-6 Years"
     },
     {
       id: 6,
       image: "Art Kit.jpg",
-      title: "Story Books Collection",
-      price: 1299,
-      originalPrice: 2599,
+      title: "Science Experiment Kit",
+      price: 1199,
+      originalPrice: 2399,
       discount: "50% OFF",
-      rating: 4.9,
-      reviews: 45,
+      rating: 4.7,
+      reviews: 64,
+      category: "Educational",
+      age: "8-14 Years"
+    },
+    {
+      id: 7,
+      image: "bg (4).jpg",
+      title: "Art & Craft Kit",
+      price: 799,
+      originalPrice: 1599,
+      discount: "50% OFF",
+      rating: 4.7,
+      reviews: 93,
+      category: "Arts",
+      age: "5-12 Years"
+    },
+    {
+      id: 8,
+      image: "bg (3).jpg",
+      title: "Kids Story Books Pack",
+      price: 499,
+      originalPrice: 999,
+      discount: "50% OFF",
+      rating: 4.3,
+      reviews: 67,
       category: "Books",
-      occasion: "Any Occasion"
+      age: "3-10 Years"
     }
   ];
 
@@ -165,54 +188,9 @@ const BestSellerGifting = () => {
     }).format(price);
   };
 
-  // GSAP Animations - ONLY HEADING ANIMATION RETAINED
+  // Animation code completely removed
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Section entrance animation - RETAINED
-      gsap.fromTo(sectionRef.current,
-        {
-          opacity: 0,
-          y: 50
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            toggleActions: "play none none reverse"
-          }
-        }
-      );
-
-      // Title animation - RETAINED
-      gsap.fromTo(titleRef.current,
-        {
-          opacity: 0,
-          scale: 0.8
-        },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 1,
-          delay: 0.3,
-          ease: "back.out(1.7)",
-          scrollTrigger: {
-            trigger: titleRef.current,
-            start: "top 85%",
-            toggleActions: "play none none reverse"
-          }
-        }
-      );
-
-      // Card stagger animation - REMOVED
-      // Cards will load instantly without animation
-
-    }, sectionRef);
-
-    return () => ctx.revert();
+    // No animations - cards will load instantly
   }, []);
 
   // Initialize navigation when swiper is ready
@@ -246,34 +224,35 @@ const BestSellerGifting = () => {
   };
 
   return (
-    <div className="bestseller-section bestseller-gifting-section" ref={sectionRef}>
+    <div className="similar-products-section" ref={sectionRef}>
       <Container fluid>
         {/* Section Header with Colorful Text and View More Button */}
-        <div className="bestseller-header" ref={titleRef}>
-          <div className="bestseller-header-content">
-            <div className="bestseller-header-left">
-              <h2 className="bestseller-title">
-                <span className="bestseller-title-word bestseller-title-word-1">Best</span>
-                <span className="bestseller-title-word bestseller-title-word-2">Seller</span>
-                <span className="bestseller-title-word bestseller-title-word-3">Gifts</span>
-              </h2>
-              <p className="bestseller-subtitle">Perfect gifts for every occasion</p>
+        <div className="similar-products-header" ref={titleRef}>
+          <Container>
+            <div className="similar-products-header-content">
+              <div className="similar-products-header-left">
+                <h2 className="similar-products-title">
+                  <span className="similar-products-title-word similar-products-title-word-1">Similar</span>
+                  <span className="similar-products-title-word similar-products-title-word-2">Products</span>
+                </h2>
+                <p className="similar-products-subtitle">You might also like these products</p>
+              </div>
+              
+              {/* View More Button - Top Right */}
+              <div className="similar-products-header-right">
+                <button className="similar-products-view-all-btn">
+                  View All Similar Products
+                </button>
+              </div>
             </div>
-            
-            {/* View More Button - Top Right */}
-            <div className="bestseller-header-right">
-              <button className="bestseller-view-all-btn">
-                View All Gifts
-              </button>
-            </div>
-          </div>
+          </Container> 
         </div>
 
         {/* Swiper Slider with Side Navigation */}
-        <div className="bestseller-swiper-container">
+        <div className="similar-products-swiper-container">
           {/* Left Navigation Arrow */}
           <div 
-            className="bestseller-swiper-button-prev-custom bestseller-side-nav bestseller-left-nav"
+            className="similar-products-swiper-button-prev-custom similar-products-side-nav similar-products-left-nav"
             ref={navigationPrevRef}
             onClick={() => swiperRef.current?.slidePrev()}
           >
@@ -283,73 +262,72 @@ const BestSellerGifting = () => {
           </div>
 
           <Swiper
-            modules={[Navigation, Autoplay]}
+            modules={[Navigation]}
             spaceBetween={30}
             slidesPerView={4}
             navigation={{
               prevEl: navigationPrevRef.current,
               nextEl: navigationNextRef.current,
             }}
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: false,
-            }}
+            // Autoplay REMOVED - no automatic movement
             breakpoints={swiperBreakpoints}
             loop={true}
             onSwiper={handleSwiperInit}
             onInit={handleSwiperInit}
-            className="bestseller-swiper"
+            className="similar-products-swiper"
           >
-            {gifts.map((gift) => (
-              <SwiperSlide key={gift.id}>
-                <div className="bestseller-card">
-                  <div className="bestseller-card-inner" style={{"--clr": "#fff"}}>
-                    <div className="bestseller-box">
-                      <div className="bestseller-imgBox">
+            {similarProducts.map((product) => (
+              <SwiperSlide key={product.id}>
+                <div className="similar-products-card">
+                  <div className="similar-products-card-inner" style={{"--clr": "#fff"}}>
+                    <div className="similar-products-box">
+                      {/* Product Image */}
+                      <div className="similar-products-imgBox">
                         <img 
-                          src={gift.image}
-                          className="bestseller-image"
-                          alt={gift.title}
+                          src={product.image}
+                          className="similar-products-image"
+                          alt={product.title}
                           onError={(e) => {
-                            e.target.src = "https://via.placeholder.com/200x200/F8F1E5/0D5BCF?text=Zebro+Gifts";
+                            e.target.src = "https://via.placeholder.com/200x200/F8F1E5/0D5BCF?text=Zebro+Kids";
                           }}
                         />
                       </div>
 
                       {/* Hover Overlay with Details and Wishlist Icons */}
-                      <div className="bestseller-hover-overlay">
-                        <div className="bestseller-hover-icons">
+                      <div className="similar-products-hover-overlay">
+                        <div className="similar-products-hover-icons">
                           <button 
-                            className={`bestseller-details-btn ${viewedProducts.includes(gift.id) ? 'active' : ''}`}
-                            onClick={(e) => handleDetailsClick(gift.id, e)}
+                            className={`similar-products-details-btn ${viewedProducts.includes(product.id) ? 'active' : ''}`}
+                            onClick={(e) => handleDetailsClick(product.id, e)}
                             title="View Details"
                           >
-                            <InformationCircleIcon className="bestseller-details-icon" />
+                            <InformationCircleIcon className="similar-products-details-icon" />
                           </button>
                           <button 
-                            className={`bestseller-wishlist-btn ${wishlist.includes(gift.id) ? 'active' : ''}`}
-                            onClick={(e) => toggleWishlist(gift.id, e)}
-                            title={wishlist.includes(gift.id) ? "Remove from Wishlist" : "Add to Wishlist"}
+                            className={`similar-products-wishlist-btn ${wishlist.includes(product.id) ? 'active' : ''}`}
+                            onClick={(e) => toggleWishlist(product.id, e)}
+                            title={wishlist.includes(product.id) ? "Remove from Wishlist" : "Add to Wishlist"}
                           >
-                            <HeartIcon className="bestseller-wishlist-icon" />
+                            <HeartIcon className="similar-products-wishlist-icon" />
                           </button>
                         </div>
                       </div>
 
-                      <div className="bestseller-category-badge">
-                        {gift.category}
+                      {/* Category and Age Badges */}
+                      <div className="similar-products-category-badge">
+                        {product.category}
                       </div>
 
-                      <div className="bestseller-age-badge bestseller-occasion-badge">
-                        {gift.occasion}
+                      <div className="similar-products-age-badge">
+                        {product.age}
                       </div>
 
                       {/* Shopping Cart Icon */}
-                      <div className="bestseller-icon">
+                      <div className="similar-products-icon">
                         <a 
                           href="#" 
-                          className="bestseller-iconBox"
-                          onClick={(e) => handleAddToCart(gift, e)}
+                          className="similar-products-iconBox"
+                          onClick={(e) => handleAddToCart(product, e)}
                         > 
                           <ShoppingCartIcon 
                             style={{
@@ -363,32 +341,34 @@ const BestSellerGifting = () => {
                     </div>
                   </div>
 
-                  <div className="bestseller-content">
-                    <h3 className="bestseller-title-text">{gift.title}</h3>
+                  {/* Card Content */}
+                  <div className="similar-products-content">
+                    <h3 className="similar-products-title-text">{product.title}</h3>
                     
-                    <div className="bestseller-rating-price-container">
-                      <div className="bestseller-rating">
-                        <div className="bestseller-stars">
+                    <div className="similar-products-rating-price-container">
+                      {/* Rating */}
+                      <div className="similar-products-rating">
+                        <div className="similar-products-stars">
                           {[...Array(5)].map((_, i) => (
                             <StarIcon 
                               key={i}
                               style={{
                                 width: '14px',
                                 height: '14px',
-                                fill: i < Math.floor(gift.rating) ? '#F2BB13' : 'none',
-                                stroke: i < gift.rating ? '#F2BB13' : '#BFBFBF'
+                                fill: i < Math.floor(product.rating) ? '#F2BB13' : 'none',
+                                stroke: i < product.rating ? '#F2BB13' : '#BFBFBF'
                               }}
                             />
                           ))}
                         </div>
-                        <span className="bestseller-rating-text">({gift.reviews})</span>
+                        <span className="similar-products-rating-text">({product.reviews})</span>
                       </div>
 
-                      {/* Price display */}
-                      <div className="bestseller-price">
-                        <span className="bestseller-current-price">{formatPrice(gift.price)}</span>
-                        <span className="bestseller-original-price">{formatPrice(gift.originalPrice)}</span>
-                        <span className="bestseller-discount">{gift.discount}</span>
+                      {/* Price */}
+                      <div className="similar-products-price">
+                        <span className="similar-products-current-price">{formatPrice(product.price)}</span>
+                        <span className="similar-products-original-price">{formatPrice(product.originalPrice)}</span>
+                        <span className="similar-products-discount">{product.discount}</span>
                       </div>
                     </div>
                   </div>
@@ -399,7 +379,7 @@ const BestSellerGifting = () => {
 
           {/* Right Navigation Arrow */}
           <div 
-            className="bestseller-swiper-button-next-custom bestseller-side-nav bestseller-right-nav"
+            className="similar-products-swiper-button-next-custom similar-products-side-nav similar-products-right-nav"
             ref={navigationNextRef}
             onClick={() => swiperRef.current?.slideNext()}
           >
@@ -410,9 +390,9 @@ const BestSellerGifting = () => {
         </div>
 
         {/* Mobile View All Button - Cards ke niche */}
-        <div className="bestseller-mobile-view-all-container">
-          <button className="bestseller-mobile-view-all-btn">
-            View All Gifts
+        <div className="similar-products-mobile-view-all-container">
+          <button className="similar-products-mobile-view-all-btn">
+            View All Similar Products
           </button>
         </div>
       </Container>
@@ -420,4 +400,4 @@ const BestSellerGifting = () => {
   );
 };
 
-export default BestSellerGifting;
+export default SimilarProducts;

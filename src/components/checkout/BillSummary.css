@@ -1,0 +1,344 @@
+/* Bill Summary Section */
+.bill-summary-section {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  border: 1px solid #f1f3f4;
+  margin-bottom: 1.5rem;
+}
+
+.bill-summary-container {
+  width: 100%;
+}
+
+/* Main Title */
+.bill-summary-main-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 0px;
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 0.5rem;
+  background: linear-gradient(135deg, #0662aa 0%, #37aa50 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bill-content-container {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Header Styles */
+.bill-summary-header {
+  padding: 1rem 0;
+  border-bottom: 1px solid #e9ecef;
+  margin-bottom: 0;
+}
+
+.bill-summary-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.bill-summary-header-text {
+  flex: 1;
+}
+
+.bill-summary-header-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bill-summary-header-icon {
+  width: 18px;
+  height: 18px;
+  color: #0662aa;
+}
+
+.bill-summary-subtitle {
+  font-size: 0.95rem;
+  color: #666;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Order Items */
+.bill-summary-items {
+  padding: 1.2rem 0;
+  border-bottom: 1px solid #e9ecef;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.bill-summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid #f8f9fa;
+}
+
+.bill-summary-item:last-child {
+  border-bottom: none;
+}
+
+.bill-item-details {
+  flex: 1;
+  margin-right: 0.8rem;
+}
+
+.bill-item-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 0.2rem;
+  line-height: 1.2;
+}
+
+.bill-item-total {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0662aa;
+  white-space: nowrap;
+}
+
+/* Price Breakdown */
+.bill-summary-breakdown {
+  padding: 1.2rem 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.bill-breakdown-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.bill-breakdown-label {
+  font-size: 0.85rem;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.bill-breakdown-value {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.bill-shipping-free {
+  color: #37aa50;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+}
+
+.bill-shipping-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.bill-discount-row {
+  padding: 0.6rem 0;
+  border-top: 1px dashed #e9ecef;
+  margin-top: 0.4rem;
+}
+
+.bill-discount-value {
+  color: #e74c3c;
+  font-weight: 700;
+}
+
+/* Total */
+.bill-summary-total {
+  padding: 1.2rem 0;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.bill-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bill-total-label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.bill-total-amount {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #0662aa;
+}
+
+/* Payment Options */
+.bill-payment-options {
+  padding: 1.2rem 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.bill-payment-option {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.6rem 0;
+}
+
+.bill-payment-radio {
+  width: 16px;
+  height: 16px;
+  accent-color: #0662aa;
+}
+
+.bill-payment-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #2c3e50;
+  cursor: pointer;
+}
+
+/* VAT Info */
+.bill-vat-info {
+  padding: 1rem 0;
+  font-size: 0.8rem;
+  color: #6c757d;
+  text-align: center;
+  border-bottom: 1px solid #e9ecef;
+}
+
+/* Divider */
+.bill-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #e9ecef, transparent);
+  margin: 0;
+}
+
+/* Confirm Order Button */
+.bill-confirm-btn {
+  width: 100%;
+  margin: 1.2rem 0 0 0;
+  padding: 0.8rem 1.2rem;
+  background: #0662aa;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.bill-confirm-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(6, 98, 170, 0.3);
+}
+
+/* Scrollbar Styling */
+.bill-summary-items::-webkit-scrollbar {
+  width: 3px;
+}
+
+.bill-summary-items::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 2px;
+}
+
+.bill-summary-items::-webkit-scrollbar-thumb {
+  background: #0662aa;
+  border-radius: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .bill-summary-section {
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .bill-summary-main-title {
+    font-size: 1.2rem;
+  }
+  
+  .bill-summary-header {
+    padding: 0.8rem 0;
+  }
+  
+  .bill-summary-items,
+  .bill-summary-breakdown,
+  .bill-summary-total,
+  .bill-payment-options,
+  .bill-vat-info {
+    padding: 1rem 0;
+  }
+  
+  .bill-confirm-btn {
+    margin: 1rem 0 0 0;
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .bill-summary-section {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .bill-summary-main-title {
+    font-size: 1.1rem;
+  }
+  
+  .bill-summary-header {
+    padding: 0.8rem 0;
+  }
+  
+  .bill-summary-items,
+  .bill-summary-breakdown,
+  .bill-summary-total,
+  .bill-payment-options,
+  .bill-vat-info {
+    padding: 0.8rem 0;
+  }
+  
+  .bill-summary-item {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  
+  .bill-item-details {
+    margin-right: 0;
+    width: 100%;
+  }
+  
+  .bill-item-total {
+    align-self: flex-end;
+  }
+  
+  .bill-confirm-btn {
+    margin: 0.8rem 0 0 0;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.85rem;
+  }
+  
+  .bill-total-amount {
+    font-size: 1.1rem;
+  }
+}

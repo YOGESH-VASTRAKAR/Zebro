@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import { 
   ShoppingCartIcon,
   InformationCircleIcon,
@@ -15,6 +16,9 @@ import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
 import './BestSellers.css';
 
+// Import Cart Context
+import { useCart } from './CartContext';
+
 gsap.registerPlugin(ScrollTrigger);
 
 const BestSellerToys = () => {
@@ -26,14 +30,18 @@ const BestSellerToys = () => {
   const [swiperReady, setSwiperReady] = useState(false);
   const [wishlist, setWishlist] = useState([]);
   const [viewedProducts, setViewedProducts] = useState([]);
+  const navigate = useNavigate();
+
+  // Use Cart Context
+  const { addItemToCart, toggleCart } = useCart();
 
   const toys = [
     {
       id: 1,
       image: "bg.jpg",
       title: "Educational Robot Toy",
-      price: "₹1,299",
-      originalPrice: "₹2,499",
+      price: 1299,
+      originalPrice: 2499,
       discount: "48% OFF",
       rating: 4.5,
       reviews: 125,
@@ -44,8 +52,8 @@ const BestSellerToys = () => {
       id: 2,
       image: "bg.jpg",
       title: "Building Blocks Set",
-      price: "₹899",
-      originalPrice: "₹1,799",
+      price: 899,
+      originalPrice: 1799,
       discount: "50% OFF",
       rating: 4.8,
       reviews: 89,
@@ -56,8 +64,8 @@ const BestSellerToys = () => {
       id: 3,
       image: "bg.jpg",
       title: "Remote Control Car",
-      price: "₹1,599",
-      originalPrice: "₹2,999",
+      price: 1599,
+      originalPrice: 2999,
       discount: "47% OFF",
       rating: 4.4,
       reviews: 156,
@@ -68,8 +76,8 @@ const BestSellerToys = () => {
       id: 4,
       image: "bg.jpg",
       title: "Doll House Set",
-      price: "₹2,499",
-      originalPrice: "₹4,999",
+      price: 2499,
+      originalPrice: 4999,
       discount: "50% OFF",
       rating: 4.6,
       reviews: 78,
@@ -80,8 +88,8 @@ const BestSellerToys = () => {
       id: 5,
       image: "bg.jpg",
       title: "Musical Instrument Set",
-      price: "₹699",
-      originalPrice: "₹1,399",
+      price: 699,
+      originalPrice: 1399,
       discount: "50% OFF",
       rating: 4.3,
       reviews: 92,
@@ -92,8 +100,8 @@ const BestSellerToys = () => {
       id: 6,
       image: "bg.jpg",
       title: "Science Experiment Kit",
-      price: "₹1,199",
-      originalPrice: "₹2,399",
+      price: 1199,
+      originalPrice: 2399,
       discount: "50% OFF",
       rating: 4.7,
       reviews: 64,
@@ -101,6 +109,41 @@ const BestSellerToys = () => {
       age: "8-14 Years"
     }
   ];
+
+  // Add to Cart Function
+  const handleAddToCart = (product, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // Add product to cart
+    addItemToCart({
+      id: product.id,
+      name: product.title,
+      price: product.price,
+      image: product.image,
+      quantity: 1
+    });
+    
+    // Open cart sidebar
+    toggleCart();
+    
+    // Optional: Show success feedback
+    console.log(`Added ${product.title} to cart`);
+  };
+
+  // View Details Function
+  const handleDetailsClick = (productId, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // ProductDetails page par navigate karein with product ID
+    navigate(`/productdetails?id=${productId}`);
+    
+    // Add to viewed products if not already there
+    if (!viewedProducts.includes(productId)) {
+      setViewedProducts([...viewedProducts, productId]);
+    }
+  };
 
   const toggleWishlist = (productId, e) => {
     e.preventDefault();
@@ -113,21 +156,24 @@ const BestSellerToys = () => {
     }
   };
 
-  const handleDetailsClick = (productId, e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    console.log('View details for product:', productId);
-    
-    // Add to viewed products if not already there
-    if (!viewedProducts.includes(productId)) {
-      setViewedProducts([...viewedProducts, productId]);
-    }
+  // Format price for display
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      maximumFractionDigits: 0
+    }).format(price);
   };
 
+  // GSAP Animations - ONLY HEADING ANIMATION RETAINED
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Section entrance animation - RETAINED
       gsap.fromTo(sectionRef.current,
-        { opacity: 0, y: 50 },
+        {
+          opacity: 0,
+          y: 50
+        },
         {
           opacity: 1,
           y: 0,
@@ -141,8 +187,12 @@ const BestSellerToys = () => {
         }
       );
 
+      // Title animation - RETAINED
       gsap.fromTo(titleRef.current,
-        { opacity: 0, scale: 0.8 },
+        {
+          opacity: 0,
+          scale: 0.8
+        },
         {
           opacity: 1,
           scale: 1,
@@ -157,24 +207,8 @@ const BestSellerToys = () => {
         }
       );
 
-      gsap.fromTo('.bestseller-card',
-        {
-          opacity: 0,
-          y: 30
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: '.bestseller-swiper-container',
-            start: "top 70%",
-            toggleActions: "play none none reverse"
-          }
-        }
-      );
+      // Card stagger animation - REMOVED
+      // Cards will load instantly without animation
 
     }, sectionRef);
 
@@ -310,8 +344,13 @@ const BestSellerToys = () => {
                         {toy.age}
                       </div>
 
+                      {/* Shopping Cart Icon */}
                       <div className="bestseller-icon">
-                        <a href="#" className="bestseller-iconBox"> 
+                        <a 
+                          href="#" 
+                          className="bestseller-iconBox"
+                          onClick={(e) => handleAddToCart(toy, e)}
+                        > 
                           <ShoppingCartIcon 
                             style={{
                               width: '24px',
@@ -345,9 +384,10 @@ const BestSellerToys = () => {
                         <span className="bestseller-rating-text">({toy.reviews})</span>
                       </div>
 
+                      {/* Price display */}
                       <div className="bestseller-price">
-                        <span className="bestseller-current-price">{toy.price}</span>
-                        <span className="bestseller-original-price">{toy.originalPrice}</span>
+                        <span className="bestseller-current-price">{formatPrice(toy.price)}</span>
+                        <span className="bestseller-original-price">{formatPrice(toy.originalPrice)}</span>
                         <span className="bestseller-discount">{toy.discount}</span>
                       </div>
                     </div>

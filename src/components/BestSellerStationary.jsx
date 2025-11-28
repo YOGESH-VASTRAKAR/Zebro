@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import { 
   ShoppingCartIcon,
   InformationCircleIcon,
@@ -15,6 +16,9 @@ import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
 import './BestSellers.css';
 
+// Import Cart Context
+import { useCart } from './CartContext';
+
 gsap.registerPlugin(ScrollTrigger);
 
 const BestSellerStationary = () => {
@@ -26,14 +30,18 @@ const BestSellerStationary = () => {
   const [swiperReady, setSwiperReady] = useState(false);
   const [wishlist, setWishlist] = useState([]);
   const [viewedProducts, setViewedProducts] = useState([]);
+  const navigate = useNavigate();
+
+  // Use Cart Context
+  const { addItemToCart, toggleCart } = useCart();
 
   const stationary = [
     {
       id: 1,
       image: "bg.jpg",
       title: "Art Supplies Kit",
-      price: "₹899",
-      originalPrice: "₹1,799",
+      price: 899,
+      originalPrice: 1799,
       discount: "50% OFF",
       rating: 4.7,
       reviews: 134,
@@ -44,8 +52,8 @@ const BestSellerStationary = () => {
       id: 2,
       image: "bg.jpg",
       title: "School Stationary Set",
-      price: "₹499",
-      originalPrice: "₹999",
+      price: 499,
+      originalPrice: 999,
       discount: "50% OFF",
       rating: 4.5,
       reviews: 89,
@@ -56,8 +64,8 @@ const BestSellerStationary = () => {
       id: 3,
       image: "bg.jpg",
       title: "Drawing Sketchbook Set",
-      price: "₹699",
-      originalPrice: "₹1,399",
+      price: 699,
+      originalPrice: 1399,
       discount: "50% OFF",
       rating: 4.8,
       reviews: 67,
@@ -68,8 +76,8 @@ const BestSellerStationary = () => {
       id: 4,
       image: "bg.jpg",
       title: "Educational Sticker Pack",
-      price: "₹299",
-      originalPrice: "₹599",
+      price: 299,
+      originalPrice: 599,
       discount: "50% OFF",
       rating: 4.4,
       reviews: 156,
@@ -80,8 +88,8 @@ const BestSellerStationary = () => {
       id: 5,
       image: "bg.jpg",
       title: "Kids Writing Desk",
-      price: "₹2,999",
-      originalPrice: "₹5,999",
+      price: 2999,
+      originalPrice: 5999,
       discount: "50% OFF",
       rating: 4.6,
       reviews: 45,
@@ -92,8 +100,8 @@ const BestSellerStationary = () => {
       id: 6,
       image: "bg.jpg",
       title: "Color Pencil Set",
-      price: "₹399",
-      originalPrice: "₹799",
+      price: 399,
+      originalPrice: 799,
       discount: "50% OFF",
       rating: 4.9,
       reviews: 178,
@@ -101,6 +109,41 @@ const BestSellerStationary = () => {
       pieces: "36 Colors"
     }
   ];
+
+  // Add to Cart Function
+  const handleAddToCart = (product, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // Add product to cart
+    addItemToCart({
+      id: product.id,
+      name: product.title,
+      price: product.price,
+      image: product.image,
+      quantity: 1
+    });
+    
+    // Open cart sidebar
+    toggleCart();
+    
+    // Optional: Show success feedback
+    console.log(`Added ${product.title} to cart`);
+  };
+
+  // View Details Function
+  const handleDetailsClick = (productId, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // ProductDetails page par navigate karein with product ID
+    navigate(`/productdetails?id=${productId}`);
+    
+    // Add to viewed products if not already there
+    if (!viewedProducts.includes(productId)) {
+      setViewedProducts([...viewedProducts, productId]);
+    }
+  };
 
   const toggleWishlist = (productId, e) => {
     e.preventDefault();
@@ -113,21 +156,24 @@ const BestSellerStationary = () => {
     }
   };
 
-  const handleDetailsClick = (productId, e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    console.log('View details for product:', productId);
-    
-    // Add to viewed products if not already there
-    if (!viewedProducts.includes(productId)) {
-      setViewedProducts([...viewedProducts, productId]);
-    }
+  // Format price for display
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      maximumFractionDigits: 0
+    }).format(price);
   };
 
+  // GSAP Animations - ONLY HEADING ANIMATION RETAINED
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Section entrance animation - RETAINED
       gsap.fromTo(sectionRef.current,
-        { opacity: 0, y: 50 },
+        {
+          opacity: 0,
+          y: 50
+        },
         {
           opacity: 1,
           y: 0,
@@ -141,8 +187,12 @@ const BestSellerStationary = () => {
         }
       );
 
+      // Title animation - RETAINED
       gsap.fromTo(titleRef.current,
-        { opacity: 0, scale: 0.8 },
+        {
+          opacity: 0,
+          scale: 0.8
+        },
         {
           opacity: 1,
           scale: 1,
@@ -157,21 +207,8 @@ const BestSellerStationary = () => {
         }
       );
 
-      gsap.fromTo('.bestseller-card',
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: '.bestseller-swiper-container',
-            start: "top 70%",
-            toggleActions: "play none none reverse"
-          }
-        }
-      );
+      // Card stagger animation - REMOVED
+      // Cards will load instantly without animation
 
     }, sectionRef);
 
@@ -307,8 +344,13 @@ const BestSellerStationary = () => {
                         {item.pieces}
                       </div>
 
+                      {/* Shopping Cart Icon */}
                       <div className="bestseller-icon">
-                        <a href="#" className="bestseller-iconBox"> 
+                        <a 
+                          href="#" 
+                          className="bestseller-iconBox"
+                          onClick={(e) => handleAddToCart(item, e)}
+                        > 
                           <ShoppingCartIcon 
                             style={{
                               width: '24px',
@@ -342,9 +384,10 @@ const BestSellerStationary = () => {
                         <span className="bestseller-rating-text">({item.reviews})</span>
                       </div>
 
+                      {/* Price display */}
                       <div className="bestseller-price">
-                        <span className="bestseller-current-price">{item.price}</span>
-                        <span className="bestseller-original-price">{item.originalPrice}</span>
+                        <span className="bestseller-current-price">{formatPrice(item.price)}</span>
+                        <span className="bestseller-original-price">{formatPrice(item.originalPrice)}</span>
                         <span className="bestseller-discount">{item.discount}</span>
                       </div>
                     </div>

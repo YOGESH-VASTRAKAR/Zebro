@@ -1,0 +1,255 @@
+/* ProductTabs.css */
+
+/* Product Tabs Section */
+.product-tabs-section {
+  background: white;
+  padding: 40px 0;
+}
+
+/* Horizontal Tabs Navigation - EXACTLY Dashboard Style */
+.product-tabs-horizontal-nav {
+  margin-bottom: 25px;
+}
+
+.product-tabs-nav-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.product-tabs-tab-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 10px;
+  background: white;
+  border: 2px solid #f1f3f4;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: #6c757d;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.product-tabs-tab-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+  border-color: var(--product-tabs-accent-color);
+  color: var(--product-tabs-accent-color);
+}
+
+.product-tabs-tab-btn.product-tabs-active {
+  border-color: var(--product-tabs-accent-color);
+  background: var(--product-tabs-accent-color);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.15);
+}
+
+/* Tab Button Icon - EXACTLY Dashboard Style */
+.product-tabs-btn-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border: 0.15rem solid white;
+  border-radius: 50%;
+  background: var(--product-tabs-accent-color);
+  box-shadow: -0.15rem 0.15rem 0.4rem rgba(0, 0, 0, 0.12),
+    inset -0.1rem 0.1rem 0.15rem rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.product-tabs-tab-btn:hover .product-tabs-btn-icon {
+  transform: scale(1.05);
+  box-shadow: -0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.15),
+    inset -0.1rem 0.1rem 0.15rem rgba(0, 0, 0, 0.1);
+}
+
+.product-tabs-tab-btn.product-tabs-active .product-tabs-btn-icon {
+  background: white;
+  border-color: var(--product-tabs-accent-color);
+}
+
+.product-tabs-btn-icon-svg {
+  width: 16px;
+  height: 16px;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.product-tabs-tab-btn:hover .product-tabs-btn-icon-svg {
+  color: white;
+}
+
+.product-tabs-tab-btn.product-tabs-active .product-tabs-btn-icon-svg {
+  color: var(--product-tabs-accent-color);
+}
+
+/* Tab Button Text */
+.product-tabs-btn-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.product-tabs-tab-btn.product-tabs-active .product-tabs-btn-text {
+  color: white;
+}
+
+/* Tab Content */
+.product-tabs-content {
+  min-height: 350px;
+}
+
+/* Tab Panels */
+.product-tabs-tab-panel {
+  animation: product-tabs-fadeIn 0.5s ease-in-out;
+  width: 100%;
+}
+
+@keyframes product-tabs-fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Main Title - Dashboard Style Gradient */
+.product-tabs-main-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #f1f3f4;
+  background: linear-gradient(135deg, #0662aa 0%, #37aa50 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.product-tabs-subtitle {
+  color: #6c757d;
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+/* Section Titles - Dashboard Style */
+.product-tabs-section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #f1f3f4;
+  background: linear-gradient(135deg, #0662aa 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animation for tab items */
+@keyframes product-tabs-fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.product-tabs-tab-btn {
+  animation: product-tabs-fadeInLeft 0.4s ease forwards;
+}
+
+.product-tabs-tab-btn:nth-child(1) { animation-delay: 0.1s; }
+.product-tabs-tab-btn:nth-child(2) { animation-delay: 0.15s; }
+.product-tabs-tab-btn:nth-child(3) { animation-delay: 0.2s; }
+
+/* Custom Scrollbar - Dashboard Style */
+.product-tabs-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.product-tabs-content::-webkit-scrollbar-track {
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.product-tabs-content::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #0662aa 0%, #764ba2 100%);
+  border-radius: 4px;
+}
+
+.product-tabs-content::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #05518f 0%, #6a4190 100%);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .product-tabs-section {
+    padding: 30px 0;
+  }
+  
+  .product-tabs-nav-container {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .product-tabs-tab-btn {
+    padding: 12px 10px;
+    gap: 10px;
+  }
+  
+  .product-tabs-btn-icon {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .product-tabs-btn-icon-svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .product-tabs-btn-text {
+    font-size: 0.8rem;
+  }
+  
+  .product-tabs-content {
+    padding: 20px;
+    min-height: 300px;
+  }
+  
+  .product-tabs-main-title {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .product-tabs-content {
+    padding: 15px;
+  }
+  
+  .product-tabs-main-title {
+    font-size: 1.2rem;
+  }
+}

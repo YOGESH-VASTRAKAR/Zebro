@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import { 
   StarIcon, 
   ShoppingCartIcon,
@@ -17,6 +18,9 @@ import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
 import './TopDeals.css';
 
+// Import Cart Context
+import { useCart } from './CartContext';
+
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,15 +33,19 @@ const TopDeals = () => {
   const [swiperReady, setSwiperReady] = useState(false);
   const [wishlist, setWishlist] = useState([]);
   const [viewedProducts, setViewedProducts] = useState([]);
+  const navigate = useNavigate();
 
-  // Sample deals data
+  // Use Cart Context
+  const { addItemToCart, toggleCart } = useCart();
+
+  // Sample deals data with proper price format
   const deals = [
     {
       id: 1,
       image: "RC Car.jpg",
       title: "Educational Robot Toy",
-      price: "₹1,299",
-      originalPrice: "₹2,499",
+      price: 1299,
+      originalPrice: 2499,
       discount: "48% OFF",
       rating: 4.5,
       reviews: 125,
@@ -46,8 +54,8 @@ const TopDeals = () => {
       id: 2,
       image: "bg (4).jpg",
       title: "Building Blocks Set",
-      price: "₹899",
-      originalPrice: "₹1,799",
+      price: 899,
+      originalPrice: 1799,
       discount: "50% OFF",
       rating: 4.8,
       reviews: 89,
@@ -56,8 +64,8 @@ const TopDeals = () => {
       id: 3,
       image: "bg (3).jpg",
       title: "Kids Story Books Pack",
-      price: "₹499",
-      originalPrice: "₹999",
+      price: 499,
+      originalPrice: 999,
       discount: "50% OFF",
       rating: 4.3,
       reviews: 67,
@@ -66,8 +74,8 @@ const TopDeals = () => {
       id: 4,
       image: "bg.jpg",
       title: "Puzzle Game Collection",
-      price: "₹699",
-      originalPrice: "₹1,399",
+      price: 699,
+      originalPrice: 1399,
       discount: "50% OFF",
       rating: 4.6,
       reviews: 42,
@@ -76,8 +84,8 @@ const TopDeals = () => {
       id: 5,
       image: "Building Blocks.jpg",
       title: "Remote Control Car",
-      price: "₹1,599",
-      originalPrice: "₹2,999",
+      price: 1599,
+      originalPrice: 2999,
       discount: "47% OFF",
       rating: 4.4,
       reviews: 156,
@@ -86,8 +94,8 @@ const TopDeals = () => {
       id: 6,
       image: "Art Kit.jpg",
       title: "Art & Craft Kit",
-      price: "₹799",
-      originalPrice: "₹1,599",
+      price: 799,
+      originalPrice: 1599,
       discount: "50% OFF",
       rating: 4.7,
       reviews: 93,
@@ -96,8 +104,8 @@ const TopDeals = () => {
       id: 7,
       image: "bg (4).jpg",
       title: "Science Experiment Kit",
-      price: "₹1,199",
-      originalPrice: "₹2,199",
+      price: 1199,
+      originalPrice: 2199,
       discount: "45% OFF",
       rating: 4.9,
       reviews: 78,
@@ -106,18 +114,18 @@ const TopDeals = () => {
       id: 8,
       image: "bg (3).jpg",
       title: "Musical Toys Set",
-      price: "₹599",
-      originalPrice: "₹1,199",
+      price: 599,
+      originalPrice: 1199,
       discount: "50% OFF",
       rating: 4.2,
       reviews: 54,
     }
   ];
 
-  // GSAP Animations
+  // GSAP Animations - Optimized
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Section entrance animation
+      // Simple fade-in animation
       gsap.fromTo(sectionRef.current,
         {
           opacity: 0,
@@ -152,26 +160,6 @@ const TopDeals = () => {
           scrollTrigger: {
             trigger: titleRef.current,
             start: "top 85%",
-            toggleActions: "play none none reverse"
-          }
-        }
-      );
-
-      // Card stagger animation
-      gsap.fromTo('.top-deals-deal-card',
-        {
-          opacity: 0,
-          y: 30
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: '.top-deals-swiper-container',
-            start: "top 70%",
             toggleActions: "play none none reverse"
           }
         }
@@ -212,12 +200,44 @@ const TopDeals = () => {
   const handleDetailsClick = (productId, e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log('View details for product:', productId);
+    
+    // ProductDetails page par navigate karein with product ID
+    navigate(`/productdetails?id=${productId}`);
     
     // Add to viewed products if not already there
     if (!viewedProducts.includes(productId)) {
       setViewedProducts([...viewedProducts, productId]);
     }
+  };
+
+  // Add to Cart Function
+  const handleAddToCart = (product, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // Add product to cart
+    addItemToCart({
+      id: product.id,
+      name: product.title,
+      price: product.price,
+      image: product.image,
+      quantity: 1
+    });
+    
+    // Open cart sidebar
+    toggleCart();
+    
+    // Optional: Show success feedback
+    console.log(`Added ${product.title} to cart`);
+  };
+
+  // Format price for display
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      maximumFractionDigits: 0
+    }).format(price);
   };
 
   // Swiper breakpoints for responsive design
@@ -345,9 +365,13 @@ const TopDeals = () => {
                         </div>
                       </div>
 
-                      {/* Original Shopping Cart Icon (Bottom Right) */}
+                      {/* Shopping Cart Icon (Bottom Right) - Updated to use handleAddToCart */}
                       <div className="top-deals-icon">
-                        <a href="#" className="top-deals-iconBox"> 
+                        <a 
+                          href="#" 
+                          className="top-deals-iconBox"
+                          onClick={(e) => handleAddToCart(deal, e)}
+                        > 
                           <ShoppingCartIcon 
                             style={{
                               width: '24px',
@@ -386,8 +410,8 @@ const TopDeals = () => {
 
                       {/* Price */}
                       <div className="top-deals-deal-price">
-                        <span className="top-deals-current-price">{deal.price}</span>
-                        <span className="top-deals-original-price">{deal.originalPrice}</span>
+                        <span className="top-deals-current-price">{formatPrice(deal.price)}</span>
+                        <span className="top-deals-original-price">{formatPrice(deal.originalPrice)}</span>
                         <span className="top-deals-discount">{deal.discount}</span>
                       </div>
                     </div>

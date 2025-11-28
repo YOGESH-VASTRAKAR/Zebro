@@ -1,0 +1,219 @@
+/* CustomerReviews.css - Content-based Height */
+
+.customer-reviews-section {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.customer-reviews-container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.customer-reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+  align-items: start; /* Important for equal height */
+}
+
+.customer-reviews-quote {
+  margin: 1rem 0;
+  height: 100%; /* Take full available height */
+}
+
+.customer-reviews-content {
+  position: relative;
+  text-align: left;
+  height: 100%; /* Take full available height */
+  display: flex;
+  flex-direction: column;
+}
+
+.customer-reviews-text {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #495057;
+  word-spacing: 2px;
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+  border: 4px solid #0662aa; /* Increased from 2px to 4px */
+  border-radius: 0.8rem;
+  padding: 1.5rem 1.2rem;
+  position: relative;
+  background: white;
+  margin-bottom: 1.5rem;
+  flex-grow: 1; /* Take available space */
+  display: block; /* Reset to block */
+}
+
+.customer-reviews-text::before {
+  content: "";
+  position: absolute;
+  bottom: -4px; /* Increased from -2px to -4px to match thicker border */
+  left: 1.2rem;
+  height: 4px; /* Increased from 2px to 4px */
+  width: 4rem;
+  background-color: white;
+}
+
+.customer-reviews-text::after {
+  content: "";
+  position: absolute;
+  bottom: -2.5rem; /* Adjusted for thicker border */
+  left: 1.2rem;
+  height: 2.5rem; /* Increased from 2rem to 2.5rem */
+  width: 3rem;
+  border: 4px solid #0662aa; /* Increased from 2px to 4px */
+  border-left: 0;
+  border-bottom: 0;
+  border-radius: 0 50rem;
+}
+
+/* Rating Styles */
+.customer-reviews-rating {
+  display: flex;
+  gap: 0.3rem;
+  margin: 1rem 0;
+  justify-content: center;
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+.customer-reviews-star {
+  width: 1.6rem;
+  height: 1.6rem;
+  transition: all 0.3s ease;
+}
+
+.customer-reviews-star.customer-reviews-filled {
+  color: #F2BB13;
+  fill: #F2BB13;
+}
+
+.customer-reviews-star:not(.customer-reviews-filled) {
+  color: #BFBFBF;
+}
+
+/* Person Info - Fixed at bottom */
+.customer-reviews-person {
+  padding: 0.5rem 0 0 0;
+  position: relative;
+  left: 1.2rem;
+  text-align: left;
+  flex-shrink: 0; /* Prevent shrinking */
+  margin-top: auto; /* Push to bottom */
+}
+
+.customer-reviews-name {
+  color: #2c3e50;
+  font-size: 1.3rem;
+  font-weight: 600;
+  word-spacing: 2px;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.customer-reviews-verified-badge {
+  width: 1.3rem;
+  height: 1.3rem;
+  color: #37aa50;
+}
+
+.customer-reviews-date {
+  color: #6c757d;
+  font-size: 1rem;
+  font-weight: 500;
+  word-spacing: 1px;
+  letter-spacing: 0.3px;
+}
+
+/* Ensure all cards have same visual structure */
+.customer-reviews-grid .customer-reviews-quote {
+  display: flex;
+}
+
+.customer-reviews-grid .customer-reviews-content {
+  width: 100%;
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 75rem) {
+  .customer-reviews-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media only screen and (max-width: 48rem) {
+  .customer-reviews-grid {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+  
+  .customer-reviews-text {
+    font-size: 1.1rem;
+    padding: 1.2rem 1rem;
+    border: 3px solid #0662aa; /* Slightly smaller border on mobile */
+  }
+  
+  .customer-reviews-text::before {
+    bottom: -3px; /* Adjusted for mobile */
+    height: 3px; /* Adjusted for mobile */
+  }
+  
+  .customer-reviews-text::after {
+    border: 3px solid #0662aa; /* Adjusted for mobile */
+    bottom: -2rem; /* Adjusted for mobile */
+  }
+  
+  .customer-reviews-person {
+    left: 1rem;
+  }
+  
+  .customer-reviews-name {
+    font-size: 1.2rem;
+  }
+  
+  .customer-reviews-date {
+    font-size: 0.9rem;
+  }
+}
+
+@media only screen and (max-width: 30rem) {
+  .customer-reviews-text {
+    font-size: 1rem;
+    padding: 1rem 0.8rem;
+    border: 2.5px solid #0662aa; /* Slightly smaller border on very small screens */
+  }
+  
+  .customer-reviews-text::before {
+    bottom: -2.5px; /* Adjusted for very small screens */
+    height: 2.5px; /* Adjusted for very small screens */
+  }
+  
+  .customer-reviews-text::after {
+    bottom: -1.5rem;
+    left: 0.8rem;
+    height: 1.5rem;
+    width: 2.5rem;
+    border: 2.5px solid #0662aa; /* Adjusted for very small screens */
+  }
+  
+  .customer-reviews-person {
+    left: 0.8rem;
+  }
+}
+
+/* Hover Effects */
+.customer-reviews-quote:hover .customer-reviews-text {
+  border-color: #37aa50;
+}
+
+.customer-reviews-quote:hover .customer-reviews-text::after {
+  border-color: #37aa50;
+}

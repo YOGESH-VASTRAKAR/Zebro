@@ -1,0 +1,358 @@
+/* DashboardDetails.css - With Scrollable Width */
+.dashboard-details-page {
+  background: #fff;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+}
+
+.dashboard-content-section {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  padding: 0;
+}
+
+.dashboard-content-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 0px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #f1f3f4;
+  background: transparent;
+}
+
+.dashboard-content-scrollable {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 5px;
+  background: transparent;
+}
+
+.dashboard-container {
+  background: #fff;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+}
+
+.dashboard-header {
+  padding: 20px 25px;
+  border-bottom: 1px solid #e9ecef;
+  margin-bottom: 0;
+}
+
+.dashboard-header-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dashboard-order-status-badge {
+  display: flex;
+  align-items: center;
+}
+
+.dashboard-status-value {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dashboard-status-value.shipped {
+  background: #e8f5e8;
+  color: #2e7d32;
+  border: 1px solid #c8e6c9;
+}
+
+.dashboard-status-value.processing {
+  background: #fff3e0;
+  color: #ef6c00;
+  border: 1px solid #ffe0b2;
+}
+
+.dashboard-status-value.packed {
+  background: #e3f2fd;
+  color: #1565c0;
+  border: 1px solid #bbdefb;
+}
+
+.dashboard-order-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 20px;
+  padding: 0 25px;
+  margin-top: 20px;
+}
+
+.dashboard-order-info-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 15px;
+  border: 1px solid #e9ecef;
+}
+
+.dashboard-info-group {
+  margin-bottom: 12px;
+}
+
+.dashboard-info-group:last-child {
+  margin-bottom: 0;
+}
+
+.dashboard-info-label {
+  display: block;
+  font-weight: 600;
+  font-size: 11px;
+  color: #666;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dashboard-info-value {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+.dashboard-order-number {
+  font-family: 'Courier New', monospace;
+  color: #0662aa;
+  font-size: 13px;
+}
+
+.dashboard-txn-id {
+  font-family: 'Courier New', monospace;
+  color: #e65c52;
+  font-size: 12px;
+}
+
+.dashboard-order-description-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid #e9ecef;
+  margin: 0 25px 20px 25px;
+}
+
+.dashboard-product-description-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.dashboard-product-description {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 0;
+  line-height: 1.4;
+}
+
+.dashboard-timeline-section {
+  flex: 1;
+  padding: 0 25px;
+}
+
+.dashboard-timeline-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.dashboard-status-timeline {
+  position: relative;
+  padding-left: 25px;
+}
+
+.dashboard-timeline-item {
+  display: flex;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.dashboard-timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.dashboard-timeline-marker {
+  position: relative;
+  margin-right: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dashboard-timeline-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #0662aa;
+  border: 2px solid white;
+  box-shadow: 0 0 0 2px #0662aa;
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.dashboard-timeline-line {
+  width: 2px;
+  background: #e0e0e0;
+  flex: 1;
+  margin-top: 6px;
+  min-height: 30px;
+}
+
+.dashboard-timeline-content {
+  flex: 1;
+  padding-bottom: 8px;
+}
+
+.dashboard-timeline-date {
+  font-weight: 600;
+  font-size: 13px;
+  color: #0662aa;
+  margin-bottom: 6px;
+}
+
+.dashboard-timeline-status {
+  background: white;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.dashboard-status-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  background: #0662aa;
+  color: white;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.dashboard-status-description {
+  color: #666;
+  font-size: 13px;
+  line-height: 1.4;
+  margin-bottom: 0;
+}
+
+/* Scrollbar Styling */
+.dashboard-content-scrollable::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dashboard-content-scrollable::-webkit-scrollbar-track {
+  background: #f8f9fa;
+  border-radius: 3px;
+}
+
+.dashboard-content-scrollable::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #0662aa 0%, #764ba2 100%);
+  border-radius: 3px;
+}
+
+.dashboard-content-scrollable::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #05518f 0%, #6a4190 100%);
+}
+
+/* Firefox Scrollbar */
+.dashboard-content-scrollable {
+  scrollbar-width: thin;
+  scrollbar-color: #0662aa #f8f9fa;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboard-content-section {
+    padding: 15px;
+  }
+  
+  .dashboard-header {
+    padding: 15px 20px;
+  }
+  
+  .dashboard-order-info-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 0 20px;
+    margin-top: 15px;
+  }
+  
+  .dashboard-order-info-card {
+    padding: 12px;
+  }
+  
+  .dashboard-order-description-card {
+    padding: 12px;
+    margin: 0 20px 15px 20px;
+  }
+  
+  .dashboard-status-timeline {
+    padding-left: 20px;
+  }
+  
+  .dashboard-timeline-section {
+    padding: 0 20px;
+  }
+  
+  .dashboard-timeline-marker {
+    margin-right: 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  .dashboard-content-section {
+    padding: 12px;
+  }
+  
+  .dashboard-content-title {
+    font-size: 18px;
+  }
+  
+  .dashboard-order-info-card,
+  .dashboard-order-description-card {
+    padding: 10px;
+  }
+  
+  .dashboard-info-value {
+    font-size: 13px;
+  }
+  
+  .dashboard-timeline-status {
+    padding: 10px;
+  }
+  
+  .dashboard-status-description {
+    font-size: 12px;
+  }
+  
+  .dashboard-order-info-grid {
+    padding: 0 15px;
+  }
+  
+  .dashboard-order-description-card {
+    margin: 0 15px 15px 15px;
+  }
+  
+  .dashboard-timeline-section {
+    padding: 0 15px;
+  }
+}
