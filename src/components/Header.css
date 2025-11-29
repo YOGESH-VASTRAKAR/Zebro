@@ -64,7 +64,7 @@ html, body {
 }
 
 .top-header-area:not(.sticky) {
-  background: linear-gradient(90deg, #f2eeeee3, #dddada5e);
+  background: linear-gradient(357deg, #ffffffad, #fff);
   padding: 0px 20px;
 }
 
