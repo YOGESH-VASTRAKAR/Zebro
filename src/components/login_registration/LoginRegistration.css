@@ -228,11 +228,19 @@
 }
 
 .login-form-label {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-weight: 600;
   color: #495057;
   margin-bottom: 0.5rem;
   font-size: 0.9rem;
+}
+
+.login-form-icon {
+  width: 16px;
+  height: 16px;
+  color: #0662aa;
 }
 
 .login-form-input {
@@ -258,48 +266,59 @@
   color: #adb5bd;
 }
 
-/* Form Options */
-.login-form-options {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 1.5rem 0;
-  flex-wrap: wrap;
-  gap: 10px;
+/* OTP Input Specific */
+.otp-input {
+  text-align: center;
+  font-size: 1.2rem;
+  letter-spacing: 8px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
 }
 
-.login-remember-me {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.otp-input::placeholder {
+  letter-spacing: normal;
+  font-size: 0.95rem;
 }
 
-.login-remember-checkbox {
-  width: 16px;
-  height: 16px;
-  accent-color: #0662aa;
-  border-radius: 3px;
+/* OTP Timer and Resend */
+.login-otp-timer {
+  text-align: center;
+  margin: 1rem 0;
 }
 
-.login-remember-label {
+.login-timer-text {
+  color: #e65c52;
+  font-weight: 600;
   font-size: 0.9rem;
-  color: #6c757d;
-  cursor: pointer;
-  white-space: nowrap;
 }
 
-.login-forgot-password {
+.login-resend-btn {
+  background: none;
+  border: none;
   color: #0662aa;
-  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
   font-size: 0.9rem;
-  font-weight: 500;
+  padding: 5px 10px;
+  border-radius: 20px;
   transition: all 0.3s ease;
-  white-space: nowrap;
 }
 
-.login-forgot-password:hover {
-  color: #37aa50;
-  text-decoration: underline;
+.login-resend-btn:hover {
+  background: rgba(6, 98, 170, 0.1);
+}
+
+.login-resend-btn:disabled {
+  color: #adb5bd;
+  cursor: not-allowed;
+}
+
+/* Form Help Text */
+.login-form-help {
+  display: block;
+  margin-top: 5px;
+  color: #6c757d;
+  font-size: 0.8rem;
 }
 
 /* Submit Button */
@@ -317,6 +336,10 @@
   font-family: inherit;
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .login-submit-btn:hover {
@@ -325,10 +348,67 @@
   background: linear-gradient(135deg, #37aa50 0%, #0662aa 100%);
 }
 
+.login-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
 .login-btn-text {
   position: relative;
   z-index: 1;
   color: white;
+}
+
+/* Success Message */
+.login-success-message {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.login-success-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #37aa50 0%, #0662aa 100%);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 0 auto 1rem;
+  animation: login-pulse 2s infinite;
+}
+
+@keyframes login-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.login-success-message h3 {
+  color: #37aa50;
+  margin-bottom: 0.5rem;
+}
+
+.login-success-message p {
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
+
+/* Alert Messages */
+.login-alert-message {
+  border-radius: 25px;
+  margin-bottom: 1.5rem;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 /* Social Section */
@@ -499,6 +579,11 @@
     justify-content: center;
     text-align: center;
   }
+  
+  /* Social buttons side-by-side on mobile */
+  .login-social-buttons {
+    grid-template-columns: 1fr 1fr !important;
+  }
 }
 
 @media (max-width: 768px) {
@@ -547,8 +632,9 @@
     gap: 15px;
   }
 
+  /* Social buttons side-by-side on mobile */
   .login-social-buttons {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr !important;
     gap: 0.8rem;
   }
 
@@ -595,8 +681,14 @@
     font-size: 0.95rem;
   }
 
+  /* Social buttons side-by-side on mobile with adjusted padding */
+  .login-social-buttons {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.5rem;
+  }
+
   .login-social-btn {
-    padding: 10px 14px;
+    padding: 10px 8px;
     font-size: 0.9rem;
   }
 
@@ -658,9 +750,16 @@
     font-size: 0.9rem;
   }
   
+  /* Social buttons side-by-side on mobile with smaller gap */
+  .login-social-buttons {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.4rem;
+  }
+  
   .login-social-btn {
-    padding: 9px 12px;
+    padding: 9px 6px;
     font-size: 0.85rem;
+    white-space: nowrap;
   }
 }
 
@@ -695,10 +794,17 @@
     font-size: 1.3rem;
   }
   
+  /* Social buttons side-by-side on very small screens */
+  .login-social-buttons {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.3rem;
+  }
+  
   .login-social-btn {
-    flex-direction: column;
+    flex-direction: row;
     gap: 6px;
-    padding: 8px;
+    padding: 8px 4px;
+    font-size: 0.8rem;
   }
   
   .login-social-text {

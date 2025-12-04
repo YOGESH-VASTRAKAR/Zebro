@@ -1,0 +1,289 @@
+/* Offers Content Section */
+.offers-content-section {
+  padding: 4rem 1rem;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.offers-grid-container {
+  margin: 0 auto;
+}
+
+/* Offers Container - Grid Layout */
+.offers-container {
+  display: grid;
+  gap: 3rem;
+  width: min(calc(100% - 2rem), 80rem);
+  margin: 0 auto;
+  justify-content: center;
+  align-items: start;
+}
+
+/* Offer Card - Reference Design */
+.offers-card {
+  --offers-bg-alpha: .5;
+  --offers-border-radius: 50px;
+  --offers-bg-dot-offset: 20px;
+  --offers-bg-dot-color: var(--offers-accent-color);
+
+  position: relative;
+  isolation: isolate;
+  background-color: white;
+  transition: 500ms ease-in-out;
+  border-radius: var(--offers-border-radius);
+  display: flex;
+  flex-direction: column;
+  
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    border-radius: inherit;
+    z-index: -1;
+  }
+  
+  &::before {
+    z-index: -1;
+    inset: calc(var(--offers-bg-dot-offset) * -1);
+    background-image: radial-gradient(var(--offers-bg-dot-color) 1px, transparent 0px);
+    background-repeat: repeat;
+    background-size: 5px 5px;
+    background-position: center;
+    border-radius: calc(var(--offers-border-radius) + var(--offers-bg-dot-offset));
+  }
+  
+  &::after {
+    background-color: white;
+    inset: 0;
+  }
+}
+
+/* Card Content */
+.offers-card-content {
+  position: relative;
+  padding: 0;
+  display: block;
+  border-radius: var(--offers-border-radius);
+  overflow: hidden;
+  flex: 1;
+  display: flex;
+}
+
+.offers-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+  border-radius: var(--offers-border-radius);
+  flex: 1;
+}
+
+.offers-card:hover .offers-image {
+  transform: scale(1.05);
+}
+
+/* ========== GRID LAYOUT ========== */
+
+/* Mobile First - Single Column */
+.offers-container {
+  grid-template-columns: 1fr;
+}
+
+/* Tablet (600px+) */
+@media (min-width: 600px) {
+  .offers-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3.5rem;
+  }
+}
+
+/* Desktop (1024px+) - Complex Grid Layout */
+@media (min-width: 1024px) {
+  .offers-container {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 3rem;
+    height: auto;
+    align-items: stretch;
+  }
+
+  /* Card 1 - Top Left (Small) */
+  .offers-card:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  /* Card 2 - Top Right (Small) */
+  .offers-card:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  /* Card 3 - Large Center (2x2) */
+  .offers-card:nth-child(3) {
+    grid-column: 3 / span 2;
+    grid-row: 1 / span 2;
+  }
+
+  /* Card 4 - Bottom Left (2x2) */
+  .offers-card:nth-child(4) {
+    grid-column: 1 / span 2;
+    grid-row: 2 / span 2;
+  }
+
+  /* Card 5 - Bottom Center */
+  .offers-card:nth-child(5) {
+    grid-column: 3;
+    grid-row: 3;
+  }
+
+  /* Card 6 - Bottom Right */
+  .offers-card:nth-child(6) {
+    grid-column: 4;
+    grid-row: 3;
+  }
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* Large Desktop (1200px+) */
+@media (min-width: 1200px) {
+  .offers-container {
+    max-width: 1200px;
+    height: auto;
+    gap: 3.5rem;
+  }
+}
+
+/* Desktop (992px - 1199px) */
+@media (max-width: 1199px) and (min-width: 992px) {
+  .offers-container {
+    max-width: 1000px;
+    height: auto;
+    gap: 3rem;
+  }
+}
+
+/* Tablet Landscape (768px - 991px) */
+@media (max-width: 991px) and (min-width: 768px) {
+  .offers-content-section {
+    padding: 3rem 1rem;
+  }
+  
+  .offers-container {
+    max-width: 800px;
+    height: auto;
+    gap: 3.5rem;
+  }
+  
+  .offers-card {
+    --offers-border-radius: 40px;
+    --offers-bg-dot-offset: 15px;
+  }
+}
+
+/* Tablet Portrait (576px - 767px) */
+@media (max-width: 767px) and (min-width: 576px) {
+  .offers-content-section {
+    padding: 2.5rem 1rem;
+  }
+  
+  .offers-container {
+    max-width: 600px;
+    height: auto;
+    gap: 3.5rem;
+  }
+  
+  .offers-card {
+    --offers-border-radius: 40px;
+    --offers-bg-dot-offset: 15px;
+  }
+}
+
+/* Mobile (575px and below) */
+@media (max-width: 575px) {
+  .offers-content-section {
+    padding: 2rem 0.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .offers-container {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    width: min(calc(100% - 1rem), 500px);
+    height: auto;
+  }
+  
+  .offers-card {
+    --offers-border-radius: 30px;
+    --offers-bg-dot-offset: 12px;
+  }
+  
+  .offers-image {
+    height: 300px;
+    border-radius: 30px;
+  }
+}
+
+/* Small Mobile (375px and below) */
+@media (max-width: 375px) {
+  .offers-content-section {
+    padding: 1.5rem 0.5rem;
+  }
+  
+  .offers-container {
+    gap: 3.5rem;
+  }
+  
+  .offers-card {
+    --offers-border-radius: 25px;
+    --offers-bg-dot-offset: 10px;
+  }
+  
+  .offers-image {
+    height: 250px;
+    border-radius: 25px;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .offers-card:hover .offers-image {
+    transform: none;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .offers-card,
+  .offers-image {
+    transition: none;
+  }
+  
+  .offers-card:hover .offers-image {
+    transform: none;
+  }
+}
+
+/* Focus styles for accessibility */
+.offers-card:focus {
+  outline: 2px solid var(--offers-accent-color);
+  outline-offset: 4px;
+}
+
+/* Animation for Loading */
+@keyframes offers-fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.offers-card {
+  animation: offers-fadeIn 0.5s ease-out;
+}

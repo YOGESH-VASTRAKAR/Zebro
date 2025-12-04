@@ -1,0 +1,284 @@
+/* Advertisement Popup Overlay */
+.ad-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: ad-fadeIn 0.3s ease-out;
+}
+
+.ad-popup-container {
+  padding: 0;
+  text-align: center;
+}
+
+.ad-popup-content {
+  position: relative;
+  max-width: 800px;
+  width: 95%;
+  margin: 0 auto;
+}
+
+/* Offers Container - Single Image */
+.ad-popup-offers-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Offer Card - Single Image */
+.ad-popup-offer-card {
+  --ad-popup-bg-alpha: .5;
+  --ad-popup-border-radius: 30px;
+  --ad-popup-bg-dot-offset: 15px;
+  --ad-popup-bg-dot-color: var(--ad-popup-accent-color);
+
+  position: relative;
+  isolation: isolate;
+  background-color: white;
+  transition: 500ms ease-in-out;
+  border-radius: var(--ad-popup-border-radius);
+  font-family: "Kodchasan", sans-serif;
+  cursor: pointer;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    border-radius: inherit;
+    z-index: -1;
+  }
+  
+  &::before {
+    z-index: -1;
+    inset: calc(var(--ad-popup-bg-dot-offset) * -1);
+    background-image: radial-gradient(var(--ad-popup-bg-dot-color) 1px, transparent 0px);
+    background-repeat: repeat;
+    background-size: 5px 5px;
+    background-position: center;
+    border-radius: calc(var(--ad-popup-border-radius) + var(--ad-popup-bg-dot-offset));
+  }
+  
+  &::after {
+    background-color: white;
+    inset: 0;
+  }
+}
+
+/* Close Button - Card के अंदर Top Right */
+.ad-popup-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 35px;
+  height: 35px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.ad-popup-close-btn:hover {
+  background: #f8f9fa;
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+.ad-close-icon {
+  width: 20px;
+  height: 20px;
+  color: #333;
+}
+
+.ad-popup-card-content {
+  position: relative;
+  padding: 0;
+  display: block;
+  border-radius: var(--ad-popup-border-radius);
+  overflow: hidden;
+}
+
+.ad-popup-offer-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+  border-radius: var(--ad-popup-border-radius);
+}
+
+.ad-popup-offer-card:hover .ad-popup-offer-image {
+  transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes ad-fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ad-scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.ad-popup-content {
+  animation: ad-scaleIn 0.4s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 991px) and (min-width: 768px) {
+  .ad-popup-content {
+    max-width: 700px;
+  }
+  
+  .ad-popup-offer-card {
+    max-width: 550px;
+  }
+  
+  .ad-popup-offer-image {
+    height: 350px;
+  }
+  
+  .ad-popup-offer-card {
+    --ad-popup-border-radius: 25px;
+    --ad-popup-bg-dot-offset: 12px;
+  }
+  
+  .ad-popup-close-btn {
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 767px) {
+  .ad-popup-content {
+    max-width: 500px;
+  }
+  
+  .ad-popup-offer-card {
+    max-width: 450px;
+  }
+  
+  .ad-popup-offer-image {
+    height: 300px;
+  }
+  
+  .ad-popup-offer-card {
+    --ad-popup-border-radius: 20px;
+    --ad-popup-bg-dot-offset: 10px;
+  }
+  
+  .ad-popup-close-btn {
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+  }
+  
+  .ad-close-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 575px) {
+  .ad-popup-content {
+    width: 90%;
+    max-width: 400px;
+  }
+  
+  .ad-popup-offer-card {
+    max-width: 100%;
+  }
+  
+  .ad-popup-offer-image {
+    height: 250px;
+  }
+  
+  .ad-popup-offer-card {
+    --ad-popup-border-radius: 15px;
+    --ad-popup-bg-dot-offset: 8px;
+  }
+  
+  .ad-popup-close-btn {
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 375px) {
+  .ad-popup-offer-image {
+    height: 200px;
+  }
+  
+  .ad-popup-offer-card {
+    --ad-popup-border-radius: 12px;
+    --ad-popup-bg-dot-offset: 6px;
+  }
+  
+  .ad-popup-close-btn {
+    width: 25px;
+    height: 25px;
+    top: 6px;
+    right: 6px;
+  }
+  
+  .ad-close-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Touch Device Optimization */
+@media (hover: none) and (pointer: coarse) {
+  .ad-popup-offer-card:hover .ad-popup-offer-image {
+    transform: none;
+  }
+  
+  .ad-popup-offer-card:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Accessibility */
+.ad-popup-close-btn:focus {
+  outline: 2px solid #0662aa;
+  outline-offset: 2px;
+}
+
+.ad-popup-offer-card:focus {
+  outline: 2px solid var(--ad-popup-accent-color);
+  outline-offset: 4px;
+}

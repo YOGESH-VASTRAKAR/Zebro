@@ -58,7 +58,7 @@ const ProductGallery = ({ product }) => {
       });
     } else {
       navigator.clipboard.writeText(window.location.href);
-      alert('Product link copied to clipboard!');
+      // alert('Product link copied to clipboard!');
     }
   };
 
@@ -68,12 +68,12 @@ const ProductGallery = ({ product }) => {
 
   const handleAddToCart = () => {
     console.log('Added to cart:', { product: productData.name, quantity });
-    alert(`${quantity} ${productData.name} added to cart!`);
+    // alert(`${quantity} ${productData.name} added to cart!`);
   };
 
   const handleBuyNow = () => {
     console.log('Buy now:', { product: productData.name, quantity });
-    alert(`Proceeding to checkout with ${quantity} ${productData.name}`);
+    // alert(`Proceeding to checkout with ${quantity} ${productData.name}`);
   };
 
   return (

@@ -156,7 +156,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  font-size: 10px;
+  font-size: 8px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -403,11 +403,11 @@
   scrollbar-color: #0662aa #f8f9fa;
 }
 
-/* Responsive Design */
+/* Improved Responsive Design */
 @media (max-width: 768px) {
   .wishlist-item-card {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 15px;
     padding: 15px;
   }
@@ -417,13 +417,12 @@
     flex: 0 0 100px;
   }
   
-  .wishlist-product-image {
-    width: 100px;
-    height: 100px;
+  .wishlist-item-details-section {
+    width: 100%;
+    padding-right: 0;
   }
   
-  .wishlist-item-details-section {
-    padding-right: 0;
+  .wishlist-item-actions-section {
     width: 100%;
   }
   
@@ -454,7 +453,7 @@
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 572px) {
   .wishlist-content-title {
     font-size: 1.3rem;
     margin-bottom: 15px;
@@ -474,8 +473,16 @@
     gap: 12px;
   }
   
+  /* मुख्य बदलाव यहाँ: Desktop layout maintain करने के लिए */
+  .wishlist-item-card {
+    flex-direction: row; /* यहाँ row रखा है side by side के लिए */
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  
   .wishlist-item-image-section {
     flex: 0 0 80px;
+    margin-right: 12px;
   }
   
   .wishlist-product-image {
@@ -483,17 +490,35 @@
     height: 80px;
   }
   
+  .wishlist-item-details-section {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .wishlist-item-actions-section {
+    flex: 0 0 100%;
+    margin-top: 12px;
+  }
+  
   .wishlist-action-buttons {
-    flex-direction: column;
-    gap: 8px;
     width: 100%;
+    justify-content: space-between;
+    gap: 8px;
   }
   
   .wishlist-add-to-cart-btn,
   .wishlist-remove-btn {
-    width: 100%;
+    flex: 1;
+    min-width: auto;
     padding: 10px 12px;
     font-size: 11px;
+  }
+  
+  .wishlist-like-btn {
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
   }
   
   .wishlist-price-section {
@@ -515,6 +540,30 @@
 }
 
 @media (max-width: 480px) {
+  .wishlist-item-card {
+    padding: 10px;
+    gap: 10px;
+  }
+  
+  .wishlist-item-image-section {
+    flex: 0 0 70px;
+    margin-right: 10px;
+  }
+  
+  .wishlist-product-image {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .wishlist-item-details-section {
+    flex: 1;
+  }
+  
+  .wishlist-item-actions-section {
+    flex: 0 0 100%;
+    margin-top: 10px;
+  }
+  
   .wishlist-action-buttons {
     flex-direction: row;
     gap: 8px;
@@ -537,13 +586,40 @@
 }
 
 @media (max-width: 360px) {
+  .wishlist-item-card {
+    padding: 8px;
+    gap: 8px;
+  }
+  
+  .wishlist-item-image-section {
+    flex: 0 0 60px;
+    margin-right: 8px;
+  }
+  
+  .wishlist-product-image {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .wishlist-item-details-section {
+    flex: 1;
+  }
+  
+  .wishlist-item-actions-section {
+    flex: 0 0 100%;
+    margin-top: 8px;
+  }
+  
   .wishlist-action-buttons {
-    flex-direction: column;
+    flex-direction: row;
+    gap: 6px;
   }
   
   .wishlist-add-to-cart-btn,
   .wishlist-remove-btn {
-    width: 100%;
+    width: auto;
+    padding: 6px 8px;
+    font-size: 9px;
   }
 }
 

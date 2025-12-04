@@ -183,27 +183,31 @@ const BillingDetails = () => {
                 {isCardExpanded(address.id) && (
                   <Card.Body className="billing-address-accordion-body">
                     <div className="billing-address-card-content">
-                      <div className="billing-address-name-section">
-                        <UserIcon className="billing-address-detail-icon" />
-                        <h4 className="billing-address-name">{address.name}</h4>
-                      </div>
-                      
-                      <div className="billing-address-line-section">
-                        <MapPinIcon className="billing-address-detail-icon" />
-                        <div>
-                          <p className="billing-address-line">{address.addressLine1}</p>
-                          <p className="billing-address-line">{address.addressLine2}</p>
+                      {/* Left side: Name and Address */}
+                      <div className="billing-address-left-section">
+                        <div className="billing-address-name-section">
+                          <UserIcon className="billing-address-detail-icon" />
+                          <h4 className="billing-address-name">{address.name}</h4>
+                        </div>
+                        
+                        <div className="billing-address-line-section">
+                          <MapPinIcon className="billing-address-detail-icon" />
+                          <div>
+                            <p className="billing-address-line">{address.addressLine1}</p>
+                            <p className="billing-address-line">{address.addressLine2}</p>
+                          </div>
                         </div>
                       </div>
                       
-                      <div className="billing-address-details-grid">
-                        <div className="billing-address-detail-item">
-                          <span className="billing-address-detail-label">Pincode:</span>
-                          <span className="billing-address-detail-value">{address.pincode}</span>
+                      {/* Right side: Pincode and Mobile */}
+                      <div className="billing-address-right-section">
+                        <div className="billing-address-detail-item-right">
+                          <span className="billing-address-detail-label-right">Pincode:</span>
+                          <span className="billing-address-detail-value-right">{address.pincode}</span>
                         </div>
-                        <div className="billing-address-detail-item">
-                          <DevicePhoneMobileIcon className="billing-address-detail-icon billing-address-detail-icon-small" />
-                          <span className="billing-address-detail-value">{address.mobile}</span>
+                        <div className="billing-address-mobile-item">
+                          <DevicePhoneMobileIcon className="billing-address-mobile-icon" />
+                          <span className="billing-address-mobile-text">{address.mobile}</span>
                         </div>
                       </div>
                     </div>

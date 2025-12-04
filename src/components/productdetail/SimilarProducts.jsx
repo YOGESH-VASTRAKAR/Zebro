@@ -5,7 +5,9 @@ import {
   ShoppingCartIcon,
   InformationCircleIcon,
   HeartIcon,
-  StarIcon
+  StarIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon
 } from '@heroicons/react/24/solid';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -30,6 +32,7 @@ const SimilarProducts = () => {
   const [wishlist, setWishlist] = useState([]);
   const [viewedProducts, setViewedProducts] = useState([]);
   const navigate = useNavigate();
+  const [isMobile, setIsMobile] = useState(false);
 
   // Use Cart Context
   const { addItemToCart, toggleCart } = useCart();
@@ -133,12 +136,32 @@ const SimilarProducts = () => {
     }
   ];
 
+  // Check for mobile view
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Card click handler
+  const handleCardClick = (productId) => {
+    navigate(`/productdetails?id=${productId}`);
+    
+    if (!viewedProducts.includes(productId)) {
+      setViewedProducts([...viewedProducts, productId]);
+    }
+  };
+
   // Add to Cart Function
   const handleAddToCart = (product, e) => {
     e.preventDefault();
     e.stopPropagation();
     
-    // Add product to cart
     addItemToCart({
       id: product.id,
       name: product.title,
@@ -147,10 +170,8 @@ const SimilarProducts = () => {
       quantity: 1
     });
     
-    // Open cart sidebar
     toggleCart();
     
-    // Optional: Show success feedback
     console.log(`Added ${product.title} to cart`);
   };
 
@@ -159,10 +180,8 @@ const SimilarProducts = () => {
     e.preventDefault();
     e.stopPropagation();
     
-    // ProductDetails page par navigate karein with product ID
     navigate(`/productdetails?id=${productId}`);
     
-    // Add to viewed products if not already there
     if (!viewedProducts.includes(productId)) {
       setViewedProducts([...viewedProducts, productId]);
     }
@@ -188,9 +207,50 @@ const SimilarProducts = () => {
     }).format(price);
   };
 
-  // Animation code completely removed
+  // GSAP Animations
   useEffect(() => {
-    // No animations - cards will load instantly
+    const ctx = gsap.context(() => {
+      gsap.fromTo(sectionRef.current,
+        {
+          opacity: 0,
+          y: 50
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      gsap.fromTo(titleRef.current,
+        {
+          opacity: 0,
+          scale: 0.8
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 1,
+          delay: 0.3,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: titleRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   // Initialize navigation when swiper is ready
@@ -198,24 +258,62 @@ const SimilarProducts = () => {
     if (swiperReady && swiperRef.current) {
       const swiper = swiperRef.current;
       
-      // Update navigation parameters
       swiper.params.navigation.prevEl = navigationPrevRef.current;
       swiper.params.navigation.nextEl = navigationNextRef.current;
       
-      // Re-init navigation
       swiper.navigation.destroy();
       swiper.navigation.init();
       swiper.navigation.update();
     }
   }, [swiperReady]);
 
+  // Mobile view ke liye breakpoints
   const swiperBreakpoints = {
-    320: { slidesPerView: 1, spaceBetween: 20 },
-    480: { slidesPerView: 1, spaceBetween: 20 },
-    576: { slidesPerView: 2, spaceBetween: 20 },
-    768: { slidesPerView: 2, spaceBetween: 25 },
-    992: { slidesPerView: 3, spaceBetween: 30 },
-    1200: { slidesPerView: 4, spaceBetween: 30 }
+    320: { 
+      slidesPerView: 2,
+      slidesPerGroup: 2,
+      spaceBetween: 15,
+      grid: {
+        rows: 2,
+        fill: 'row'
+      }
+    },
+    480: { 
+      slidesPerView: 2,
+      slidesPerGroup: 2,
+      spaceBetween: 15,
+      grid: {
+        rows: 2,
+        fill: 'row'
+      }
+    },
+    576: { 
+      slidesPerView: 2,
+      slidesPerGroup: 2,
+      spaceBetween: 20,
+      grid: {
+        rows: 2,
+        fill: 'row'
+      }
+    },
+    768: { 
+      slidesPerView: 2,
+      spaceBetween: 25,
+      grid: {
+        rows: 2,
+        fill: 'row'
+      }
+    },
+    992: { 
+      slidesPerView: 3,
+      spaceBetween: 30,
+      grid: false
+    },
+    1200: { 
+      slidesPerView: 4,
+      spaceBetween: 30,
+      grid: false
+    }
   };
 
   const handleSwiperInit = (swiper) => {
@@ -223,43 +321,167 @@ const SimilarProducts = () => {
     setSwiperReady(true);
   };
 
+  // Render card function
+  const renderCard = (product) => (
+    <div 
+      className="similar-products-card"
+      onClick={() => handleCardClick(product.id)}
+      style={{ cursor: 'pointer' }}
+    >
+      <div className="similar-products-card-inner" style={{"--clr": "#fff"}}>
+        <div className="similar-products-box">
+          {/* Product Image */}
+          <div className="similar-products-imgBox">
+            <img 
+              src={product.image}
+              className="similar-products-image"
+              alt={product.title}
+              onError={(e) => {
+                e.target.src = "https://via.placeholder.com/200x200/F8F1E5/0D5BCF?text=Zebro+Kids";
+              }}
+            />
+          </div>
+
+          {/* Hover Overlay with Details and Wishlist Icons */}
+          <div className="similar-products-hover-overlay">
+            <div className="similar-products-hover-icons">
+              <button 
+                className={`similar-products-details-btn ${viewedProducts.includes(product.id) ? 'clicked-hover-effect' : ''}`}
+                onClick={(e) => handleDetailsClick(product.id, e)}
+                title="View Details"
+              >
+                <InformationCircleIcon className="similar-products-details-icon" />
+              </button>
+              <button 
+                className={`similar-products-wishlist-btn ${wishlist.includes(product.id) ? 'active' : ''}`}
+                onClick={(e) => toggleWishlist(product.id, e)}
+                title={wishlist.includes(product.id) ? "Remove from Wishlist" : "Add to Wishlist"}
+              >
+                <HeartIcon className="similar-products-wishlist-icon" />
+              </button>
+            </div>
+          </div>
+
+          {/* Category and Age Badges */}
+          <div className="similar-products-category-badge">
+            {product.category}
+          </div>
+
+          <div className="similar-products-age-badge">
+            {product.age}
+          </div>
+
+          {/* Shopping Cart Icon */}
+          <div className="similar-products-icon">
+            <a 
+              href="#" 
+              className="similar-products-iconBox"
+              onClick={(e) => handleAddToCart(product, e)}
+            > 
+              <ShoppingCartIcon 
+                style={{
+                  width: '24px',
+                  height: '24px',
+                  color: '#fff'
+                }}
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Card Content */}
+      <div className="similar-products-content">
+        <h3 className="similar-products-title-text">{product.title}</h3>
+        
+        <div className="similar-products-rating-price-container">
+          {/* Rating */}
+          <div className="similar-products-rating">
+            <div className="similar-products-stars">
+              {[...Array(5)].map((_, i) => (
+                <StarIcon 
+                  key={i}
+                  style={{
+                    width: '14px',
+                    height: '14px',
+                    fill: i < Math.floor(product.rating) ? '#F2BB13' : 'none',
+                    stroke: i < product.rating ? '#F2BB13' : '#BFBFBF'
+                  }}
+                />
+              ))}
+            </div>
+            <span className="similar-products-rating-text">({product.reviews})</span>
+          </div>
+
+          {/* Price */}
+          <div className="similar-products-price">
+            <span className="similar-products-current-price">{formatPrice(product.price)}</span>
+            <span className="similar-products-original-price">{formatPrice(product.originalPrice)}</span>
+            <span className="similar-products-discount">{product.discount}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="similar-products-section" ref={sectionRef}>
       <Container fluid>
-        {/* Section Header with Colorful Text and View More Button */}
+        {/* Section Header */}
         <div className="similar-products-header" ref={titleRef}>
-          <Container>
+          <div className="similar-products-header-wrapper">
             <div className="similar-products-header-content">
               <div className="similar-products-header-left">
                 <h2 className="similar-products-title">
-                  <span className="similar-products-title-word similar-products-title-word-1">Similar</span>
-                  <span className="similar-products-title-word similar-products-title-word-2">Products</span>
+                  Similar Products
                 </h2>
                 <p className="similar-products-subtitle">You might also like these products</p>
               </div>
               
-              {/* View More Button - Top Right */}
-              <div className="similar-products-header-right">
-                <button className="similar-products-view-all-btn">
-                  View All Similar Products
-                </button>
-              </div>
+              {/* Desktop View More Button */}
+              {!isMobile && (
+                <div className="similar-products-header-right">
+                  <button className="similar-products-view-all-btn">
+                    View All Similar Products
+                  </button>
+                </div>
+              )}
+
+              {/* Mobile Navigation in Header */}
+              {isMobile && (
+                <div className="similar-products-header-navigation">
+                  <button 
+                    className="similar-products-mobile-header-nav-btn"
+                    onClick={() => swiperRef.current?.slidePrev()}
+                  >
+                    <ChevronLeftIcon className="similar-products-nav-icon" />
+                  </button>
+                  <button 
+                    className="similar-products-mobile-header-nav-btn"
+                    onClick={() => swiperRef.current?.slideNext()}
+                  >
+                    <ChevronRightIcon className="similar-products-nav-icon" />
+                  </button>
+                </div>
+              )}
             </div>
-          </Container> 
+          </div>
         </div>
 
         {/* Swiper Slider with Side Navigation */}
         <div className="similar-products-swiper-container">
-          {/* Left Navigation Arrow */}
-          <div 
-            className="similar-products-swiper-button-prev-custom similar-products-side-nav similar-products-left-nav"
-            ref={navigationPrevRef}
-            onClick={() => swiperRef.current?.slidePrev()}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
+          {/* Left Navigation Arrow - Desktop view के लिए */}
+          {!isMobile && (
+            <div 
+              className="similar-products-swiper-button-prev-custom similar-products-side-nav similar-products-left-nav"
+              ref={navigationPrevRef}
+              onClick={() => swiperRef.current?.slidePrev()}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+          )}
 
           <Swiper
             modules={[Navigation]}
@@ -269,7 +491,6 @@ const SimilarProducts = () => {
               prevEl: navigationPrevRef.current,
               nextEl: navigationNextRef.current,
             }}
-            // Autoplay REMOVED - no automatic movement
             breakpoints={swiperBreakpoints}
             loop={true}
             onSwiper={handleSwiperInit}
@@ -278,115 +499,23 @@ const SimilarProducts = () => {
           >
             {similarProducts.map((product) => (
               <SwiperSlide key={product.id}>
-                <div className="similar-products-card">
-                  <div className="similar-products-card-inner" style={{"--clr": "#fff"}}>
-                    <div className="similar-products-box">
-                      {/* Product Image */}
-                      <div className="similar-products-imgBox">
-                        <img 
-                          src={product.image}
-                          className="similar-products-image"
-                          alt={product.title}
-                          onError={(e) => {
-                            e.target.src = "https://via.placeholder.com/200x200/F8F1E5/0D5BCF?text=Zebro+Kids";
-                          }}
-                        />
-                      </div>
-
-                      {/* Hover Overlay with Details and Wishlist Icons */}
-                      <div className="similar-products-hover-overlay">
-                        <div className="similar-products-hover-icons">
-                          <button 
-                            className={`similar-products-details-btn ${viewedProducts.includes(product.id) ? 'active' : ''}`}
-                            onClick={(e) => handleDetailsClick(product.id, e)}
-                            title="View Details"
-                          >
-                            <InformationCircleIcon className="similar-products-details-icon" />
-                          </button>
-                          <button 
-                            className={`similar-products-wishlist-btn ${wishlist.includes(product.id) ? 'active' : ''}`}
-                            onClick={(e) => toggleWishlist(product.id, e)}
-                            title={wishlist.includes(product.id) ? "Remove from Wishlist" : "Add to Wishlist"}
-                          >
-                            <HeartIcon className="similar-products-wishlist-icon" />
-                          </button>
-                        </div>
-                      </div>
-
-                      {/* Category and Age Badges */}
-                      <div className="similar-products-category-badge">
-                        {product.category}
-                      </div>
-
-                      <div className="similar-products-age-badge">
-                        {product.age}
-                      </div>
-
-                      {/* Shopping Cart Icon */}
-                      <div className="similar-products-icon">
-                        <a 
-                          href="#" 
-                          className="similar-products-iconBox"
-                          onClick={(e) => handleAddToCart(product, e)}
-                        > 
-                          <ShoppingCartIcon 
-                            style={{
-                              width: '24px',
-                              height: '24px',
-                              color: '#fff'
-                            }}
-                          />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Card Content */}
-                  <div className="similar-products-content">
-                    <h3 className="similar-products-title-text">{product.title}</h3>
-                    
-                    <div className="similar-products-rating-price-container">
-                      {/* Rating */}
-                      <div className="similar-products-rating">
-                        <div className="similar-products-stars">
-                          {[...Array(5)].map((_, i) => (
-                            <StarIcon 
-                              key={i}
-                              style={{
-                                width: '14px',
-                                height: '14px',
-                                fill: i < Math.floor(product.rating) ? '#F2BB13' : 'none',
-                                stroke: i < product.rating ? '#F2BB13' : '#BFBFBF'
-                              }}
-                            />
-                          ))}
-                        </div>
-                        <span className="similar-products-rating-text">({product.reviews})</span>
-                      </div>
-
-                      {/* Price */}
-                      <div className="similar-products-price">
-                        <span className="similar-products-current-price">{formatPrice(product.price)}</span>
-                        <span className="similar-products-original-price">{formatPrice(product.originalPrice)}</span>
-                        <span className="similar-products-discount">{product.discount}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                {renderCard(product)}
               </SwiperSlide>
             ))}
           </Swiper>
 
-          {/* Right Navigation Arrow */}
-          <div 
-            className="similar-products-swiper-button-next-custom similar-products-side-nav similar-products-right-nav"
-            ref={navigationNextRef}
-            onClick={() => swiperRef.current?.slideNext()}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
+          {/* Right Navigation Arrow - Desktop view के लिए */}
+          {!isMobile && (
+            <div 
+              className="similar-products-swiper-button-next-custom similar-products-side-nav similar-products-right-nav"
+              ref={navigationNextRef}
+              onClick={() => swiperRef.current?.slideNext()}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+          )}
         </div>
 
         {/* Mobile View All Button - Cards ke niche */}

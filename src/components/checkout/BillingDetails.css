@@ -110,6 +110,7 @@
   display: flex;
   align-items: center;
   gap: 0.8rem;
+  flex-wrap: wrap;
 }
 
 .billing-accordion-right {
@@ -146,6 +147,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  white-space: nowrap;
 }
 
 .billing-address-default-badge {
@@ -160,6 +162,7 @@
   display: flex;
   align-items: center;
   gap: 0.3rem;
+  white-space: nowrap;
 }
 
 .billing-address-default-icon {
@@ -167,7 +170,7 @@
   height: 12px;
 }
 
-/* Address Accordion Body */
+/* Address Accordion Body - UPDATED LAYOUT */
 .billing-address-accordion-body {
   padding: 0 1.2rem 1rem 1.2rem;
   background: #f8f9fa;
@@ -176,9 +179,20 @@
 
 .billing-address-card-content {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 0.8rem 0;
+}
+
+/* Left side: Name and Address */
+.billing-address-left-section {
+  flex: 1;
+  display: flex;
   flex-direction: column;
   gap: 0.8rem;
-  padding: 0.8rem 0;
+  min-width: 0;
 }
 
 .billing-address-name-section,
@@ -215,28 +229,71 @@
   line-height: 1.3;
 }
 
-.billing-address-details-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+/* Right side: Pincode and Mobile - FIXED VERTICAL ALIGNMENT */
+.billing-address-right-section {
+  display: flex;
+  flex-direction: column;
   gap: 0.8rem;
-  margin-top: 0.5rem;
+  min-width: 150px;
+  flex-shrink: 0;
 }
 
-.billing-address-detail-item {
+.billing-address-detail-item-right {
   display: flex;
   align-items: center;
   gap: 0.4rem;
   font-size: 0.8rem;
+  justify-content: flex-end;
+  height: 20px;
 }
 
-.billing-address-detail-label {
+.billing-address-detail-label-right {
   color: #666;
   font-weight: 500;
+  text-align: right;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
-.billing-address-detail-value {
+.billing-address-detail-value-right {
   color: #333;
   font-weight: 600;
+  text-align: right;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.billing-address-mobile-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  justify-content: flex-end;
+  height: 20px;
+}
+
+.billing-address-mobile-icon {
+  width: 12px;
+  height: 12px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.billing-address-mobile-text {
+  color: #333;
+  font-weight: 600;
+  text-align: right;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 /* Address Actions */
@@ -364,7 +421,7 @@
   height: 14px;
 }
 
-/* Modal Styles - UPDATED to match reference design */
+/* Modal Styles */
 .billing-modal-overlay {
   position: fixed;
   top: 0;
@@ -515,7 +572,7 @@
   box-shadow: 0 0 0 3px rgba(6, 98, 170, 0.1);
 }
 
-/* Checkbox Styles - UPDATED */
+/* Checkbox Styles */
 .billing-form-group-checkbox {
   margin-top: 10px;
 }
@@ -563,7 +620,7 @@
   opacity: 1;
 }
 
-/* Modal Footer - UPDATED */
+/* Modal Footer */
 .billing-modal-footer {
   display: flex;
   gap: 12px;
@@ -618,7 +675,7 @@
   transform: none;
 }
 
-/* Responsive Design */
+/* Responsive Design - MOBILE FIXES */
 @media (max-width: 868px) {
   .billing-modal-content {
     max-width: 95%;
@@ -640,10 +697,17 @@
     padding: 0.8rem 1rem;
   }
   
+  /* MOBILE: Home and Default badges side by side */
   .billing-accordion-left {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.4rem;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    flex-wrap: nowrap;
+  }
+  
+  .billing-address-type-wrapper {
+    flex-shrink: 0;
   }
   
   .billing-address-accordion-body {
@@ -660,19 +724,103 @@
     gap: 16px;
   }
   
+  /* MOBILE: Keep left-right layout for address details - ALWAYS SIDE-BY-SIDE */
+  .billing-address-card-content {
+    flex-direction: row;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .billing-address-left-section {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .billing-address-right-section {
+    min-width: 120px;
+    flex-shrink: 0;
+  }
+  
+  /* FIXED VERTICAL ALIGNMENT FOR MOBILE */
+  .billing-address-detail-item-right,
+  .billing-address-mobile-item {
+    height: 18px;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  .billing-address-detail-label-right,
+  .billing-address-detail-value-right,
+  .billing-address-mobile-text {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .billing-address-mobile-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  /* Adjust font sizes for mobile */
+  .billing-address-name {
+    font-size: 0.9rem;
+  }
+  
+  .billing-address-line {
+    font-size: 0.8rem;
+  }
+  
+  .billing-address-detail-item-right,
+  .billing-address-mobile-item {
+    font-size: 0.75rem;
+  }
+  
+  .billing-address-detail-label-right,
+  .billing-address-detail-value-right,
+  .billing-address-mobile-text {
+    font-size: 0.75rem;
+  }
+  
+  /* MOBILE: Keep SET DEFAULT and DELETE buttons side by side */
   .billing-address-action-buttons {
-    flex-direction: column;
+    flex-direction: row;
+    gap: 0.5rem;
   }
   
   .billing-address-set-default-btn,
   .billing-address-delete-btn {
-    width: 100%;
+    width: auto;
+    font-size: 0.7rem;
+    padding: 0.4rem 0.7rem;
   }
   
+  /* MOBILE: Select billing address and new address side by side */
   .billing-addresses-header-content {
-    flex-direction: column;
+    flex-direction: row;
     gap: 0.8rem;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .billing-addresses-header-text {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .billing-addresses-subtitle {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.85rem;
+  }
+  
+  .billing-new-address-btn {
+    font-size: 0.7rem;
+    padding: 0.5rem 0.8rem;
+    white-space: nowrap;
   }
 }
 
@@ -698,13 +846,82 @@
     padding: 0 0.8rem 0.8rem 0.8rem;
   }
   
-  .billing-address-name {
-    font-size: 0.9rem;
+  /* Ensure badges stay side by side on very small screens */
+  .billing-address-type-badge,
+  .billing-address-default-badge {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.5rem;
   }
   
-  .billing-address-line,
-  .billing-address-detail-item {
-    font-size: 0.8rem;
+  /* VERY SMALL MOBILE: Still keep side-by-side layout */
+  .billing-address-card-content {
+    flex-direction: row;
+    gap: 0.8rem;
+  }
+  
+  .billing-address-left-section {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .billing-address-right-section {
+    min-width: 110px;
+    flex-shrink: 0;
+  }
+  
+  /* FIXED VERTICAL ALIGNMENT FOR VERY SMALL MOBILE */
+  .billing-address-detail-item-right,
+  .billing-address-mobile-item {
+    height: 17px;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  /* Adjust font sizes for very small screens */
+  .billing-address-name {
+    font-size: 0.85rem;
+  }
+  
+  .billing-address-line {
+    font-size: 0.75rem;
+  }
+  
+  .billing-address-detail-item-right,
+  .billing-address-mobile-item {
+    font-size: 0.7rem;
+  }
+  
+  .billing-address-detail-label-right,
+  .billing-address-detail-value-right,
+  .billing-address-mobile-text {
+    font-size: 0.7rem;
+  }
+  
+  /* Reduce icon sizes */
+  .billing-address-detail-icon {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .billing-address-mobile-icon {
+    width: 10px;
+    height: 10px;
+  }
+  
+  /* Adjust buttons for very small screens */
+  .billing-address-action-buttons {
+    gap: 0.4rem;
+  }
+  
+  .billing-address-set-default-btn,
+  .billing-address-delete-btn {
+    font-size: 0.65rem;
+    padding: 0.35rem 0.6rem;
+  }
+  
+  .billing-address-action-icon {
+    width: 10px;
+    height: 10px;
   }
   
   .billing-modal-body {
@@ -720,8 +937,85 @@
     gap: 16px;
   }
   
-  .billing-address-details-grid {
-    grid-template-columns: 1fr;
+  /* Adjust header layout for very small screens */
+  .billing-addresses-header-content {
+    flex-wrap: wrap;
+  }
+  
+  .billing-new-address-btn {
+    font-size: 0.65rem;
+    padding: 0.4rem 0.6rem;
+  }
+  
+  .billing-addresses-subtitle {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 400px) {
+  /* Extra small screens adjustments - STILL SIDE-BY-SIDE */
+  .billing-accordion-left {
+    gap: 0.4rem;
+  }
+  
+  .billing-address-type-badge,
+  .billing-address-default-badge {
+    font-size: 0.6rem;
+    padding: 0.15rem 0.4rem;
+  }
+  
+  .billing-addresses-header-content {
+    gap: 0.5rem;
+  }
+  
+  /* Adjust layout for extra small screens */
+  .billing-address-card-content {
+    gap: 0.6rem;
+  }
+  
+  .billing-address-right-section {
+    min-width: 100px;
+  }
+  
+  /* FIXED VERTICAL ALIGNMENT FOR EXTRA SMALL SCREENS */
+  .billing-address-detail-item-right,
+  .billing-address-mobile-item {
+    height: 16px;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  /* Adjust font sizes for extra small screens */
+  .billing-address-name {
+    font-size: 0.8rem;
+  }
+  
+  .billing-address-line {
+    font-size: 0.7rem;
+  }
+  
+  .billing-address-detail-item-right,
+  .billing-address-mobile-item {
+    font-size: 0.65rem;
+  }
+  
+  .billing-address-detail-label-right,
+  .billing-address-detail-value-right,
+  .billing-address-mobile-text {
+    font-size: 0.65rem;
+  }
+  
+  /* Extra small adjustments for action buttons */
+  .billing-address-set-default-btn,
+  .billing-address-delete-btn {
+    font-size: 0.6rem;
+    padding: 0.3rem 0.5rem;
+    min-width: 0;
+  }
+  
+  /* Ensure buttons don't wrap */
+  .billing-address-action-buttons {
+    flex-wrap: nowrap;
   }
 }
 

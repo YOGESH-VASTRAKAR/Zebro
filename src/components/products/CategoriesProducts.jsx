@@ -47,8 +47,8 @@ const CategoriesProducts = ({ gridView, isMobile }) => {
     if (actualIsMobile) {
       // Mobile view - only 2x2 and 1x1
       if (gridView === '1x1') return 4;
-      if (gridView === '2x2') return 8;
-      return 8; // default for mobile (2x2)
+      if (gridView === '2x2') return 4; // Changed to 4 for mobile
+      return 4; // default for mobile (2x2 with 4 cards)
     } else {
       // Desktop view - only 4x4 and 3x3
       if (gridView === '4x4') return 12;
@@ -62,7 +62,7 @@ const CategoriesProducts = ({ gridView, isMobile }) => {
       id: 1,
       image: "RC Car.jpg",
       title: "Educational Robot Toy",
-      price: 1299, // Number format me change kiya
+      price: 1299,
       originalPrice: 2499,
       discount: "48% OFF",
       rating: 4.5,
@@ -220,7 +220,17 @@ const CategoriesProducts = ({ gridView, isMobile }) => {
     }
   ];
 
-  // Add to Cart Function - Reference code ke tarah
+  // Card click handler - पूरे card पर click करने के लिए
+  const handleCardClick = (productId) => {
+    navigate(`/productdetails?id=${productId}`);
+    
+    // Mark this product as viewed (for view detail icon styling)
+    if (!viewedProducts.includes(productId)) {
+      setViewedProducts([...viewedProducts, productId]);
+    }
+  };
+
+  // Add to Cart Function
   const handleAddToCart = (product, e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -241,7 +251,7 @@ const CategoriesProducts = ({ gridView, isMobile }) => {
     console.log(`Added ${product.title} to cart`);
   };
 
-  // View Details Function - Reference code ke tarah
+  // View Details Function
   const handleDetailsClick = (productId, e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -266,7 +276,7 @@ const CategoriesProducts = ({ gridView, isMobile }) => {
     }
   };
 
-  // Format price for display - Reference code ke tarah
+  // Format price for display
   const formatPrice = (price) => {
     return new Intl.NumberFormat('en-IN', {
       style: 'currency',
@@ -335,7 +345,12 @@ const CategoriesProducts = ({ gridView, isMobile }) => {
               className={`categories-products-grid ${getGridClass()}`}
             >
               {paginationData.currentProducts.map((product) => (
-                <div key={product.id} className="categories-products-deal-card">
+                <div 
+                  key={product.id} 
+                  className="categories-products-deal-card"
+                  onClick={() => handleCardClick(product.id)}
+                  style={{ cursor: 'pointer' }}
+                >
                   <div className="categories-products-card-inner" style={{"--clr": "#fff"}}>
                     <div className="categories-products-box">
                       {/* Product Image */}
@@ -354,7 +369,7 @@ const CategoriesProducts = ({ gridView, isMobile }) => {
                       <div className="categories-products-hover-overlay">
                         <div className="categories-products-hover-icons">
                           <button 
-                            className={`categories-products-details-btn ${viewedProducts.includes(product.id) ? 'active' : ''}`}
+                            className={`categories-products-details-btn ${viewedProducts.includes(product.id) ? 'clicked-hover-effect' : ''}`}
                             onClick={(e) => handleDetailsClick(product.id, e)}
                             title="View Details"
                           >
@@ -370,7 +385,7 @@ const CategoriesProducts = ({ gridView, isMobile }) => {
                         </div>
                       </div>
 
-                      {/* Shopping Cart Icon - Updated to use handleAddToCart */}
+                      {/* Shopping Cart Icon */}
                       <div className="categories-products-icon">
                         <a 
                           href="#" 
@@ -379,8 +394,8 @@ const CategoriesProducts = ({ gridView, isMobile }) => {
                         > 
                           <ShoppingCartIcon 
                             style={{
-                              width: actualIsMobile ? '20px' : '24px',
-                              height: actualIsMobile ? '20px' : '24px',
+                              width: actualIsMobile ? '16px' : '28px', // DESKTOP के लिए 28px किया
+                              height: actualIsMobile ? '16px' : '28px', // DESKTOP के लिए 28px किया
                               color: '#fff'
                             }}
                           />
@@ -402,8 +417,8 @@ const CategoriesProducts = ({ gridView, isMobile }) => {
                             <StarIcon 
                               key={i}
                               style={{
-                                width: actualIsMobile ? '12px' : '14px',
-                                height: actualIsMobile ? '12px' : '14px',
+                                width: actualIsMobile ? '10px' : '14px',
+                                height: actualIsMobile ? '10px' : '14px',
                                 fill: i < Math.floor(product.rating) ? '#F2BB13' : 'none',
                                 stroke: i < product.rating ? '#F2BB13' : '#BFBFBF'
                               }}
@@ -413,7 +428,7 @@ const CategoriesProducts = ({ gridView, isMobile }) => {
                         <span className="categories-products-rating-text">({product.reviews})</span>
                       </div>
 
-                      {/* Price - Updated to use formatPrice */}
+                      {/* Price */}
                       <div className="categories-products-deal-price">
                         <span className="categories-products-current-price">{formatPrice(product.price)}</span>
                         <span className="categories-products-original-price">{formatPrice(product.originalPrice)}</span>

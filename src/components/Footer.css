@@ -121,6 +121,29 @@
   color: rgba(255,255,255,0.9);
 }
 
+/* Mobile Trust Badges - UPDATED */
+.mobile-trust-badges {
+  display: flex;
+  flex-direction: row; /* Side by side layout */
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+  gap: 0.8rem;
+  padding: 1rem 0;
+  justify-content: center; /* Center items */
+}
+
+.mobile-trust-badges .trust-badge {
+  flex: 1 1 calc(33.333% - 0.8rem); /* Three items per row */
+  min-width: 0; /* Allow shrinking */
+  min-height: 70px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 8px;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.8rem 0.5rem;
+}
+
 /* Footer Links Columns */
 .footer-links-col {
   padding: 0 1rem;
@@ -335,7 +358,6 @@
 .mobile-footer-accordions {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 }
 
 .mobile-footer-brand {
@@ -458,7 +480,7 @@
   text-align: center;
   background: rgba(255,255,255,0.02);
   border-radius: 12px;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
 }
 
 .mobile-newsletter-header {
@@ -585,14 +607,7 @@
   gap: 1rem;
 }
 
-.mobile-trust-badges {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  padding: 1rem 0;
-}
-
-/* Footer Contact Bar */
+/* Footer Contact Bar - UPDATED FOR MOBILE SIDE-BY-SIDE */
 .footer-contact-bar {
   background: rgba(255,255,255,0.05);
   border-top: 1px solid rgba(255,255,255,0.1);
@@ -641,26 +656,32 @@
   color: rgba(255,255,255,0.6);
   font-size: 0.9rem;
   margin: 0;
+  text-align: center;
 }
 
 .copyright strong {
   color: var(--primary-yellow);
 }
 
+/* Payment Methods - UPDATED FOR MOBILE SIDE-BY-SIDE (JUST THE PAYMENT METHODS) */
 .payment-methods {
   display: flex;
   align-items: center;
   gap: 1rem;
+  justify-content: flex-end;
 }
 
 .payment-text {
   color: rgba(255,255,255,0.6);
   font-size: 0.9rem;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .payment-icons {
   display: flex;
   gap: 0.5rem;
+  flex-wrap: nowrap;
 }
 
 .payment-icon {
@@ -673,6 +694,7 @@
   justify-content: center;
   font-size: 1rem;
   border: 1px solid rgba(255,255,255,0.2);
+  flex-shrink: 0;
 }
 
 /* ========== RESPONSIVE DESIGN ========== */
@@ -792,7 +814,6 @@
   }
   
   .mobile-newsletter-section {
-    margin: 1rem 0.5rem;
     padding: 1.5rem 1rem;
   }
   
@@ -819,40 +840,123 @@
     flex: 1;
   }
   
+  /* Mobile Trust Badges - UPDATED FOR SIDE-BY-SIDE */
   .mobile-trust-badges {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 1rem 0.5rem;
-    margin-top: 1rem;
+    display: flex;
+    flex-direction: row; /* Side by side */
+    flex-wrap: wrap; /* Allow wrapping */
+    gap: 0.3rem; /* GAP REDUCED */
+    padding: 1rem 0;
+    justify-content: space-between; /* Distribute space evenly */
   }
   
   .mobile-trust-badges .trust-badge {
-    flex: 0 0 calc(50% - 0.5rem);
-    justify-content: center;
-    text-align: center;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 0.8rem 0.5rem;
+    flex: 1 1 calc(33.333% - 0.3rem); /* Three items per row - GAP REDUCED */
+    min-width: 0;
     min-height: 70px;
     background: rgba(255,255,255,0.05);
     border-radius: 8px;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    gap: 0.3rem; /* GAP REDUCED */
+    padding: 0.6rem 0.3rem; /* PADDING REDUCED */
   }
   
-  .contact-item {
-    justify-content: center;
-    margin-bottom: 1rem;
+  /* Footer Contact Bar - UPDATED FOR MOBILE SIDE-BY-SIDE WITH REDUCED GAP */
+  .footer-contact-bar .container .row {
+    display: flex;
+    flex-direction: row; /* Side by side layout */
+    flex-wrap: nowrap; /* No wrapping - keep them in one line */
+    gap: 0.3rem; /* GAP REDUCED */
+    margin: 0 -0.15rem; /* Negative margin to compensate for gap */
+  }
+  
+  .footer-contact-bar .container .row > .col-lg-4 {
+    flex: 1 1 33.333%; /* Equal width for three items */
+    min-width: 0; /* Allow shrinking */
+    padding: 0 0.15rem; /* PADDING REDUCED */
+    margin: 0;
+  }
+  
+  .footer-contact-bar .contact-item {
     flex-direction: column;
     text-align: center;
-    gap: 0.5rem;
+    gap: 0.3rem; /* GAP REDUCED */
+    padding: 0.5rem; /* PADDING REDUCED */
+    background: rgba(255,255,255,0.05);
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.1);
+    height: 100%;
+    min-height: 75px; /* HEIGHT REDUCED */
+    justify-content: center;
+    margin: 0;
   }
   
+  .contact-bar-icon {
+    width: 16px; /* SIZE REDUCED */
+    height: 16px; /* SIZE REDUCED */
+  }
+  
+  .contact-label {
+    font-size: 0.65rem; /* SIZE REDUCED */
+    margin-bottom: 0.2rem;
+    white-space: nowrap; /* Prevent text wrapping */
+  }
+  
+  .contact-value {
+    font-size: 0.75rem; /* SIZE REDUCED */
+    font-weight: 600;
+    white-space: nowrap; /* Prevent text wrapping */
+  }
+  
+  /* Payment Methods - UPDATED FOR MOBILE SIDE-BY-SIDE (JUST THE PAYMENT METHODS) */
   .payment-methods {
-    justify-content: center;
-    margin-top: 1rem;
-    flex-direction: column;
+    flex-direction: row !important; /* Side by side */
+    justify-content: center !important;
     gap: 0.5rem;
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+  
+  .payment-text {
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+  
+  .payment-icons {
+    gap: 0.3rem;
+  }
+  
+  .payment-icon {
+    width: 24px;
+    height: 24px;
+    font-size: 0.9rem;
+  }
+  
+  /* Copyright section stays as is (separate) */
+  .copyright {
+    text-align: center !important;
+    font-size: 0.8rem;
+    margin: 0 0 1rem 0;
+    white-space: normal;
+  }
+  
+  /* Footer bottom layout - keep copyright separate, payment methods below */
+  .footer-bottom .container .row {
+    flex-direction: column !important; /* Stack vertically */
+    align-items: center !important;
+  }
+  
+  .footer-bottom .container .row > .col-lg-6 {
+    width: 100%;
+    text-align: center;
+    padding: 0;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-bottom .container .row > .col-lg-6:last-child {
+    margin-bottom: 0;
   }
   
   .social-icons {
@@ -878,6 +982,75 @@
   
   .btn-text {
     display: block;
+  }
+  
+  /* Mobile Trust Badges - Adjusted for smaller screens */
+  .mobile-trust-badges {
+    gap: 0.2rem; /* GAP FURTHER REDUCED */
+    padding: 0.5rem 0;
+  }
+  
+  .mobile-trust-badges .trust-badge {
+    flex: 1 1 calc(33.333% - 0.2rem); /* GAP REDUCED */
+    padding: 0.4rem 0.2rem; /* PADDING FURTHER REDUCED */
+    min-height: 55px; /* HEIGHT REDUCED */
+    gap: 0.2rem; /* GAP REDUCED */
+  }
+  
+  .mobile-trust-badges .trust-badge span {
+    font-size: 0.65rem; /* SIZE REDUCED */
+  }
+  
+  /* Footer Contact Bar - Adjusted for smaller screens */
+  .footer-contact-bar .container .row {
+    gap: 0.2rem; /* GAP FURTHER REDUCED */
+    margin: 0 -0.1rem; /* Negative margin reduced */
+  }
+  
+  .footer-contact-bar .container .row > .col-lg-4 {
+    padding: 0 0.1rem; /* PADDING FURTHER REDUCED */
+  }
+  
+  .footer-contact-bar .contact-item {
+    padding: 0.4rem 0.2rem; /* PADDING FURTHER REDUCED */
+    min-height: 65px; /* HEIGHT REDUCED */
+    gap: 0.2rem; /* GAP REDUCED */
+  }
+  
+  .contact-bar-icon {
+    width: 14px; /* SIZE FURTHER REDUCED */
+    height: 14px; /* SIZE FURTHER REDUCED */
+  }
+  
+  .contact-label {
+    font-size: 0.6rem; /* SIZE FURTHER REDUCED */
+  }
+  
+  .contact-value {
+    font-size: 0.7rem; /* SIZE FURTHER REDUCED */
+  }
+  
+  /* Payment Methods - Adjusted for smaller screens */
+  .payment-methods {
+    gap: 0.3rem;
+  }
+  
+  .payment-text {
+    font-size: 0.75rem;
+  }
+  
+  .payment-icons {
+    gap: 0.2rem;
+  }
+  
+  .payment-icon {
+    width: 22px;
+    height: 22px;
+    font-size: 0.8rem;
+  }
+  
+  .copyright {
+    font-size: 0.75rem;
   }
 }
 
@@ -907,33 +1080,40 @@
     font-size: 0.85rem;
   }
   
-  .contact-item {
-    flex-direction: column;
-    text-align: center;
-    gap: 0.5rem;
+  /* Footer Contact Bar - Updated for portrait mode */
+  .footer-contact-bar .container .row {
+    gap: 0.2rem;
+    margin: 0 -0.1rem;
+  }
+  
+  .footer-contact-bar .container .row > .col-lg-4 {
+    flex: 1 1 calc(33.333% - 0.2rem);
+    padding: 0 0.1rem;
+  }
+  
+  .footer-contact-bar .contact-item {
+    padding: 0.4rem 0.2rem;
   }
   
   .contact-bar-icon {
-    width: 20px;
-    height: 20px;
+    width: 14px;
+    height: 14px;
   }
   
   .contact-label {
-    font-size: 0.75rem;
+    font-size: 0.6rem;
   }
   
   .contact-value {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
   }
   
   .copyright {
     font-size: 0.8rem;
-    text-align: center;
   }
   
   .payment-methods {
-    flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.4rem;
   }
   
   .payment-text {
@@ -987,9 +1167,71 @@
     height: 16px;
   }
   
+  /* Mobile Trust Badges - Adjusted for extra small screens */
   .mobile-trust-badges .trust-badge {
-    flex: 0 0 100%;
-    min-height: 60px;
+    flex: 1 1 calc(50% - 0.2rem); /* Two items per row - GAP REDUCED */
+    min-height: 50px; /* HEIGHT REDUCED */
+    padding: 0.3rem 0.15rem; /* PADDING FURTHER REDUCED */
+  }
+  
+  .mobile-trust-badges .trust-badge span {
+    font-size: 0.6rem; /* SIZE FURTHER REDUCED */
+  }
+  
+  /* Footer Contact Bar - FOR EXTRA SMALL SCREENS, KEEP THEM SIDE-BY-SIDE */
+  .footer-contact-bar .container .row {
+    flex-direction: row; /* Keep side by side */
+    gap: 0.15rem; /* Very small gap */
+    margin: 0 -0.075rem;
+  }
+  
+  .footer-contact-bar .container .row > .col-lg-4 {
+    flex: 1 1 33.333%;
+    padding: 0 0.075rem;
+  }
+  
+  .footer-contact-bar .contact-item {
+    flex-direction: column;
+    text-align: center;
+    padding: 0.3rem 0.1rem;
+    min-height: 55px;
+    gap: 0.15rem;
+  }
+  
+  .contact-bar-icon {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .contact-label {
+    font-size: 0.55rem;
+  }
+  
+  .contact-value {
+    font-size: 0.65rem;
+  }
+  
+  /* Payment Methods - Adjusted for extra small screens */
+  .payment-methods {
+    gap: 0.3rem;
+  }
+  
+  .payment-text {
+    font-size: 0.7rem;
+  }
+  
+  .payment-icons {
+    gap: 0.2rem;
+  }
+  
+  .payment-icon {
+    width: 20px;
+    height: 20px;
+    font-size: 0.8rem;
+  }
+  
+  .copyright {
+    font-size: 0.7rem;
   }
   
   .social-icons {
@@ -1004,6 +1246,66 @@
   .social-icon {
     width: 16px;
     height: 16px;
+  }
+}
+
+/* Very Small Mobile (320px and below) */
+@media (max-width: 320px) {
+  /* Footer Contact Bar - Stack vertically on very small screens */
+  .footer-contact-bar .container .row {
+    flex-direction: column;
+    gap: 0.3rem;
+    margin: 0;
+  }
+  
+  .footer-contact-bar .container .row > .col-lg-4 {
+    width: 100%;
+    padding: 0;
+    margin-bottom: 0.3rem;
+  }
+  
+  .footer-contact-bar .contact-item {
+    flex-direction: row;
+    text-align: left;
+    padding: 0.5rem 0.8rem;
+    min-height: auto;
+    gap: 0.8rem;
+    justify-content: flex-start;
+  }
+  
+  .contact-bar-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+  
+  .contact-label {
+    font-size: 0.65rem;
+    white-space: normal;
+  }
+  
+  .contact-value {
+    font-size: 0.75rem;
+    white-space: normal;
+  }
+  
+  /* Payment Methods - Keep side by side but centered */
+  .payment-methods {
+    justify-content: center !important;
+    gap: 0.3rem;
+  }
+  
+  .payment-text {
+    font-size: 0.7rem;
+  }
+  
+  .payment-icons {
+    justify-content: center;
+  }
+  
+  .mobile-trust-badges .trust-badge {
+    flex: 1 1 100%; /* One item per row on very small screens */
+    margin-bottom: 0.3rem;
   }
 }
 

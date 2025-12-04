@@ -3,7 +3,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { 
   FunnelIcon,
   ChevronDownIcon,
-  Bars3Icon
+  Bars3Icon,
+  ArrowsUpDownIcon
 } from '@heroicons/react/24/outline';
 import FilterAllProducts from './FilterAllProducts';
 import './ProductsNav.css';
@@ -169,6 +170,7 @@ const ProductsNav = ({ onGridViewChange, currentGridView, isMobile }) => {
                         className="products-custom-dropdown-toggle"
                         onClick={() => setShowSortDropdown(!showSortDropdown)}
                       >
+                        <ArrowsUpDownIcon className="products-sort-icon" />
                         <span className="products-custom-dropdown-selected">
                           {getCurrentSortLabel()}
                         </span>
@@ -212,8 +214,8 @@ const ProductsNav = ({ onGridViewChange, currentGridView, isMobile }) => {
                   className="products-mobile-menu-btn"
                   onClick={toggleMobileMenu}
                 >
-                  <Bars3Icon className="mobile-menu-icon" />
-                  <span>View Options</span>
+                  <ArrowsUpDownIcon className="mobile-sort-icon" />
+                  <span>Sort By</span>
                 </button>
                 
                 <button 

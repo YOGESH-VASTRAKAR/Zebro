@@ -1,0 +1,77 @@
+/* Transparent Pricing Section - Single Line */
+.transparent-pricing-section {
+  padding: 12px 0;
+  position: relative;
+  z-index: 5;
+}
+
+.transparent-pricing-content.single-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.transparent-pricing-badge {
+  background: linear-gradient(135deg, #0662aa 0%, #37aa50 100%);
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 6px 20px;
+  border-radius: 20px;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(6, 98, 170, 0.15);
+}
+
+.transparent-pricing-text {
+  color: #0662aa;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* Tablet Styles */
+@media (max-width: 768px) {
+  .transparent-pricing-section {
+    padding: 10px 0;
+  }
+  
+  .transparent-pricing-content.single-line {
+    gap: 12px;
+  }
+  
+  .transparent-pricing-badge {
+    font-size: 0.8rem;
+    padding: 5px 16px;
+  }
+  
+  .transparent-pricing-text {
+    font-size: 0.85rem;
+  }
+}
+
+/* Mobile Styles - Vertical Stack */
+@media (max-width: 576px) {
+  .transparent-pricing-section {
+    padding: 8px 0;
+  }
+  
+  .transparent-pricing-content.single-line {
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .transparent-pricing-badge {
+    font-size: 0.75rem;
+    padding: 4px 14px;
+  }
+  
+  .transparent-pricing-text {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+}

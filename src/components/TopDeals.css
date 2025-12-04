@@ -24,6 +24,10 @@
   padding: 0 60px;
 }
 
+.top-deals-header-wrapper {
+  width: 100%;
+}
+
 .top-deals-header-content {
   display: flex;
   justify-content: space-between;
@@ -35,10 +39,48 @@
 .top-deals-header-left {
   flex: 1;
   min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .top-deals-header-right {
   flex-shrink: 0;
+}
+
+/* Mobile Navigation in Header - Right Side */
+.top-deals-header-navigation {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 20px;
+}
+
+.top-deals-mobile-header-nav-btn {
+  width: 40px;
+  height: 40px;
+  background: var(--top-deals-red);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border: 2px solid transparent;
+  padding: 0;
+}
+
+.top-deals-mobile-header-nav-btn:hover {
+  background: var(--top-deals-green);
+  transform: scale(1.1);
+}
+
+.top-deals-nav-icon {
+  width: 20px;
+  height: 20px;
 }
 
 /* Colorful Title Styles */
@@ -50,6 +92,7 @@
   justify-content: flex-start;
   flex-wrap: wrap;
   gap: 10px;
+  text-align: left;
 }
 
 .top-deals-title-word {
@@ -113,6 +156,18 @@
 .top-deals-swiper {
   padding: 20px 10px;
   flex: 1;
+  width: 100%;
+}
+
+/* Grid rows styling for mobile - 2 ग्रिड लेआउट */
+.top-deals-swiper .swiper-slide {
+  height: calc((100% - 15px) / 2) !important;
+  margin-bottom: 15px !important;
+}
+
+/* Remove margin for last row in grid */
+.top-deals-swiper .swiper-slide:nth-last-child(-n+2) {
+  margin-bottom: 0 !important;
 }
 
 /* Side Navigation Arrows */
@@ -165,7 +220,7 @@
   display: none;
 }
 
-/* Deal Card Styles */
+/* Deal Card Styles - Mobile view के लिए adjust किया */
 .top-deals-deal-card {
   color: #111;
   width: 100%;
@@ -174,27 +229,28 @@
   flex-direction: column;
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
-  border-radius: 24px;
+  border-radius: 20px; /* Mobile pe थोड़ा छोटा radius */
   border: 1px solid rgba(189, 187, 187, 0.3);
   box-shadow: 
-    0 8px 10px rgba(0, 0, 0, 0.1),
+    0 4px 8px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
   transition: all 0.3s ease;
   overflow: hidden;
   margin: 0 auto;
   position: relative;
+  height: 100%; /* Grid के लिए height 100% */
 }
 
 .top-deals-deal-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-5px); /* Mobile pe थोड़ा कम translate */
   background: rgba(255, 255, 255, 0.95);
 }
 
 .top-deals-card-inner {
   position: relative;
   width: 100%;
-  height: 250px;
-  border-radius: 24px 24px 0 0;
+  height: 180px; /* Mobile के लिए छोटी height */
+  border-radius: 20px 20px 0 0;
   overflow: hidden;
 }
 
@@ -202,7 +258,7 @@
   width: 100%;
   height: 100%;
   background: #fff;
-  border-radius: 24px 24px 0 0;
+  border-radius: 20px 20px 0 0;
   overflow: hidden;
   position: relative;
 }
@@ -239,10 +295,10 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 15px;
+  padding: 10px; /* Mobile pe छोटा padding */
   opacity: 0;
   transition: all 0.3s ease;
-  border-radius: 24px 24px 0 0;
+  border-radius: 20px 20px 0 0;
   z-index: 3;
 }
 
@@ -253,7 +309,7 @@
 .top-deals-hover-icons {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px; /* Mobile pe छोटा gap */
   align-items: flex-start;
 }
 
@@ -262,14 +318,14 @@
   background: rgba(255, 255, 255, 0.9);
   border: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 35px; /* Mobile pe छोटे buttons */
+  height: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .top-deals-details-btn:hover {
@@ -292,8 +348,8 @@
 
 .top-deals-details-icon,
 .top-deals-wishlist-icon {
-  width: 18px;
-  height: 18px;
+  width: 16px; /* Mobile pe छोटे icons */
+  height: 16px;
   color: #0662aa;
   transition: all 0.3s ease;
 }
@@ -319,8 +375,8 @@
   position: absolute;
   bottom: -0.375rem;
   right: -0.375rem;
-  width: 4.5rem;
-  height: 4.5rem;
+  width: 4rem; /* Mobile pe छोटा */
+  height: 4rem;
   background: var(--clr);
   border-top-left-radius: 50%;
   z-index: 4;
@@ -371,11 +427,13 @@
 
 .top-deals-card-inner .top-deals-box .top-deals-icon .top-deals-iconBox svg {
   color: #fff;
+  width: 20px; /* Mobile pe छोटा icon */
+  height: 20px;
 }
 
-/* Content */
+/* Content - Mobile के लिए adjust */
 .top-deals-content {
-  padding: 1rem 0.5rem 0.5rem;
+  padding: 0.8rem 0.5rem 0.5rem; /* Mobile pe छोटा padding */
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -383,22 +441,24 @@
 
 .top-deals-deal-title {
   text-transform: capitalize;
-  font-size: 1.2rem;
-  margin-bottom: 8px;
-  line-height: 1.3;
+  font-size: 0.9rem; /* Mobile pe छोटा font */
+  margin-bottom: 6px;
+  line-height: 1.2;
   height: auto;
-  min-height: 1em;
+  min-height: 2.4em;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   flex-shrink: 0;
+  color: #2c3e50;
+  font-weight: 600;
 }
 
 .top-deals-rating-price-container {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px; /* Mobile pe छोटा gap */
   margin-top: auto;
   flex-shrink: 0;
 }
@@ -406,7 +466,7 @@
 .top-deals-deal-rating {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px; /* Mobile pe छोटा gap */
   margin-bottom: 0;
 }
 
@@ -415,42 +475,48 @@
   gap: 1px;
 }
 
+.top-deals-stars svg {
+  width: 12px; /* Mobile pe छोटे stars */
+  height: 12px;
+}
+
 .top-deals-rating-text {
-  font-size: 0.75rem;
+  font-size: 0.7rem; /* Mobile pe छोटा font */
   color: var(--top-deals-zebra-dark);
 }
 
 .top-deals-deal-price {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px; /* Mobile pe छोटा gap */
   margin-bottom: 0;
   flex-wrap: wrap;
 }
 
 .top-deals-current-price {
-  font-size: 1.2rem;
+  font-size: 1rem; /* Mobile pe छोटा font */
   font-weight: 700;
   color: var(--top-deals-green);
 }
 
 .top-deals-original-price {
-  font-size: 0.85rem;
+  font-size: 0.75rem; /* Mobile pe छोटा font */
   color: var(--top-deals-zebra-dark);
   text-decoration: line-through;
 }
 
 .top-deals-discount {
-  font-size: 0.75rem;
+  font-size: 0.65rem; /* Mobile pe छोटा font */
   font-weight: 700;
   color: var(--top-deals-red);
   background: rgba(230, 50, 44, 0.1);
-  padding: 3px 6px;
-  border-radius: 6px;
+  padding: 2px 4px; /* Mobile pe छोटा padding */
+  border-radius: 4px;
 }
 
-/* Mobile View All Button - Cards ke niche */
-@media (min-width: 768px) {
+/* ========== MOBILE VIEW STYLES ========== */
+@media (min-width: 769px) {
+  /* Desktop view */
   .top-deals-header-content {
     flex-direction: row;
   }
@@ -458,21 +524,92 @@
   .top-deals-mobile-view-all-container {
     display: none;
   }
+  
+  .top-deals-header-navigation {
+    display: none;
+  }
+  
+  /* Desktop view pe normal card styling */
+  .top-deals-deal-card {
+    border-radius: 24px;
+    box-shadow: 
+      0 8px 10px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    height: auto;
+  }
+  
+  .top-deals-deal-card:hover {
+    transform: translateY(-8px);
+  }
+  
+  .top-deals-card-inner {
+    height: 250px;
+  }
+  
+  .top-deals-deal-title {
+    font-size: 1.2rem;
+    min-height: 1em;
+  }
+  
+  .top-deals-content {
+    padding: 1rem 0.5rem 0.5rem;
+  }
+  
+  .top-deals-details-btn,
+  .top-deals-wishlist-btn {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .top-deals-details-icon,
+  .top-deals-wishlist-icon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .top-deals-current-price {
+    font-size: 1.2rem;
+  }
+  
+  .top-deals-original-price {
+    font-size: 0.85rem;
+  }
+  
+  .top-deals-discount {
+    font-size: 0.75rem;
+    padding: 3px 6px;
+  }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
+  /* Mobile view */
+  .top-deals-section {
+    padding: 20px 0;
+  }
+  
   .top-deals-header {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    padding: 0 20px;
+  }
+  
+  .top-deals-swiper-container {
+    padding: 0 15px;
+    min-height: auto;
+    margin: 1em 0;
   }
   
   .top-deals-header-content {
-    flex-direction: column;
-    text-align: center;
-    gap: 15px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: nowrap;
   }
   
   .top-deals-header-left {
-    width: 100%;
+    flex: 1;
+    min-width: auto;
+    margin-right: 10px;
   }
   
   .top-deals-header-right {
@@ -480,18 +617,52 @@
   }
   
   .top-deals-title {
-    justify-content: center;
-    text-align: center;
+    font-size: 1.6rem;
+    justify-content: flex-start;
+    text-align: left;
+    margin-bottom: 5px;
+    gap: 5px;
   }
   
   .top-deals-subtitle {
-    text-align: center;
+    font-size: 0.85rem;
+    text-align: left;
+    margin: 0;
   }
   
+  /* Mobile Navigation in Header - Right Side */
+  .top-deals-header-navigation {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+  
+  .top-deals-mobile-header-nav-btn {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .top-deals-nav-icon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  /* Swiper को पूरी width दें */
+  .top-deals-swiper {
+    padding: 5px 0;
+  }
+  
+  .top-deals-deal-card {
+    max-width: 100%;
+  }
+  
+  /* Mobile View All Button - Cards ke niche */
   .top-deals-mobile-view-all-container {
     display: flex;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 25px;
     padding: 0 20px;
   }
   
@@ -499,17 +670,17 @@
     background: var(--top-deals-blue);
     border: 2px solid var(--top-deals-blue);
     color: white;
-    padding: 12px 30px;
+    padding: 10px 25px;
     border-radius: 25px;
     font-weight: 600;
     transition: all 0.3s ease;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     cursor: pointer;
     border: none;
     white-space: nowrap;
     display: block;
     width: auto;
-    min-width: 200px;
+    min-width: 180px;
   }
   
   .top-deals-mobile-view-all-btn:hover {
@@ -564,7 +735,7 @@
   }
 }
 
-@media (max-width: 991px) and (min-width: 768px) {
+@media (max-width: 991px) and (min-width: 769px) {
   .top-deals-section {
     padding: 25px 0;
   }
@@ -612,281 +783,97 @@
   }
 }
 
-@media (max-width: 767px) and (min-width: 576px) {
-  .top-deals-section {
-    padding: 20px 0;
-    margin-top: 20px;
-  }
-  
-  .top-deals-header,
-  .top-deals-swiper-container {
-    padding: 0 30px;
-  }
-  
-  .top-deals-title {
-    font-size: 1.8rem;
-    flex-direction: column;
-    gap: 5px;
-    text-align: center;
-  }
-  
-  .top-deals-subtitle {
-    font-size: 0.9rem;
-    text-align: center;
-  }
-  
-  .top-deals-swiper-button-prev-custom.top-deals-side-nav,
-  .top-deals-swiper-button-next-custom.top-deals-side-nav {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .top-deals-swiper-button-prev-custom.top-deals-side-nav.top-deals-left-nav {
-    left: 5px;
-  }
-  
-  .top-deals-swiper-button-next-custom.top-deals-side-nav.top-deals-right-nav {
-    right: 5px;
-  }
-  
-  .top-deals-card-inner {
-    height: 220px;
-  }
-  
-  .top-deals-deal-title {
-    font-size: 1.1rem;
-    min-height: 1em;
-  }
-  
-  .top-deals-content {
-    padding: 0.8rem 0.4rem 0.4rem;
-  }
-  
-  .top-deals-hover-icons {
-    gap: 8px;
-  }
-  
-  .top-deals-details-btn,
-  .top-deals-wishlist-btn {
-    width: 35px;
-    height: 35px;
-  }
-  
-  .top-deals-details-icon,
-  .top-deals-wishlist-icon {
-    width: 16px;
-    height: 16px;
-  }
-}
-
 @media (max-width: 575px) and (min-width: 480px) {
-  .top-deals-section {
-    padding: 15px 0;
-    margin-top: 15px;
-  }
-  
   .top-deals-header,
   .top-deals-swiper-container {
-    padding: 0 25px;
-  }
-  
-  .top-deals-title {
-    font-size: 1.6rem;
-  }
-  
-  .top-deals-subtitle {
-    font-size: 0.85rem;
-  }
-  
-  .top-deals-swiper-button-prev-custom.top-deals-side-nav,
-  .top-deals-swiper-button-next-custom.top-deals-side-nav {
-    width: 38px;
-    height: 38px;
-  }
-  
-  .top-deals-swiper-button-prev-custom.top-deals-side-nav.top-deals-left-nav {
-    left: 3px;
-  }
-  
-  .top-deals-swiper-button-next-custom.top-deals-side-nav.top-deals-right-nav {
-    right: 3px;
+    padding: 0 15px;
   }
   
   .top-deals-card-inner {
-    height: 200px;
+    height: 150px;
   }
   
-  .top-deals-deal-card {
-    max-width: 100%;
-  }
-  
-  .top-deals-deal-title {
-    font-size: 1.05rem;
-  }
-  
-  .top-deals-current-price {
-    font-size: 1.1rem;
-  }
-  
-  .top-deals-hover-icons {
-    gap: 6px;
-  }
-  
-  .top-deals-details-btn,
-  .top-deals-wishlist-btn {
-    width: 32px;
-    height: 32px;
-  }
-  
-  .top-deals-details-icon,
-  .top-deals-wishlist-icon {
-    width: 14px;
-    height: 14px;
+  .top-deals-title {
+    font-size: 1.4rem;
   }
 }
 
 @media (max-width: 479px) and (min-width: 375px) {
   .top-deals-header,
   .top-deals-swiper-container {
-    padding: 0 20px;
+    padding: 0 10px;
+  }
+  
+  .top-deals-card-inner {
+    height: 140px;
   }
   
   .top-deals-title {
-    font-size: 1.5rem;
-    gap: 3px;
+    font-size: 1.3rem;
   }
   
   .top-deals-subtitle {
     font-size: 0.8rem;
   }
   
-  .top-deals-swiper-button-prev-custom.top-deals-side-nav,
-  .top-deals-swiper-button-next-custom.top-deals-side-nav {
-    width: 35px;
-    height: 35px;
+  .top-deals-mobile-header-nav-btn {
+    width: 34px;
+    height: 34px;
   }
   
-  .top-deals-swiper-button-prev-custom.top-deals-side-nav.top-deals-left-nav {
-    left: 2px;
-  }
-  
-  .top-deals-swiper-button-next-custom.top-deals-side-nav.top-deals-right-nav {
-    right: 2px;
-  }
-  
-  .top-deals-card-inner {
-    height: 180px;
+  .top-deals-nav-icon {
+    width: 16px;
+    height: 16px;
   }
   
   .top-deals-deal-title {
-    font-size: 1rem;
-  }
-  
-  .top-deals-content {
-    padding: 0.6rem 0.3rem 0.3rem;
+    font-size: 0.85rem;
   }
   
   .top-deals-current-price {
-    font-size: 1rem;
-  }
-  
-  .top-deals-original-price {
-    font-size: 0.8rem;
-  }
-  
-  .top-deals-discount {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
   }
 }
 
 @media (max-width: 374px) {
   .top-deals-header,
   .top-deals-swiper-container {
-    padding: 0 15px;
+    padding: 0 8px;
+  }
+  
+  .top-deals-card-inner {
+    height: 130px;
   }
   
   .top-deals-title {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
+    gap: 3px;
   }
   
   .top-deals-subtitle {
     font-size: 0.75rem;
   }
   
-  .top-deals-swiper-button-prev-custom.top-deals-side-nav,
-  .top-deals-swiper-button-next-custom.top-deals-side-nav {
+  .top-deals-header-navigation {
+    gap: 6px;
+  }
+  
+  .top-deals-mobile-header-nav-btn {
     width: 32px;
     height: 32px;
   }
   
-  .top-deals-swiper-button-prev-custom.top-deals-side-nav.top-deals-left-nav {
-    left: 1px;
-  }
-  
-  .top-deals-swiper-button-next-custom.top-deals-side-nav.top-deals-right-nav {
-    right: 1px;
-  }
-  
-  .top-deals-card-inner {
-    height: 160px;
+  .top-deals-nav-icon {
+    width: 14px;
+    height: 14px;
   }
   
   .top-deals-deal-title {
-    font-size: 0.95rem;
-  }
-  
-  .top-deals-rating-price-container {
-    gap: 6px;
-  }
-  
-  .top-deals-deal-rating {
-    gap: 4px;
-  }
-  
-  .top-deals-stars svg {
-    width: 12px;
-    height: 12px;
-  }
-  
-  .top-deals-rating-text {
-    font-size: 0.7rem;
-  }
-  
-  .top-deals-deal-price {
-    gap: 6px;
+    font-size: 0.8rem;
   }
   
   .top-deals-current-price {
-    font-size: 0.95rem;
-  }
-  
-  .top-deals-original-price {
-    font-size: 0.75rem;
-  }
-  
-  .top-deals-discount {
-    font-size: 0.65rem;
-    padding: 2px 4px;
-  }
-  
-  .top-deals-hover-overlay {
-    padding: 10px;
-  }
-  
-  .top-deals-hover-icons {
-    gap: 5px;
-  }
-  
-  .top-deals-details-btn,
-  .top-deals-wishlist-btn {
-    width: 30px;
-    height: 30px;
-  }
-  
-  .top-deals-details-icon,
-  .top-deals-wishlist-icon {
-    width: 12px;
-    height: 12px;
+    font-size: 0.85rem;
   }
 }
 
@@ -895,7 +882,8 @@
 .top-deals-swiper-button-prev-custom.top-deals-side-nav:focus,
 .top-deals-swiper-button-next-custom.top-deals-side-nav:focus,
 .top-deals-details-btn:focus,
-.top-deals-wishlist-btn:focus {
+.top-deals-wishlist-btn:focus,
+.top-deals-mobile-header-nav-btn:focus {
   outline: 2px solid var(--top-deals-blue);
   outline-offset: 2px;
 }

@@ -1,0 +1,557 @@
+/* Order Summary Section - Compact Version (No Background, No Border) */
+.order-summary-section {
+  padding: 1.5rem 0;
+  min-height: calc(100vh - 160px);
+  position: relative;
+}
+
+/* Order Summary Card - Compact (No Background, No Border) */
+.order-summary-card {
+  background: transparent;
+  border-radius: 12px;
+  padding: 1.5rem;
+  animation: order-summary-fadeIn 0.4s ease-out;
+}
+
+@keyframes order-summary-fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header - Compact */
+.order-summary-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  animation: order-summary-slideIn 0.4s ease-out 0.1s both;
+}
+
+.order-summary-header-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #37aa50 0%, #2d8c42 100%);
+  box-shadow: 0 3px 8px rgba(55, 170, 80, 0.3);
+  flex-shrink: 0;
+}
+
+.order-summary-success-icon {
+  width: 22px;
+  height: 22px;
+  color: white;
+}
+
+.order-summary-header-content {
+  flex: 1;
+}
+
+.order-summary-title {
+  color: #2c3e50;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 0 0.3rem 0;
+  background: linear-gradient(135deg, #0662aa 0%, #37aa50 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.order-summary-subtitle {
+  color: #6c757d;
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Order Number Section - Compact (No Background, No Border) */
+.order-summary-number-section {
+  background: transparent;
+  border-radius: 8px;
+  padding: 1.2rem;
+  margin: 1.5rem 0;
+  position: relative;
+  overflow: hidden;
+  animation: order-summary-slideIn 0.4s ease-out 0.2s both;
+}
+
+.order-summary-number-wrapper {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.order-summary-number-label {
+  display: block;
+  color: #6c757d;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.order-summary-number {
+  color: #0662aa;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0 0 0.8rem 0;
+  letter-spacing: 1px;
+}
+
+.order-summary-tracking {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.8rem;
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+}
+
+.order-summary-tracking-icon {
+  width: 14px;
+  height: 14px;
+  color: #37aa50;
+}
+
+.order-summary-tracking-text {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* Message - Compact (No Background, No Border) */
+.order-summary-message {
+  background: transparent;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  animation: order-summary-slideIn 0.4s ease-out 0.3s both;
+}
+
+.order-summary-message-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #37aa50 0%, #2d8c42 100%);
+  flex-shrink: 0;
+}
+
+.order-summary-message-check {
+  width: 16px;
+  height: 16px;
+  color: white;
+}
+
+.order-summary-message-content {
+  flex: 1;
+}
+
+.order-summary-message-title {
+  color: #2c3e50;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 0 0.3rem 0;
+}
+
+.order-summary-text {
+  color: #495057;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Quick Stats - Compact Grid (No Background, No Border) */
+.order-summary-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+  margin: 1.5rem 0;
+  animation: order-summary-slideIn 0.4s ease-out 0.4s both;
+}
+
+.order-summary-stat-item {
+  background: transparent;
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.order-summary-stat-item:hover {
+  transform: translateY(-3px);
+}
+
+.order-summary-stat-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--stat-color) 0%, 
+              color-mix(in srgb, var(--stat-color) 50%, white) 100%);
+  box-shadow: 0 3px 8px rgba(6, 98, 170, 0.15);
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.order-summary-stat-item:hover .order-summary-stat-icon-wrapper {
+  transform: scale(1.05);
+}
+
+.order-summary-stat-icon {
+  width: 18px;
+  height: 18px;
+  color: white;
+}
+
+.order-summary-stat-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.order-summary-stat-count {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 2px;
+}
+
+.order-summary-stat-text {
+  display: block;
+  font-size: 0.75rem;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+/* Actions - Compact Buttons */
+.order-summary-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  animation: order-summary-slideIn 0.4s ease-out 0.5s both;
+}
+
+.order-summary-btn {
+  padding: 0.8rem 1.5rem;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  min-width: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.order-summary-btn-icon {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.3s ease;
+}
+
+.order-summary-primary-btn {
+  background: linear-gradient(135deg, #0662aa 0%, #0a7bc5 100%);
+  color: white;
+}
+
+.order-summary-primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(6, 98, 170, 0.25);
+}
+
+.order-summary-primary-btn:hover .order-summary-btn-icon {
+  transform: translateX(2px);
+}
+
+.order-summary-secondary-btn {
+  background: white;
+  color: #0662aa;
+  border: 1.5px solid #0662aa;
+}
+
+.order-summary-secondary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(6, 98, 170, 0.15);
+  border-color: #055291;
+  color: #055291;
+}
+
+.order-summary-secondary-btn:hover .order-summary-btn-icon {
+  transform: scale(1.05);
+}
+
+/* Animation Keyframes */
+@keyframes order-summary-slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design - Compact */
+@media (max-width: 991px) {
+  .order-summary-card {
+    padding: 1.2rem;
+  }
+  
+  .order-summary-title {
+    font-size: 1.1rem;
+  }
+  
+  .order-summary-number {
+    font-size: 1.3rem;
+  }
+  
+  /* Tablet: 2 columns for stats */
+  .order-summary-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile View - सबसे important changes यहाँ हैं */
+@media (max-width: 768px) {
+  .order-summary-section {
+    padding: 1.2rem 0;
+  }
+  
+  .order-summary-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.8rem;
+  }
+  
+  .order-summary-header-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .order-summary-success-icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .order-summary-title {
+    font-size: 1rem;
+  }
+  
+  .order-summary-number-section {
+    padding: 1rem;
+  }
+  
+  .order-summary-number {
+    font-size: 1.2rem;
+  }
+  
+  /* ✅ MOBILE: Stats side by side (3 columns) */
+  .order-summary-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+    margin: 1.2rem 0;
+  }
+  
+  .order-summary-stat-item {
+    flex-direction: column;
+    text-align: center;
+    padding: 0.8rem 0.5rem;
+    gap: 0.6rem;
+  }
+  
+  .order-summary-stat-icon-wrapper {
+    width: 36px;
+    height: 36px;
+    margin: 0 auto;
+  }
+  
+  .order-summary-stat-icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .order-summary-stat-count {
+    font-size: 0.75rem;
+    margin-bottom: 1px;
+  }
+  
+  .order-summary-stat-text {
+    font-size: 0.7rem;
+  }
+  
+  /* ✅ MOBILE: Buttons side by side */
+  .order-summary-actions {
+    flex-direction: row; /* Side by side */
+    justify-content: space-between;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+  }
+  
+  .order-summary-btn {
+    flex: 1;
+    min-width: auto;
+    width: 48%;
+    padding: 0.7rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .order-summary-message {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0.8rem;
+  }
+  
+  .order-summary-message-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 576px) {
+  .order-summary-section {
+    padding: 1rem 0;
+  }
+  
+  .order-summary-card {
+    padding: 1rem;
+    margin: 0 8px;
+  }
+  
+  .order-summary-title {
+    font-size: 0.95rem;
+  }
+  
+  .order-summary-number {
+    font-size: 1.1rem;
+  }
+  
+  /* ✅ SMALL MOBILE: Stats still side by side but smaller */
+  .order-summary-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+  
+  .order-summary-stat-item {
+    padding: 0.7rem 0.4rem;
+    gap: 0.5rem;
+  }
+  
+  .order-summary-stat-icon-wrapper {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .order-summary-stat-icon {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .order-summary-stat-count {
+    font-size: 0.7rem;
+  }
+  
+  .order-summary-stat-text {
+    font-size: 0.65rem;
+  }
+  
+  /* ✅ SMALL MOBILE: Buttons still side by side */
+  .order-summary-actions {
+    gap: 0.6rem;
+    margin-top: 1.2rem;
+  }
+  
+  .order-summary-btn {
+    padding: 0.6rem 0.7rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 360px) {
+  .order-summary-number {
+    font-size: 1rem;
+  }
+  
+  .order-summary-title {
+    font-size: 0.9rem;
+  }
+  
+  .order-summary-card {
+    padding: 0.8rem;
+  }
+  
+  /* ✅ EXTRA SMALL: Stats still side by side with minimal spacing */
+  .order-summary-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.4rem;
+  }
+  
+  .order-summary-stat-item {
+    padding: 0.6rem 0.3rem;
+  }
+  
+  .order-summary-stat-icon-wrapper {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .order-summary-stat-icon {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .order-summary-stat-count {
+    font-size: 0.65rem;
+  }
+  
+  .order-summary-stat-text {
+    font-size: 0.6rem;
+  }
+  
+  /* ✅ EXTRA SMALL: Buttons side by side with smaller text */
+  .order-summary-btn {
+    padding: 0.5rem 0.6rem;
+    font-size: 0.7rem;
+  }
+  
+  .order-summary-btn-icon {
+    width: 12px;
+    height: 12px;
+  }
+}

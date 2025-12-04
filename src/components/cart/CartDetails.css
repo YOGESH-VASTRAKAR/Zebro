@@ -309,7 +309,7 @@
 
 .cart-details-coupon-buttons-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr); /* 2 columns for Apply and Clear Cart */
   gap: 0.8rem;
 }
 
@@ -331,11 +331,6 @@
 
 .cart-details-coupon-apply {
   background: linear-gradient(135deg, #37aa50 0%, #2e8b47 100%);
-  color: white;
-}
-
-.cart-details-coupon-update {
-  background: #0662aa;
   color: white;
 }
 
@@ -607,7 +602,7 @@
   }
   
   .cart-details-coupon-buttons-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* Maintain 2 columns on tablet */
   }
 }
 
@@ -621,6 +616,7 @@
   .cart-details-item-main-content {
     width: 100%;
     gap: 1rem;
+    flex-direction: row; /* Side by side रखने के लिए */
   }
   
   .cart-details-item-controls-section {
@@ -673,7 +669,7 @@
   }
   
   .cart-details-coupon-buttons-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr); /* Side by side on mobile */
   }
   
   .cart-details-coupon-btn {
@@ -691,30 +687,30 @@
   }
   
   .cart-details-item-main-content {
-    flex-direction: column;
-    text-align: center;
+    flex-direction: row; /* यहाँ row रखा है side by side के लिए */
+    text-align: left; /* Center से left कर दिया */
     gap: 1rem;
   }
   
   .cart-details-item-image {
-    width: 110px;
-    height: 110px;
+    width: 80px; /* थोड़ा छोटा किया */
+    height: 80px;
   }
   
   .cart-details-price-section {
-    justify-content: center;
+    justify-content: flex-start; /* Center से start कर दिया */
     flex-wrap: wrap;
   }
   
-  /* MAX ALLOWED CENTER ALIGN */
+  /* MAX ALLOWED LEFT ALIGN */
   .cart-details-max-allowed-text {
-    text-align: center;
+    text-align: left; /* Center से left कर दिया */
     width: 100%;
   }
   
   .cart-details-item-controls-section {
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between; /* Center से space-between कर दिया */
     gap: 1rem;
     width: 100%;
   }
@@ -729,11 +725,11 @@
   
   .cart-details-control-delete {
     order: 3;
-    width: auto; /* FIXED - Not full width */
+    width: auto;
   }
   
   .cart-details-remove-btn {
-    width: 36px; /* FIXED - Maintain circular button */
+    width: 36px;
     height: 36px;
     border-radius: 50%;
   }
@@ -768,6 +764,10 @@
     padding: 0.8rem 1.2rem;
     font-size: 0.9rem;
   }
+  
+  .cart-details-coupon-buttons-grid {
+    grid-template-columns: repeat(2, 1fr); /* Still side by side */
+  }
 }
 
 @media (max-width: 480px) {
@@ -775,16 +775,27 @@
     padding: 1rem;
   }
   
+  .cart-details-item-main-content {
+    flex-direction: row; /* यहाँ भी row ही रखा */
+    gap: 0.8rem;
+  }
+  
+  .cart-details-item-image {
+    width: 80px; /* और छोटा किया */
+    height: 80px;
+  }
+  
   .cart-details-item-title {
-    font-size: 1rem;
+    font-size: 0.95rem;
+    margin-bottom: 0.6rem;
   }
   
   .cart-details-discounted-price {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
   
   .cart-details-original-price {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
   
   .cart-details-quantity-btn {
@@ -801,9 +812,10 @@
     font-size: 1.1rem;
   }
   
-  /* 480px pe bhi max allowed center */
+  /* 480px pe भी left align */
   .cart-details-max-allowed-text {
-    text-align: center;
+    text-align: left;
+    font-size: 0.8rem;
   }
   
   /* DELETE BUTTON FIXED - Maintain circular shape */
@@ -838,5 +850,54 @@
   
   .cart-details-coupon-badge {
     width: 50%;
+  }
+  
+  .cart-details-coupon-buttons-grid {
+    grid-template-columns: repeat(2, 1fr); /* Still side by side on small screens */
+    gap: 0.6rem;
+  }
+}
+
+/* Extra Small Devices के लिए */
+@media (max-width: 360px) {
+  .cart-details-item-main-content {
+    flex-direction: row; /* सबसे छोटे screen पर भी row */
+    gap: 0.6rem;
+  }
+  
+  .cart-details-item-image {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .cart-details-item-title {
+    font-size: 0.9rem;
+  }
+  
+  .cart-details-price-section {
+    gap: 0.5rem;
+  }
+  
+  .cart-details-discounted-price {
+    font-size: 1rem;
+  }
+  
+  .cart-details-original-price {
+    font-size: 0.8rem;
+  }
+  
+  .cart-details-discount-badge {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.4rem;
+  }
+  
+  .cart-details-coupon-buttons-grid {
+    grid-template-columns: repeat(2, 1fr); /* Still side by side on extra small screens */
+    gap: 0.5rem;
+  }
+  
+  .cart-details-coupon-btn {
+    padding: 0.5rem 0.3rem;
+    font-size: 0.7rem;
   }
 }

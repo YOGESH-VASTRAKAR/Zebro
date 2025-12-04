@@ -12,8 +12,13 @@ import Products from './components/products/Products';
 import ProductDetails from './components/productdetail/ProductDetails';
 import Cart from './components/cart/Cart';
 import Checkout from './components/checkout/Checkout';
+import AllOffers from './components/alloffers/AllOffers';
+import AllBestSeller from './components/allbestsellers/AllBestSeller';
+import NewArrival from './components/newarrival/NewArrival';
+import Order from './components/order/Order';
+import AdvertisementPopup from './components/AdvertisementPopup'; 
 
-// ScrollToTop Component - Har route change par top par scroll karega
+// ScrollToTop Component
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
@@ -21,7 +26,7 @@ const ScrollToTop = () => {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: 'smooth' // Smooth scrolling
+      behavior: 'smooth'
     });
   }, [pathname]);
 
@@ -33,13 +38,15 @@ function App() {
     <CartProvider>
       <Router>
         <div className="App">
-          <ScrollToTop /> {/* Add this component */}
+          <ScrollToTop />
+          
+          <AdvertisementPopup />
+          
           <Header />
           <CartSidebar />
           
           <main className="main-content">
             <Routes>
-              {/* Home Route */}
               <Route path="/" element={<Home />} />
               <Route path="/profile" element={<LoginRegistration />} />
               <Route path="/my_account" element={<Dashboard />} />              
@@ -47,6 +54,10 @@ function App() {
               <Route path="/productdetails" element={<ProductDetails />} />
               <Route path="/cart" element={<Cart />} /> 
               <Route path="/checkout" element={<Checkout />} /> 
+              <Route path="/alloffer" element={<AllOffers />} />
+              <Route path="/bestseller" element={<AllBestSeller />} />
+              <Route path="/newarrival" element={<NewArrival />} />
+              <Route path="/order" element={<Order />} />
             </Routes>
           </main>
           

@@ -5,18 +5,6 @@
   margin-bottom: 30px;
 }
 
-.latest-offers-section-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #333;
-  margin-bottom: 3rem;
-  background: linear-gradient(135deg, #0662aa 0%, #0a7ac9 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Offers Container - Side by Side */
 .latest-offers-offers-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -26,7 +14,6 @@
   justify-content: center;
 }
 
-/* Offer Card - Reference Design */
 .latest-offers-offer-card {
   --latest-offers-_bg-alpha: .5;
   --latest-offers-_border-radius: 50px;
@@ -39,6 +26,7 @@
   transition: 500ms ease-in-out;
   border-radius: var(--latest-offers-_border-radius);
   font-family: "Kodchasan", sans-serif;
+  cursor: pointer;
   
   &::before,
   &::after {
@@ -64,7 +52,6 @@
   }
 }
 
-/* Card Content */
 .latest-offers-card-content {
   position: relative;
   padding: 0;
@@ -86,9 +73,6 @@
   transform: scale(1.05);
 }
 
-/* ========== RESPONSIVE DESIGN ========== */
-
-/* Large Desktop (1200px+) */
 @media (min-width: 1200px) {
   .latest-offers-offers-container {
     grid-template-columns: repeat(2, 1fr);
@@ -101,7 +85,6 @@
   }
 }
 
-/* Desktop (992px - 1199px) */
 @media (max-width: 1199px) and (min-width: 992px) {
   .latest-offers-offers-container {
     gap: 3rem;
@@ -113,7 +96,6 @@
   }
 }
 
-/* Tablet Landscape (768px - 991px) */
 @media (max-width: 991px) and (min-width: 768px) {
   .latest-offers-latest-offers-section {
     padding: 3rem 1rem;
@@ -130,7 +112,6 @@
   }
 }
 
-/* Tablet Portrait (576px - 767px) */
 @media (max-width: 767px) and (min-width: 576px) {
   .latest-offers-latest-offers-section {
     padding: 2.5rem 1rem;
@@ -138,7 +119,7 @@
   
   .latest-offers-offers-container {
     grid-template-columns: 1fr;
-    gap: 2rem; /* ✅ Space between cards added */
+    gap: 2rem;
     max-width: 600px;
   }
   
@@ -152,7 +133,6 @@
   }
 }
 
-/* Mobile (575px and below) */
 @media (max-width: 575px) {
   .latest-offers-latest-offers-section {
     padding: 2rem 0.5rem;
@@ -161,7 +141,7 @@
   
   .latest-offers-offers-container {
     grid-template-columns: 1fr;
-    gap: 2.5rem; /* ✅ Space between cards added */
+    gap: 2.5rem;
     width: min(calc(100% - 1rem), 500px);
   }
   
@@ -176,14 +156,13 @@
   }
 }
 
-/* Small Mobile (375px and below) */
 @media (max-width: 375px) {
   .latest-offers-latest-offers-section {
     padding: 1.5rem 0.5rem;
   }
   
   .latest-offers-offers-container {
-    gap: 2.2rem; /* ✅ Space between cards added */
+    gap: 2.2rem;
   }
   
   .latest-offers-offer-card {
@@ -197,14 +176,12 @@
   }
 }
 
-/* Touch Device Optimizations */
 @media (hover: none) and (pointer: coarse) {
   .latest-offers-offer-card:hover .latest-offers-offer-image {
     transform: none;
   }
 }
 
-/* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   .latest-offers-offer-card,
   .latest-offers-offer-image {
@@ -216,13 +193,11 @@
   }
 }
 
-/* Focus styles for accessibility */
 .latest-offers-offer-card:focus {
   outline: 2px solid var(--latest-offers-accent-color);
   outline-offset: 4px;
 }
 
-/* Animation for Loading */
 @keyframes latest-offers-fadeIn {
   from {
     opacity: 0;

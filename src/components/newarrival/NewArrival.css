@@ -1,0 +1,465 @@
+/* New Arrival Banner Section */
+.newarrival-banner-section {
+  background: white;
+  padding: 40px 0;
+  margin-top: 95px;
+}
+
+.newarrival-title-col {
+  display: flex;
+  align-items: center;
+}
+
+.newarrival-title-content {
+  flex: 1;
+}
+
+.newarrival-main-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.newarrival-title-text {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.newarrival-title-word {
+  display: inline-block;
+  font-weight: 800;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+/* SAME COLORS AS ALLOFFERS */
+.newarrival-title-word-1 {
+  color: #0662aa !important;
+  background: none !important;
+  -webkit-text-fill-color: #0662aa !important;
+}
+
+.newarrival-title-word-2 {
+  color: #37aa50 !important;
+  background: none !important;
+  -webkit-text-fill-color: #37aa50 !important;
+}
+
+.newarrival-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.newarrival-breadcrumb-link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #6c757d;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.3s ease;
+}
+
+.newarrival-breadcrumb-link:hover {
+  color: #0662aa; /* SAME COLOR AS ALLOFFERS */
+}
+
+.newarrival-breadcrumb-icon {
+  width: 14px;
+  height: 14px;
+  color: #0662aa; /* SAME COLOR AS ALLOFFERS */
+  flex-shrink: 0;
+}
+
+.newarrival-breadcrumb-text {
+  white-space: nowrap;
+}
+
+.newarrival-breadcrumb-separator {
+  width: 10px;
+  height: 10px;
+  color: #adb5bd;
+  flex-shrink: 0;
+}
+
+/* New Arrival Stats */
+.newarrival-stats-col {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.newarrival-stats-card {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border: 1px solid #f1f3f4;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  max-width: 280px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.newarrival-stats-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+}
+
+.newarrival-stats-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0662aa 0%, #37aa50 100%); /* SAME GRADIENT AS ALLOFFERS */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.newarrival-stats-icon-svg {
+  width: 24px;
+  height: 24px;
+  color: white;
+}
+
+.newarrival-stats-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.newarrival-stats-count {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 4px;
+  background: linear-gradient(135deg, #0662aa 0%, #37aa50 100%); /* SAME GRADIENT AS ALLOFFERS */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.newarrival-stats-text {
+  color: #6c757d;
+  font-size: 0.8rem;
+  margin-bottom: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* New Arrival Content */
+.newarrival-content {
+  padding: 40px 0;
+}
+
+/* ========== SAME RESPONSIVE BREAKPOINTS AS ALLOFFERS ========== */
+
+/* Large Desktop */
+@media (min-width: 1400px) {
+  .newarrival-banner-section {
+    padding: 50px 0;
+  }
+  
+  .newarrival-main-title {
+    font-size: 2.8rem;
+  }
+  
+  .newarrival-stats-card {
+    max-width: 320px;
+    padding: 25px;
+  }
+}
+
+/* Desktop */
+@media (max-width: 1199px) {
+  .newarrival-main-title {
+    font-size: 2.8rem;
+  }
+  
+  .newarrival-stats-card {
+    max-width: 260px;
+  }
+}
+
+/* Tablet Landscape */
+@media (max-width: 991px) {
+  .newarrival-stats-col {
+    justify-content: flex-start;
+    margin-top: 25px;
+  }
+  
+  .newarrival-stats-card {
+    max-width: 100%;
+  }
+  
+  .newarrival-main-title {
+    justify-content: center;
+    text-align: center;
+    font-size: 2.6rem;
+  }
+  
+  .newarrival-breadcrumb {
+    justify-content: center;
+  }
+  
+  .newarrival-title-col {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+/* Tablet Portrait */
+@media (max-width: 768px) {
+  .newarrival-banner-section {
+    padding: 30px 0;
+    margin-top: 80px;
+  }
+  
+  .newarrival-main-title {
+    font-size: 2.4rem;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .newarrival-breadcrumb {
+    justify-content: center;
+  }
+  
+  .newarrival-title-col {
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .newarrival-stats-col {
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .newarrival-stats-card {
+    justify-content: center;
+    text-align: center;
+    padding: 18px;
+    gap: 12px;
+  }
+  
+  .newarrival-stats-icon {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .newarrival-stats-icon-svg {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .newarrival-stats-count {
+    font-size: 1.1rem;
+  }
+}
+
+/* Mobile Large */
+@media (max-width: 576px) {
+  .newarrival-banner-section {
+    padding: 25px 0;
+    margin-top: 70px;
+  }
+  
+  .newarrival-main-title {
+    font-size: 2.2rem;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .newarrival-title-text {
+    white-space: nowrap;
+  }
+  
+  .newarrival-title-col {
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .newarrival-breadcrumb {
+    gap: 4px;
+    justify-content: center;
+  }
+  
+  .newarrival-breadcrumb-link {
+    font-size: 0.8rem;
+  }
+  
+  .newarrival-breadcrumb-icon {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .newarrival-breadcrumb-separator {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .newarrival-stats-col {
+    justify-content: center;
+  }
+  
+  .newarrival-stats-card {
+    padding: 15px;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+    max-width: 100%;
+  }
+  
+  .newarrival-stats-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .newarrival-stats-icon-svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .newarrival-stats-count {
+    font-size: 1rem;
+  }
+  
+  .newarrival-stats-text {
+    font-size: 0.75rem;
+  }
+}
+
+/* Mobile Small */
+@media (max-width: 480px) {
+  .newarrival-banner-section {
+    padding: 20px 0;
+    margin-top: 65px;
+  }
+  
+  .newarrival-main-title {
+    font-size: 2rem;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .newarrival-title-col {
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .newarrival-breadcrumb {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: center;
+    padding-bottom: 5px;
+  }
+  
+  .newarrival-breadcrumb::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .newarrival-breadcrumb {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .newarrival-stats-col {
+    justify-content: center;
+  }
+  
+  .newarrival-stats-card {
+    padding: 12px;
+    text-align: center;
+  }
+  
+  .newarrival-stats-icon {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .newarrival-stats-icon-svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .newarrival-stats-count {
+    font-size: 0.9rem;
+  }
+  
+  .newarrival-stats-text {
+    font-size: 0.7rem;
+  }
+}
+
+/* Mobile Extra Small */
+@media (max-width: 360px) {
+  .newarrival-main-title {
+    font-size: 1.8rem;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .newarrival-title-col {
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .newarrival-breadcrumb {
+    justify-content: center;
+  }
+  
+  .newarrival-breadcrumb-link span {
+    display: none;
+  }
+  
+  .newarrival-breadcrumb-link:first-child .newarrival-breadcrumb-text {
+    display: inline;
+  }
+  
+  .newarrival-stats-col {
+    justify-content: center;
+  }
+  
+  .newarrival-stats-card {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .newarrival-stats-count {
+    font-size: 0.85rem;
+  }
+}
+
+/* Safe area support for notched devices */
+@supports(padding: max(0px)) {
+  .newarrival-banner-section {
+    padding-left: max(15px, env(safe-area-inset-left));
+    padding-right: max(15px, env(safe-area-inset-right));
+  }
+}
+
+/* Animation for Loading */
+@keyframes newarrival-fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.newarrival-banner-section {
+  animation: newarrival-fadeIn 0.5s ease-out;
+}

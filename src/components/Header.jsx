@@ -14,7 +14,6 @@ import {
   UserIcon,
   HeartIcon,
   ShoppingCartIcon,
-  Bars3Icon,
   PhoneIcon,
   EnvelopeIcon,
   HomeIcon,
@@ -37,8 +36,10 @@ import {
   QuestionMarkCircleIcon,
   ChevronLeftIcon,
   Cog6ToothIcon,
-  UserCircleIcon
+  UserCircleIcon  
 } from '@heroicons/react/24/solid';
+import {Squares2X2Icon
+} from '@heroicons/react/24/outline';
 import './Header.css';
 
 const Header = () => {
@@ -603,7 +604,7 @@ const Header = () => {
 
               {/* Best Sellers */}
               <NavLink 
-                to="/best-sellers" 
+                to="/bestseller" 
                 className={({ isActive }) => `mobile-nav-link simple ${isActive ? 'active' : ''}`}
                 onClick={handleOffcanvasClose}
               >
@@ -613,7 +614,7 @@ const Header = () => {
 
               {/* New Arrivals */}
               <NavLink 
-                to="/new-arrivals" 
+                to="/newarrival" 
                 className={({ isActive }) => `mobile-nav-link simple ${isActive ? 'active' : ''}`}
                 onClick={handleOffcanvasClose}
               >
@@ -623,7 +624,7 @@ const Header = () => {
 
               {/* Offers */}
               <NavLink 
-                to="/offers" 
+                to="/alloffer" 
                 className={({ isActive }) => `mobile-nav-link simple ${isActive ? 'active' : ''}`}
                 onClick={handleOffcanvasClose}
               >
@@ -903,7 +904,7 @@ const Header = () => {
 
                     <li>
                       <NavLink 
-                        to="/best-sellers" 
+                        to="/bestseller" 
                         className={({ isActive }) => isActive ? 'active' : ''}
                       >
                         <StarIcon className="nav-icon bestsellers-icon" />
@@ -913,7 +914,7 @@ const Header = () => {
 
                     <li>
                       <NavLink 
-                        to="/new-arrivals" 
+                        to="/newarrival" 
                         className={({ isActive }) => isActive ? 'active' : ''}
                       >
                         <SparklesIcon className="nav-icon newarrivals-icon" />
@@ -923,7 +924,7 @@ const Header = () => {
 
                     <li>
                       <NavLink 
-                        to="/offers" 
+                        to="/alloffer" 
                         className={({ isActive }) => isActive ? 'active' : ''}
                       >
                         <TagIcon className="nav-icon offers-icon" />
@@ -1012,12 +1013,14 @@ const Header = () => {
                   </ul>
                 </nav>
 
-                {/* Mobile Menu Toggle - Sirf hamburger menu dikhega */}
+                {/* Modern Hamburger Menu Toggle - Icon Card Style */}
                 <Button 
-                  className="mobile-menu-toggle"
+                  className="mobile-menu-toggle modern-hamburger"
                   onClick={handleOffcanvasShow}
                 >
-                  <Bars3Icon />
+                  <div className="hamburger-icon-wrapper">
+                    <Squares2X2Icon className="hamburger-icon" />
+                  </div>
                 </Button>
               </div>
             </div>

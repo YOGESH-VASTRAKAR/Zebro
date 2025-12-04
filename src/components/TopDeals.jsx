@@ -5,7 +5,9 @@ import {
   StarIcon, 
   ShoppingCartIcon,
   HeartIcon,
-  InformationCircleIcon
+  InformationCircleIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon
 } from '@heroicons/react/24/solid';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -32,7 +34,8 @@ const TopDeals = () => {
   const navigationNextRef = useRef(null);
   const [swiperReady, setSwiperReady] = useState(false);
   const [wishlist, setWishlist] = useState([]);
-  const [viewedProducts, setViewedProducts] = useState([]);
+  const [clickedProducts, setClickedProducts] = useState([]);
+  const [isMobile, setIsMobile] = useState(false);
   const navigate = useNavigate();
 
   // Use Cart Context
@@ -122,6 +125,18 @@ const TopDeals = () => {
     }
   ];
 
+  // Check for mobile view
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   // GSAP Animations - Optimized
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -186,6 +201,16 @@ const TopDeals = () => {
     }
   }, [swiperReady]);
 
+  // Card click handler
+  const handleCardClick = (productId) => {
+    navigate(`/productdetails?id=${productId}`);
+    
+    // Mark this product as clicked (for view detail icon styling)
+    if (!clickedProducts.includes(productId)) {
+      setClickedProducts([...clickedProducts, productId]);
+    }
+  };
+
   const toggleWishlist = (productId, e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -201,12 +226,11 @@ const TopDeals = () => {
     e.preventDefault();
     e.stopPropagation();
     
-    // ProductDetails page par navigate karein with product ID
     navigate(`/productdetails?id=${productId}`);
     
-    // Add to viewed products if not already there
-    if (!viewedProducts.includes(productId)) {
-      setViewedProducts([...viewedProducts, productId]);
+    // Also mark as clicked for styling
+    if (!clickedProducts.includes(productId)) {
+      setClickedProducts([...clickedProducts, productId]);
     }
   };
 
@@ -215,7 +239,6 @@ const TopDeals = () => {
     e.preventDefault();
     e.stopPropagation();
     
-    // Add product to cart
     addItemToCart({
       id: product.id,
       name: product.title,
@@ -224,10 +247,8 @@ const TopDeals = () => {
       quantity: 1
     });
     
-    // Open cart sidebar
     toggleCart();
     
-    // Optional: Show success feedback
     console.log(`Added ${product.title} to cart`);
   };
 
@@ -243,28 +264,49 @@ const TopDeals = () => {
   // Swiper breakpoints for responsive design
   const swiperBreakpoints = {
     320: {
-      slidesPerView: 1,
-      spaceBetween: 20
+      slidesPerView: 2,
+      slidesPerGroup: 2,
+      spaceBetween: 15,
+      grid: {
+        rows: 2,
+        fill: 'row'
+      }
     },
     480: {
-      slidesPerView: 1,
-      spaceBetween: 20
+      slidesPerView: 2,
+      slidesPerGroup: 2,
+      spaceBetween: 15,
+      grid: {
+        rows: 2,
+        fill: 'row'
+      }
     },
     576: {
       slidesPerView: 2,
-      spaceBetween: 20
+      slidesPerGroup: 2,
+      spaceBetween: 20,
+      grid: {
+        rows: 2,
+        fill: 'row'
+      }
     },
     768: {
       slidesPerView: 2,
-      spaceBetween: 25
+      spaceBetween: 25,
+      grid: {
+        rows: 2,
+        fill: 'row'
+      }
     },
     992: {
       slidesPerView: 3,
-      spaceBetween: 30
+      spaceBetween: 30,
+      grid: false
     },
     1200: {
       slidesPerView: 4,
-      spaceBetween: 30
+      spaceBetween: 30,
+      grid: false
     }
   };
 
@@ -273,42 +315,161 @@ const TopDeals = () => {
     setSwiperReady(true);
   };
 
+  // Render card function
+  const renderCard = (deal) => (
+    <div 
+      className="top-deals-deal-card"
+      onClick={() => handleCardClick(deal.id)}
+      style={{ cursor: 'pointer' }}
+    >
+      <div className="top-deals-card-inner" style={{"--clr": "#fff"}}>
+        <div className="top-deals-box">
+          {/* Product Image */}
+          <div className="top-deals-imgBox">
+            <img 
+              src={deal.image}
+              className="top-deals-deal-image"
+              alt={deal.title}
+              onError={(e) => {
+                e.target.src = "https://via.placeholder.com/200x200/F8F1E5/0D5BCF?text=Zebro+Kids";
+              }}
+            />
+          </div>
+
+          {/* Hover Overlay with Details and Wishlist Icons */}
+          <div className="top-deals-hover-overlay">
+            <div className="top-deals-hover-icons">
+              <button 
+                className={`top-deals-details-btn ${clickedProducts.includes(deal.id) ? 'clicked-hover-effect' : ''}`}
+                onClick={(e) => handleDetailsClick(deal.id, e)}
+                title="View Details"
+              >
+                <InformationCircleIcon className="top-deals-details-icon" />
+              </button>
+              <button 
+                className={`top-deals-wishlist-btn ${wishlist.includes(deal.id) ? 'active' : ''}`}
+                onClick={(e) => toggleWishlist(deal.id, e)}
+                title={wishlist.includes(deal.id) ? "Remove from Wishlist" : "Add to Wishlist"}
+              >
+                <HeartIcon className="top-deals-wishlist-icon" />
+              </button>
+            </div>
+          </div>
+
+          {/* Shopping Cart Icon (Bottom Right) */}
+          <div className="top-deals-icon">
+            <a 
+              href="#" 
+              className="top-deals-iconBox"
+              onClick={(e) => handleAddToCart(deal, e)}
+            > 
+              <ShoppingCartIcon 
+                style={{
+                  width: '24px',
+                  height: '24px',
+                  color: '#fff'
+                }}
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Card Content */}
+      <div className="top-deals-content">
+        <h3 className="top-deals-deal-title">{deal.title}</h3>
+        
+        {/* Rating and Price Container */}
+        <div className="top-deals-rating-price-container">
+          {/* Rating */}
+          <div className="top-deals-deal-rating">
+            <div className="top-deals-stars">
+              {[...Array(5)].map((_, i) => (
+                <StarIcon 
+                  key={i}
+                  style={{
+                    width: '14px',
+                    height: '14px',
+                    fill: i < Math.floor(deal.rating) ? '#F2BB13' : 'none',
+                    stroke: i < deal.rating ? '#F2BB13' : '#BFBFBF'
+                  }}
+                />
+              ))}
+            </div>
+            <span className="top-deals-rating-text">({deal.reviews})</span>
+          </div>
+
+          {/* Price */}
+          <div className="top-deals-deal-price">
+            <span className="top-deals-current-price">{formatPrice(deal.price)}</span>
+            <span className="top-deals-original-price">{formatPrice(deal.originalPrice)}</span>
+            <span className="top-deals-discount">{deal.discount}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="top-deals-section" ref={sectionRef}>
       <Container fluid>
         {/* Section Header with Colorful Text and View More Button */}
         <div className="top-deals-header" ref={titleRef}>
-          <div className="top-deals-header-content">
-            <div className="top-deals-header-left">
-              <h2 className="top-deals-title">
-                <span className="top-deals-title-word top-deals-title-word-1">Today's</span>
-                <span className="top-deals-title-word top-deals-title-word-2">Top</span>
-                <span className="top-deals-title-word top-deals-title-word-3">Deals</span>
-              </h2>
-              <p className="top-deals-subtitle">Don't miss out on these amazing offers!</p>
-            </div>
-            
-            {/* View More Button - Top Right */}
-            <div className="top-deals-header-right">
-              <button className="top-deals-view-all-btn">
-                View More Deals
-              </button>
+          <div className="top-deals-header-wrapper">
+            <div className="top-deals-header-content">
+              <div className="top-deals-header-left">
+                <h2 className="top-deals-title">
+                  <span className="top-deals-title-word top-deals-title-word-1">Today's</span>
+                  <span className="top-deals-title-word top-deals-title-word-2">Top</span>
+                  <span className="top-deals-title-word top-deals-title-word-3">Deals</span>
+                </h2>
+                <p className="top-deals-subtitle">Don't miss out on these amazing offers!</p>
+              </div>
+              
+              {/* Desktop View More Button */}
+              {!isMobile && (
+                <div className="top-deals-header-right">
+                  <button className="top-deals-view-all-btn">
+                    View More Deals
+                  </button>
+                </div>
+              )}
+
+              {/* Mobile Navigation in Header */}
+              {isMobile && (
+                <div className="top-deals-header-navigation">
+                  <button 
+                    className="top-deals-mobile-header-nav-btn"
+                    onClick={() => swiperRef.current?.slidePrev()}
+                  >
+                    <ChevronLeftIcon className="top-deals-nav-icon" />
+                  </button>
+                  <button 
+                    className="top-deals-mobile-header-nav-btn"
+                    onClick={() => swiperRef.current?.slideNext()}
+                  >
+                    <ChevronRightIcon className="top-deals-nav-icon" />
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
 
         {/* Swiper Slider with Side Navigation */}
         <div className="top-deals-swiper-container">
-          {/* Left Navigation Arrow */}
-          <div 
-            className="top-deals-swiper-button-prev-custom top-deals-side-nav top-deals-left-nav"
-            ref={navigationPrevRef}
-            onClick={() => swiperRef.current?.slidePrev()}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
+          {/* Left Navigation Arrow - Desktop view के लिए */}
+          {!isMobile && (
+            <div 
+              className="top-deals-swiper-button-prev-custom top-deals-side-nav top-deals-left-nav"
+              ref={navigationPrevRef}
+              onClick={() => swiperRef.current?.slidePrev()}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+          )}
 
           <Swiper
             modules={[Navigation, Autoplay]}
@@ -330,107 +491,23 @@ const TopDeals = () => {
           >
             {deals.map((deal) => (
               <SwiperSlide key={deal.id}>
-                <div className="top-deals-deal-card">
-                  <div className="top-deals-card-inner" style={{"--clr": "#fff"}}>
-                    <div className="top-deals-box">
-                      {/* Product Image */}
-                      <div className="top-deals-imgBox">
-                        <img 
-                          src={deal.image}
-                          className="top-deals-deal-image"
-                          alt={deal.title}
-                          onError={(e) => {
-                            e.target.src = "https://via.placeholder.com/200x200/F8F1E5/0D5BCF?text=Zebro+Kids";
-                          }}
-                        />
-                      </div>
-
-                      {/* Hover Overlay with Details and Wishlist Icons */}
-                      <div className="top-deals-hover-overlay">
-                        <div className="top-deals-hover-icons">
-                          <button 
-                            className={`top-deals-details-btn ${viewedProducts.includes(deal.id) ? 'active' : ''}`}
-                            onClick={(e) => handleDetailsClick(deal.id, e)}
-                            title="View Details"
-                          >
-                            <InformationCircleIcon className="top-deals-details-icon" />
-                          </button>
-                          <button 
-                            className={`top-deals-wishlist-btn ${wishlist.includes(deal.id) ? 'active' : ''}`}
-                            onClick={(e) => toggleWishlist(deal.id, e)}
-                            title={wishlist.includes(deal.id) ? "Remove from Wishlist" : "Add to Wishlist"}
-                          >
-                            <HeartIcon className="top-deals-wishlist-icon" />
-                          </button>
-                        </div>
-                      </div>
-
-                      {/* Shopping Cart Icon (Bottom Right) - Updated to use handleAddToCart */}
-                      <div className="top-deals-icon">
-                        <a 
-                          href="#" 
-                          className="top-deals-iconBox"
-                          onClick={(e) => handleAddToCart(deal, e)}
-                        > 
-                          <ShoppingCartIcon 
-                            style={{
-                              width: '24px',
-                              height: '24px',
-                              color: '#fff'
-                            }}
-                          />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Card Content */}
-                  <div className="top-deals-content">
-                    <h3 className="top-deals-deal-title">{deal.title}</h3>
-                    
-                    {/* Rating and Price Container */}
-                    <div className="top-deals-rating-price-container">
-                      {/* Rating */}
-                      <div className="top-deals-deal-rating">
-                        <div className="top-deals-stars">
-                          {[...Array(5)].map((_, i) => (
-                            <StarIcon 
-                              key={i}
-                              style={{
-                                width: '14px',
-                                height: '14px',
-                                fill: i < Math.floor(deal.rating) ? '#F2BB13' : 'none',
-                                stroke: i < deal.rating ? '#F2BB13' : '#BFBFBF'
-                              }}
-                            />
-                          ))}
-                        </div>
-                        <span className="top-deals-rating-text">({deal.reviews})</span>
-                      </div>
-
-                      {/* Price */}
-                      <div className="top-deals-deal-price">
-                        <span className="top-deals-current-price">{formatPrice(deal.price)}</span>
-                        <span className="top-deals-original-price">{formatPrice(deal.originalPrice)}</span>
-                        <span className="top-deals-discount">{deal.discount}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                {renderCard(deal)}
               </SwiperSlide>
             ))}
           </Swiper>
 
-          {/* Right Navigation Arrow */}
-          <div 
-            className="top-deals-swiper-button-next-custom top-deals-side-nav top-deals-right-nav"
-            ref={navigationNextRef}
-            onClick={() => swiperRef.current?.slideNext()}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
+          {/* Right Navigation Arrow - Desktop view के लिए */}
+          {!isMobile && (
+            <div 
+              className="top-deals-swiper-button-next-custom top-deals-side-nav top-deals-right-nav"
+              ref={navigationNextRef}
+              onClick={() => swiperRef.current?.slideNext()}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+          )}
         </div>
 
         {/* Mobile View All Button - Cards ke niche */}

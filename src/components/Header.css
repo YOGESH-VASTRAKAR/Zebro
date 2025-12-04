@@ -98,6 +98,206 @@ html, body {
   color: black !important;
 }
 
+/* Modern Hamburger Menu Toggle - Icon Card Style */
+.mobile-menu-toggle.modern-hamburger {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 48px !important;
+  height: 48px !important;
+  box-shadow: var(--shadow-medium) !important;
+  transition: all 0.3s ease !important;
+  position: relative;
+  overflow: hidden;
+  min-width: auto !important;
+}
+
+/* Hamburger Icon Wrapper - Icon Card Style */
+.hamburger-icon-wrapper {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-size: 1.5rem;
+  border: 0.3rem solid var(--background);
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-blue) 0%, #0a7ac9 100%);
+  box-shadow: -0.3rem 0.3rem 0.8rem rgba(0, 0, 0, 0.35),
+    inset -0.15rem 0.15rem 0.3rem rgba(0, 0, 0, 0.35);
+  transition: all 0.3s ease;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+}
+
+/* Hamburger Icon */
+.hamburger-icon {
+  width: 20px;
+  height: 20px;
+  stroke: white;
+  stroke-width: 2;
+  transition: all 0.3s ease;
+}
+
+/* Hover Effects */
+.mobile-menu-toggle.modern-hamburger:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-heavy) !important;
+}
+
+.mobile-menu-toggle.modern-hamburger:hover .hamburger-icon-wrapper {
+  background: linear-gradient(135deg, #0a7ac9 0%, #0d8ae0 100%);
+  transform: scale(1.05);
+}
+
+.mobile-menu-toggle.modern-hamburger:hover .hamburger-icon {
+  transform: rotate(90deg);
+}
+
+/* Active State */
+.mobile-menu-toggle.modern-hamburger:active {
+  transform: translateY(0);
+}
+
+.mobile-menu-toggle.modern-hamburger:active .hamburger-icon-wrapper {
+  transform: scale(0.95);
+  box-shadow: -0.2rem 0.2rem 0.6rem rgba(0, 0, 0, 0.25),
+    inset 0.1rem -0.1rem 0.3rem rgba(0, 0, 0, 0.25);
+}
+
+/* Transparent header mein style */
+.top-header-area:not(.sticky) .mobile-menu-toggle.modern-hamburger {
+  background: transparent !important;
+}
+
+.top-header-area:not(.sticky) .hamburger-icon-wrapper {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.3) 100%) !important;
+  border: 0.3rem solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: -0.3rem 0.3rem 0.8rem rgba(0, 0, 0, 0.25),
+    inset -0.15rem 0.15rem 0.3rem rgba(0, 0, 0, 0.2);
+}
+
+.top-header-area:not(.sticky) .hamburger-icon {
+  stroke:var(--primary-red) ;
+}
+
+.top-header-area:not(.sticky) .mobile-menu-toggle.modern-hamburger:hover .hamburger-icon-wrapper {
+  background: white !important;
+}
+
+.top-header-area:not(.sticky) .mobile-menu-toggle.modern-hamburger:hover .hamburger-icon {
+  stroke: var(--primary-blue);
+}
+
+/* Sticky header mein style */
+.top-header-area.sticky .hamburger-icon-wrapper {
+  background: linear-gradient(135deg, var(--primary-blue) 0%, #0a7ac9 100%);
+}
+
+.top-header-area.sticky .mobile-menu-toggle.modern-hamburger:hover .hamburger-icon-wrapper {
+  background: linear-gradient(135deg, #0a7ac9 0%, #0d8ae0 100%);
+}
+
+/* Responsive adjustments for hamburger */
+@media (max-width: 768px) {
+  .mobile-menu-toggle.modern-hamburger {
+    width: 44px !important;
+    height: 44px !important;
+  }
+  
+  .hamburger-icon-wrapper {
+    border-width: 0.25rem;
+  }
+  
+  .hamburger-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 576px) {
+  .mobile-menu-toggle.modern-hamburger {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  
+  .hamburger-icon-wrapper {
+    border-width: 0.2rem;
+  }
+  
+  .hamburger-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 375px) {
+  .mobile-menu-toggle.modern-hamburger {
+    width: 36px !important;
+    height: 36px !important;
+  }
+  
+  .hamburger-icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Desktop view mein hamburger hide karo */
+@media (min-width: 992px) {
+  .mobile-menu-toggle.modern-hamburger {
+    display: none !important;
+  }
+}
+
+/* Animation for hamburger icon on hover */
+@keyframes iconSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(90deg);
+  }
+}
+
+.mobile-menu-toggle.modern-hamburger:hover .hamburger-icon {
+  animation: iconSpin 0.3s ease forwards;
+}
+
+/* Pulse Animation on Load */
+@keyframes pulseIcon {
+  0% {
+    transform: scale(1);
+    box-shadow: -0.3rem 0.3rem 0.8rem rgba(0, 0, 0, 0.35);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: -0.4rem 0.4rem 1rem rgba(0, 0, 0, 0.4);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: -0.3rem 0.3rem 0.8rem rgba(0, 0, 0, 0.35);
+  }
+}
+
+/* Load animation for first time */
+.mobile-menu-toggle.modern-hamburger:not(:focus) .hamburger-icon-wrapper {
+  animation: pulseIcon 2s ease-in-out infinite;
+}
+
+/* Remove animation after first interaction */
+.mobile-menu-toggle.modern-hamburger:active .hamburger-icon-wrapper,
+.mobile-menu-toggle.modern-hamburger:hover .hamburger-icon-wrapper {
+  animation: none;
+}
+
 .main-menu-wrap {
   display: flex;
   align-items: center;
@@ -1021,23 +1221,6 @@ html, body {
   height: 100%;
   background: transparent;
   z-index: 1000;
-}
-
-/* Mobile Menu Toggle */
-.mobile-menu-toggle {
-  background: none !important;
-  border: none !important;
-  color: var(--text-dark) !important;
-  padding: 8px !important;
-  border-radius: 6px !important;
-  display: none;
-  align-items: center;
-  justify-content: center;
-}
-
-.mobile-menu-toggle svg {
-  width: 18px;
-  height: 18px;
 }
 
 /* Mobile Search Button Hide Karne ke liye */
@@ -2005,7 +2188,7 @@ html, body {
 }
 
 @media (max-width: 991px) {
-  .mobile-menu-toggle {
+  .mobile-menu-toggle.modern-hamburger {
     display: flex !important;
   }
   
@@ -2050,7 +2233,7 @@ html, body {
 
 /* Desktop view mein sab properly show hoga */
 @media (min-width: 992px) {
-  .mobile-menu-toggle {
+  .mobile-menu-toggle.modern-hamburger {
     display: none !important;
   }
 
@@ -2207,8 +2390,8 @@ html, body {
     height: 30px;
   }
   
-  .mobile-menu-toggle {
-    padding: 6px !important;
+  .mobile-menu-toggle.modern-hamburger {
+    padding: 5px 10px !important;
   }
   
   .modern-offcanvas {
@@ -2340,4 +2523,3 @@ input:focus {
 *:focus {
   outline: none !important;
 }
-

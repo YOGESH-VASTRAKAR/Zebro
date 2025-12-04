@@ -6,12 +6,14 @@ import {
   TrashIcon,
   ShoppingCartIcon,
   TagIcon,
-  ArrowPathIcon,
   CheckBadgeIcon
 } from '@heroicons/react/24/solid';
+import { useNavigate } from 'react-router-dom';
 import './CartDetails.css';
 
 const CartDetails = () => {
+  const navigate = useNavigate();
+
   const cartItems = [
     {
       id: 1,
@@ -78,12 +80,14 @@ const CartDetails = () => {
     console.log('Apply coupon');
   };
 
-  const handleUpdateCart = () => {
-    console.log('Update cart');
-  };
-
   const handleClearCart = () => {
     console.log('Clear cart');
+  };
+
+  // ✅ Checkout handler function
+  const handleCheckout = () => {
+    console.log('Proceeding to checkout...');
+    navigate('/checkout');
   };
 
   return (
@@ -201,10 +205,6 @@ const CartDetails = () => {
                       <CheckBadgeIcon className="cart-details-coupon-btn-icon" />
                       APPLY
                     </button>
-                    <button className="cart-details-coupon-btn cart-details-coupon-update" onClick={handleUpdateCart}>
-                      <ArrowPathIcon className="cart-details-coupon-btn-icon" />
-                      UPDATE CART
-                    </button>
                     <button className="cart-details-coupon-btn cart-details-coupon-clear" onClick={handleClearCart}>
                       <TrashIcon className="cart-details-coupon-btn-icon" />
                       CLEAR CART
@@ -270,7 +270,10 @@ const CartDetails = () => {
               </div>
 
               {/* Checkout Button */}
-              <button className="cart-details-checkout-btn">
+              <button 
+                className="cart-details-checkout-btn"
+                onClick={handleCheckout}
+              >
                 <ShoppingCartIcon className="cart-details-checkout-btn-icon" />
                 PROCEED TO CHECKOUT
               </button>

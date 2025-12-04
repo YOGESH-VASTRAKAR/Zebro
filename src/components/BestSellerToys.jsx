@@ -5,7 +5,9 @@ import {
   ShoppingCartIcon,
   InformationCircleIcon,
   HeartIcon,
-  StarIcon
+  StarIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon
 } from '@heroicons/react/24/solid';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -30,6 +32,7 @@ const BestSellerToys = () => {
   const [swiperReady, setSwiperReady] = useState(false);
   const [wishlist, setWishlist] = useState([]);
   const [viewedProducts, setViewedProducts] = useState([]);
+  const [isMobile, setIsMobile] = useState(false);
   const navigate = useNavigate();
 
   // Use Cart Context
@@ -110,12 +113,32 @@ const BestSellerToys = () => {
     }
   ];
 
+  // Check for mobile view
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Card click handler
+  const handleCardClick = (productId) => {
+    navigate(`/productdetails?id=${productId}`);
+    
+    if (!viewedProducts.includes(productId)) {
+      setViewedProducts([...viewedProducts, productId]);
+    }
+  };
+
   // Add to Cart Function
   const handleAddToCart = (product, e) => {
     e.preventDefault();
     e.stopPropagation();
     
-    // Add product to cart
     addItemToCart({
       id: product.id,
       name: product.title,
@@ -124,10 +147,8 @@ const BestSellerToys = () => {
       quantity: 1
     });
     
-    // Open cart sidebar
     toggleCart();
     
-    // Optional: Show success feedback
     console.log(`Added ${product.title} to cart`);
   };
 
@@ -136,10 +157,8 @@ const BestSellerToys = () => {
     e.preventDefault();
     e.stopPropagation();
     
-    // ProductDetails page par navigate karein with product ID
     navigate(`/productdetails?id=${productId}`);
     
-    // Add to viewed products if not already there
     if (!viewedProducts.includes(productId)) {
       setViewedProducts([...viewedProducts, productId]);
     }
@@ -165,10 +184,9 @@ const BestSellerToys = () => {
     }).format(price);
   };
 
-  // GSAP Animations - ONLY HEADING ANIMATION RETAINED
+  // GSAP Animations
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Section entrance animation - RETAINED
       gsap.fromTo(sectionRef.current,
         {
           opacity: 0,
@@ -187,7 +205,6 @@ const BestSellerToys = () => {
         }
       );
 
-      // Title animation - RETAINED
       gsap.fromTo(titleRef.current,
         {
           opacity: 0,
@@ -207,9 +224,6 @@ const BestSellerToys = () => {
         }
       );
 
-      // Card stagger animation - REMOVED
-      // Cards will load instantly without animation
-
     }, sectionRef);
 
     return () => ctx.revert();
@@ -220,24 +234,62 @@ const BestSellerToys = () => {
     if (swiperReady && swiperRef.current) {
       const swiper = swiperRef.current;
       
-      // Update navigation parameters
       swiper.params.navigation.prevEl = navigationPrevRef.current;
       swiper.params.navigation.nextEl = navigationNextRef.current;
       
-      // Re-init navigation
       swiper.navigation.destroy();
       swiper.navigation.init();
       swiper.navigation.update();
     }
   }, [swiperReady]);
 
+  // Swiper breakpoints for 2 grid layout
   const swiperBreakpoints = {
-    320: { slidesPerView: 1, spaceBetween: 20 },
-    480: { slidesPerView: 1, spaceBetween: 20 },
-    576: { slidesPerView: 2, spaceBetween: 20 },
-    768: { slidesPerView: 2, spaceBetween: 25 },
-    992: { slidesPerView: 3, spaceBetween: 30 },
-    1200: { slidesPerView: 4, spaceBetween: 30 }
+    320: { 
+      slidesPerView: 2,
+      slidesPerGroup: 2,
+      spaceBetween: 15,
+      grid: {
+        rows: 2,
+        fill: 'row'
+      }
+    },
+    480: { 
+      slidesPerView: 2,
+      slidesPerGroup: 2,
+      spaceBetween: 15,
+      grid: {
+        rows: 2,
+        fill: 'row'
+      }
+    },
+    576: { 
+      slidesPerView: 2,
+      slidesPerGroup: 2,
+      spaceBetween: 20,
+      grid: {
+        rows: 2,
+        fill: 'row'
+      }
+    },
+    768: { 
+      slidesPerView: 2,
+      spaceBetween: 25,
+      grid: {
+        rows: 2,
+        fill: 'row'
+      }
+    },
+    992: { 
+      slidesPerView: 3,
+      spaceBetween: 30,
+      grid: false
+    },
+    1200: { 
+      slidesPerView: 4,
+      spaceBetween: 30,
+      grid: false
+    }
   };
 
   const handleSwiperInit = (swiper) => {
@@ -248,39 +300,63 @@ const BestSellerToys = () => {
   return (
     <div className="bestseller-section" ref={sectionRef}>
       <Container fluid>
-        {/* Section Header with Colorful Text and View More Button */}
+        {/* Section Header */}
         <div className="bestseller-header" ref={titleRef}>
-          <div className="bestseller-header-content">
-            <div className="bestseller-header-left">
-              <h2 className="bestseller-title">
-                <span className="bestseller-title-word bestseller-title-word-1">Best</span>
-                <span className="bestseller-title-word bestseller-title-word-2">Seller</span>
-                <span className="bestseller-title-word bestseller-title-word-3">Toys</span>
-              </h2>
-              <p className="bestseller-subtitle">Most popular toys loved by kids</p>
-            </div>
-            
-            {/* View More Button - Top Right */}
-            <div className="bestseller-header-right">
-              <button className="bestseller-view-all-btn">
-                View All Toys
-              </button>
+          <div className="bestseller-header-wrapper">
+            <div className="bestseller-header-content">
+              <div className="bestseller-header-left">
+                <h2 className="bestseller-title">
+                  <span className="bestseller-title-word bestseller-title-word-1">Best</span>
+                  <span className="bestseller-title-word bestseller-title-word-2">Seller</span>
+                  <span className="bestseller-title-word bestseller-title-word-3">Toys</span>
+                </h2>
+                <p className="bestseller-subtitle">Most popular toys loved by kids</p>
+              </div>
+              
+              {/* Desktop View More Button */}
+              {!isMobile && (
+                <div className="bestseller-header-right">
+                  <button className="bestseller-view-all-btn">
+                    View All Toys
+                  </button>
+                </div>
+              )}
+
+              {/* Mobile Navigation in Header */}
+              {isMobile && (
+                <div className="bestseller-header-navigation">
+                  <button 
+                    className="bestseller-mobile-header-nav-btn"
+                    onClick={() => swiperRef.current?.slidePrev()}
+                  >
+                    <ChevronLeftIcon className="bestseller-nav-icon" />
+                  </button>
+                  <button 
+                    className="bestseller-mobile-header-nav-btn"
+                    onClick={() => swiperRef.current?.slideNext()}
+                  >
+                    <ChevronRightIcon className="bestseller-nav-icon" />
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
 
         {/* Swiper Slider with Side Navigation */}
         <div className="bestseller-swiper-container">
-          {/* Left Navigation Arrow */}
-          <div 
-            className="bestseller-swiper-button-prev-custom bestseller-side-nav bestseller-left-nav"
-            ref={navigationPrevRef}
-            onClick={() => swiperRef.current?.slidePrev()}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
+          {/* Left Navigation Arrow - Desktop view के लिए */}
+          {!isMobile && (
+            <div 
+              className="bestseller-swiper-button-prev-custom bestseller-side-nav bestseller-left-nav"
+              ref={navigationPrevRef}
+              onClick={() => swiperRef.current?.slidePrev()}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+          )}
 
           <Swiper
             modules={[Navigation, Autoplay]}
@@ -302,7 +378,11 @@ const BestSellerToys = () => {
           >
             {toys.map((toy) => (
               <SwiperSlide key={toy.id}>
-                <div className="bestseller-card">
+                <div 
+                  className="bestseller-card"
+                  onClick={() => handleCardClick(toy.id)}
+                  style={{ cursor: 'pointer' }}
+                >
                   <div className="bestseller-card-inner" style={{"--clr": "#fff"}}>
                     <div className="bestseller-box">
                       <div className="bestseller-imgBox">
@@ -320,7 +400,7 @@ const BestSellerToys = () => {
                       <div className="bestseller-hover-overlay">
                         <div className="bestseller-hover-icons">
                           <button 
-                            className={`bestseller-details-btn ${viewedProducts.includes(toy.id) ? 'active' : ''}`}
+                            className={`bestseller-details-btn ${viewedProducts.includes(toy.id) ? 'clicked-hover-effect' : ''}`}
                             onClick={(e) => handleDetailsClick(toy.id, e)}
                             title="View Details"
                           >
@@ -397,16 +477,18 @@ const BestSellerToys = () => {
             ))}
           </Swiper>
 
-          {/* Right Navigation Arrow */}
-          <div 
-            className="bestseller-swiper-button-next-custom bestseller-side-nav bestseller-right-nav"
-            ref={navigationNextRef}
-            onClick={() => swiperRef.current?.slideNext()}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
+          {/* Right Navigation Arrow - Desktop view के लिए */}
+          {!isMobile && (
+            <div 
+              className="bestseller-swiper-button-next-custom bestseller-side-nav bestseller-right-nav"
+              ref={navigationNextRef}
+              onClick={() => swiperRef.current?.slideNext()}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+          )}
         </div>
 
         {/* Mobile View All Button - Cards ke niche */}

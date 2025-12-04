@@ -16,12 +16,8 @@ import {
   TruckIcon,
   CreditCardIcon,
   ArrowRightIcon,
-  StarIcon,
   HeartIcon,
-  VideoCameraIcon,
   ChatBubbleLeftRightIcon,
-  CameraIcon,
-  MegaphoneIcon,
   ChevronDownIcon,
   InformationCircleIcon,
   PuzzlePieceIcon,
@@ -29,12 +25,18 @@ import {
   CubeIcon,
   RocketLaunchIcon,
   PaintBrushIcon,
-  GiftIcon,
   ArrowPathIcon,
   MapIcon,
   QuestionMarkCircleIcon,
-  ScaleIcon
-} from '@heroicons/react/24/outline';
+  Cog6ToothIcon,        
+  BriefcaseIcon       
+} from '@heroicons/react/24/solid';
+import { 
+  FaFacebookF, 
+  FaInstagram, 
+  FaTwitter, 
+  FaYoutube 
+} from "react-icons/fa";
 import './Footer.css';
 
 const Footer = () => {
@@ -56,30 +58,27 @@ const Footer = () => {
   };
 
   const quickLinks = [
-    { name: 'About Us', href: '/about', icon: InformationCircleIcon },
-    { name: 'Contact Us', href: '/contact', icon: ChatBubbleLeftRightIcon },
-    { name: 'Our Stores', href: '/stores', icon: MapPinIcon },
-    { name: 'Privacy Policy', href: '/privacy', icon: ShieldCheckIcon },
-    { name: 'Terms & Conditions', href: '/terms', icon: CreditCardIcon },
-    { name: 'Return Policy', href: '/returns', icon: TruckIcon }
+    { name: 'Contact Us', href: '/my_account?tab=support', icon: ChatBubbleLeftRightIcon },
+    { name: 'Setting', href: '/my_account?tab=setting', icon: Cog6ToothIcon }, 
+    { name: 'Privacy Policy', href: '/my_account?tab=support', icon: ShieldCheckIcon },
+    { name: 'Terms & Conditions', href: '/my_account?tab=support', icon: CreditCardIcon },
+    { name: 'Return Policy', href: '/my_account?tab=support', icon: TruckIcon }
   ];
 
   const categories = [
-    { name: 'Educational Toys', href: '/toys/educational', icon: PuzzlePieceIcon },
-    { name: 'Building Blocks', href: '/toys/blocks', icon: CubeIcon },
-    { name: 'Remote Control', href: '/toys/rc', icon: RocketLaunchIcon },
-    { name: 'Art & Craft', href: '/stationary/art', icon: PaintBrushIcon },
-    { name: 'School Supplies', href: '/stationary/school', icon: AcademicCapIcon },
-    { name: 'Gift Hampers', href: '/gifting/hampers', icon: GiftIcon }
+    { name: 'Educational Toys', href: '/products?category=educational-toys', icon: PuzzlePieceIcon },
+    { name: 'Building Blocks', href: '/products?category=building-blocks', icon: CubeIcon },
+    { name: 'Remote Control', href: '/products?category=remote-control', icon: RocketLaunchIcon },
+    { name: 'Art & Craft', href: '/products?category=art-craft', icon: PaintBrushIcon },
+    { name: 'School Supplies', href: '/products?category=school-supplies', icon: AcademicCapIcon },
   ];
 
   const customerService = [
-    { name: 'Shipping Info', href: '/shipping', icon: TruckIcon },
-    { name: 'Returns & Exchanges', href: '/returns', icon: ArrowPathIcon },
-    { name: 'Track Your Order', href: '/track', icon: MapIcon },
-    { name: 'Warranty', href: '/warranty', icon: ShieldCheckIcon },
-    { name: 'FAQ', href: '/faq', icon: QuestionMarkCircleIcon },
-    { name: 'Size Guide', href: '/size-guide', icon: ScaleIcon }
+    { name: 'Shipping Info', href: '/my_account', icon: TruckIcon },
+    { name: 'Returns & Exchanges', href: '/my_account', icon: ArrowPathIcon },
+    { name: 'Track Your Order', href: '/my_account', icon: MapIcon },
+    { name: 'FAQ', href: '/my_account?tab=support', icon: QuestionMarkCircleIcon },
+    { name: 'Business Inquiries', href: '/my_account?tab=support', icon: BriefcaseIcon }
   ];
 
   const renderMobileLink = (link, index) => {
@@ -226,21 +225,21 @@ const Footer = () => {
                     </div>
                   )}
 
-                  {/* Social Links */}
+                  {/* Social Links - Updated with Fa icons */}
                   <div className="social-links">
                     <h6 className="social-title">Follow Us</h6>
                     <div className="social-icons">
                       <a href="#" className="social-link facebook">
-                        <ChatBubbleLeftRightIcon className="social-icon" />
+                        <FaFacebookF className="social-icon" />
                       </a>
                       <a href="#" className="social-link instagram">
-                        <CameraIcon className="social-icon" />
+                        <FaInstagram className="social-icon" />
                       </a>
                       <a href="#" className="social-link twitter">
-                        <MegaphoneIcon className="social-icon" />
+                        <FaTwitter className="social-icon" />
                       </a>
                       <a href="#" className="social-link youtube">
-                        <VideoCameraIcon className="social-icon" />
+                        <FaYoutube className="social-icon" />
                       </a>
                     </div>
                   </div>
@@ -353,21 +352,21 @@ const Footer = () => {
                   </div>
                 )}
 
-                {/* Social Links */}
+                {/* Social Links - Updated with Fa icons */}
                 <div className="social-links mobile-social-links">
                   <h6 className="social-title">Follow Us</h6>
                   <div className="social-icons">
                     <a href="#" className="social-link facebook" aria-label="Facebook">
-                      <ChatBubbleLeftRightIcon className="social-icon" />
+                      <FaFacebookF className="social-icon" />
                     </a>
                     <a href="#" className="social-link instagram" aria-label="Instagram">
-                      <CameraIcon className="social-icon" />
+                      <FaInstagram className="social-icon" />
                     </a>
                     <a href="#" className="social-link twitter" aria-label="Twitter">
-                      <MegaphoneIcon className="social-icon" />
+                      <FaTwitter className="social-icon" />
                     </a>
                     <a href="#" className="social-link youtube" aria-label="YouTube">
-                      <VideoCameraIcon className="social-icon" />
+                      <FaYoutube className="social-icon" />
                     </a>
                   </div>
                 </div>

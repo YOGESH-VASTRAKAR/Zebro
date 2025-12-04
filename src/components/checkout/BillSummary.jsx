@@ -3,9 +3,12 @@ import {
   ShoppingBagIcon,
   TruckIcon
 } from '@heroicons/react/24/solid';
+import { useNavigate } from 'react-router-dom';
 import './BillSummary.css';
 
 const BillSummary = () => {
+  const navigate = useNavigate(); // ✅ Add navigate hook
+
   // Using your original data structure
   const orderSummary = {
     items: [
@@ -29,6 +32,12 @@ const BillSummary = () => {
     tax: 349.70,
     discount: 200.00,
     total: 3646.70
+  };
+
+  // ✅ Handle confirm order button click
+  const handleConfirmOrder = () => {
+    console.log('Confirming order...');
+    navigate('/order'); // ✅ Redirect to order page
   };
 
   return (
@@ -145,7 +154,10 @@ const BillSummary = () => {
           <div className="bill-divider"></div>
 
           {/* Confirm Order Button */}
-          <button className="bill-confirm-btn">
+          <button 
+            className="bill-confirm-btn"
+            onClick={handleConfirmOrder} // ✅ Add onClick handler
+          >
             CONFIRM ORDER
           </button>
         </div>

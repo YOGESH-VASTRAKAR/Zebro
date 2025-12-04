@@ -9,6 +9,7 @@ import {
 import ProductsNav from './ProductsNav';
 import CategoriesProducts from './CategoriesProducts';
 import './Products.css';
+import TransparentPricing from '../TransparentPricing';
 
 const Products = () => {
   const [gridView, setGridView] = useState('4x4');
@@ -117,6 +118,7 @@ const Products = () => {
           </Row>
         </Container>
       </div>
+      <TransparentPricing/>
 
       {/* Products Navigation */}
       <ProductsNav 
