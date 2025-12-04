@@ -120,7 +120,7 @@ const MyAddresses = () => {
                   <div className="my-addresses-header-title-wrapper">
                     <MapPinIcon className="my-addresses-header-icon" />
                     <p className="my-addresses-subtitle">
-                      Manage your delivery and billing addresses
+                      Manage your delivery addresses
                     </p>
                   </div>
                 </div>
@@ -155,27 +155,36 @@ const MyAddresses = () => {
                   </div>
                   
                   <div className="my-addresses-card-content">
-                    <div className="my-addresses-name-section">
-                      <UserIcon className="my-addresses-detail-icon" />
-                      <h4 className="my-addresses-name">{address.name}</h4>
-                    </div>
-                    
-                    <div className="my-addresses-line-section">
-                      <MapPinIcon className="my-addresses-detail-icon" />
-                      <div>
-                        <p className="my-addresses-line">{address.addressLine1}</p>
-                        <p className="my-addresses-line">{address.addressLine2}</p>
+                    {/* Left Column - Name and Address */}
+                    <div className="my-addresses-left-column">
+                      <div className="my-addresses-name-section">
+                        <UserIcon className="my-addresses-detail-icon" />
+                        <h4 className="my-addresses-name">{address.name}</h4>
+                      </div>
+                      
+                      <div className="my-addresses-line-section">
+                        <MapPinIcon className="my-addresses-detail-icon" />
+                        <div>
+                          <p className="my-addresses-line">{address.addressLine1}</p>
+                          <p className="my-addresses-line">{address.addressLine2}</p>
+                        </div>
                       </div>
                     </div>
                     
-                    <div className="my-addresses-details-grid">
-                      <div className="my-addresses-detail-item">
-                        <span className="my-addresses-detail-label">Pincode:</span>
-                        <span className="my-addresses-detail-value">{address.pincode}</span>
+                    {/* Right Column - Pincode and Mobile */}
+                    <div className="my-addresses-right-column">
+                      {/* Pincode: Label and Value Side by Side */}
+                      <div className="my-addresses-pincode-section">
+                        <span className="my-addresses-pincode-label">Pincode:</span>
+                        <span className="my-addresses-pincode-value">{address.pincode}</span>
                       </div>
-                      <div className="my-addresses-detail-item">
-                        <DevicePhoneMobileIcon className="my-addresses-detail-icon my-addresses-detail-icon-small" />
-                        <span className="my-addresses-detail-value">{address.mobile}</span>
+                      
+                      {/* Mobile: Icon and Value Side by Side, Vertically Centered */}
+                      <div className="my-addresses-mobile-section">
+                        <div className="my-addresses-mobile-icon-wrapper">
+                          <DevicePhoneMobileIcon className="my-addresses-detail-icon my-addresses-detail-icon-small" />
+                        </div>
+                        <span className="my-addresses-mobile-value">{address.mobile}</span>
                       </div>
                     </div>
                   </div>

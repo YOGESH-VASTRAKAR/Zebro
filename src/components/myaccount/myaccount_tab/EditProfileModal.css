@@ -293,7 +293,9 @@
   height: 16px;
 }
 
-/* Responsive Design */
+/* ------------------ RESPONSIVE IMPROVEMENTS ------------------ */
+
+/* Tablet and below */
 @media (max-width: 768px) {
   .edit-profile-modal-content {
     max-width: 95%;
@@ -330,8 +332,22 @@
   .edit-profile-note-text {
     font-size: 0.85rem;
   }
+  
+  /* Ensure buttons remain side by side */
+  .edit-profile-modal-footer {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+  
+  .edit-profile-cancel-btn,
+  .edit-profile-save-btn {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
 }
 
+/* Mobile and below */
 @media (max-width: 576px) {
   .edit-profile-modal-overlay {
     padding: 10px;
@@ -360,11 +376,119 @@
   .edit-profile-save-btn {
     padding: 10px 12px;
     font-size: 13px;
+    flex: 1; /* Equal width */
   }
   
   .edit-profile-btn-icon {
     width: 14px;
     height: 14px;
+  }
+  
+  /* For very small text on buttons */
+  .edit-profile-cancel-btn span,
+  .edit-profile-save-btn span {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80px;
+  }
+}
+
+/* Very small mobile devices */
+@media (max-width: 375px) {
+  .edit-profile-modal-title {
+    font-size: 16px;
+  }
+  
+  .edit-profile-modal-title-icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .edit-profile-close-icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .edit-profile-note {
+    padding: 10px 12px;
+  }
+  
+  .edit-profile-note-text {
+    font-size: 0.8rem;
+  }
+  
+  .edit-profile-cancel-btn,
+  .edit-profile-save-btn {
+    padding: 8px 10px;
+    font-size: 12px;
+    gap: 6px;
+  }
+  
+  .edit-profile-btn-icon {
+    width: 12px;
+    height: 12px;
+  }
+  
+  /* Reduce button text on very small screens */
+  .edit-profile-cancel-btn span,
+  .edit-profile-save-btn span {
+    max-width: 60px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 320px) {
+  .edit-profile-modal-overlay {
+    padding: 5px;
+  }
+  
+  .edit-profile-modal-content {
+    margin: 5px;
+  }
+  
+  .edit-profile-modal-body {
+    padding: 12px;
+  }
+  
+  .edit-profile-modal-header,
+  .edit-profile-modal-footer {
+    padding: 10px 12px;
+  }
+  
+  .edit-profile-form-row-wide {
+    gap: 12px;
+  }
+  
+  .edit-profile-form {
+    gap: 12px;
+  }
+  
+  .edit-profile-form-label {
+    font-size: 12px;
+  }
+  
+  .edit-profile-checkbox-label {
+    font-size: 12px;
+  }
+  
+  .edit-profile-cancel-btn,
+  .edit-profile-save-btn {
+    padding: 8px;
+    font-size: 11px;
+  }
+  
+  /* Show only icons on extra small screens */
+  .edit-profile-cancel-btn span,
+  .edit-profile-save-btn span {
+    display: none;
+  }
+  
+  .edit-profile-btn-icon {
+    width: 16px;
+    height: 16px;
+    margin: 0;
   }
 }
 

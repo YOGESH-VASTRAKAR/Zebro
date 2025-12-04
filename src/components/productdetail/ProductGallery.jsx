@@ -215,7 +215,7 @@ const ProductGallery = ({ product }) => {
                   <div className={`product-gallery-stock-status ${productData.inStock ? 'product-gallery-in-stock' : 'product-gallery-out-of-stock'}`}>
                     <div className="product-gallery-status-indicator"></div>
                     <span className="product-gallery-status-text">
-                      {productData.inStock ? 'In Stock - Ready to Ship' : 'Out of Stock'}
+                      {productData.inStock ? 'In Stock' : 'Out of Stock'}
                     </span>
                   </div>
                 </div>

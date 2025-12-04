@@ -203,7 +203,7 @@
   color: #333;
 }
 
-/* Modal Footer */
+/* Modal Footer - Buttons ALWAYS side by side */
 .logout-modal-footer {
   display: flex;
   gap: 12px;
@@ -230,6 +230,7 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 .logout-cancel-btn {
@@ -261,9 +262,12 @@
 .logout-btn-icon {
   width: 16px;
   height: 16px;
+  flex-shrink: 0; /* Prevent icon from shrinking */
 }
 
-/* Responsive Design */
+/* ------------------ RESPONSIVE IMPROVEMENTS ------------------ */
+
+/* Tablet and below */
 @media (max-width: 768px) {
   .logout-modal-content {
     max-width: 95%;
@@ -288,13 +292,42 @@
     padding: 15px;
     flex-direction: column;
     text-align: center;
+    gap: 12px;
   }
   
   .logout-warning-icon {
     align-self: center;
+    width: 36px;
+    height: 36px;
+  }
+  
+  .logout-warning-icon-svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .logout-warning-title {
+    font-size: 15px;
+  }
+  
+  .logout-warning-text {
+    font-size: 13px;
+  }
+  
+  /* Adjust button font size for tablet */
+  .logout-cancel-btn,
+  .logout-confirm-btn {
+    font-size: 13px;
+    padding: 11px 15px;
+  }
+  
+  .logout-btn-icon {
+    width: 15px;
+    height: 15px;
   }
 }
 
+/* Mobile - Buttons STAY side by side */
 @media (max-width: 576px) {
   .logout-modal-overlay {
     padding: 10px;
@@ -316,16 +349,25 @@
   
   .logout-warning-section {
     padding: 12px;
+    margin-bottom: 20px;
   }
   
   .logout-confirm-checkbox {
     padding: 12px;
   }
   
+  /* Buttons side by side with adjusted font size */
+  .logout-modal-footer {
+    flex-direction: row; /* Changed from column to row */
+    gap: 10px;
+  }
+  
   .logout-cancel-btn,
   .logout-confirm-btn {
+    font-size: 12px;
     padding: 10px 12px;
-    font-size: 13px;
+    gap: 6px;
+    min-width: 120px; /* Minimum width for buttons */
   }
   
   .logout-btn-icon {
@@ -333,14 +375,190 @@
     height: 14px;
   }
   
-  .logout-modal-footer {
-    flex-direction: column;
+  .logout-checkbox-label {
+    font-size: 13px;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .logout-modal-title {
+    font-size: 16px;
+  }
+  
+  .logout-modal-title-icon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .logout-close-icon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .logout-warning-section {
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .logout-warning-icon {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .logout-warning-icon-svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .logout-warning-title {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+  
+  .logout-warning-text {
+    font-size: 12px;
+  }
+  
+  .logout-confirm-checkbox {
+    padding: 10px;
+  }
+  
+  .logout-checkbox-label {
+    font-size: 12px;
     gap: 10px;
+  }
+  
+  .logout-checkbox-custom {
+    width: 18px;
+    height: 18px;
+  }
+  
+  /* Adjust button font size and padding */
+  .logout-cancel-btn,
+  .logout-confirm-btn {
+    font-size: 11px;
+    padding: 9px 10px;
+    gap: 5px;
+    letter-spacing: 0.3px;
+    min-width: 110px;
+  }
+  
+  .logout-btn-icon {
+    width: 13px;
+    height: 13px;
+  }
+  
+  /* Adjust text on buttons */
+  .logout-cancel-btn span,
+  .logout-confirm-btn span {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 80px;
+  }
+}
+
+/* Extra small screens - buttons still side by side */
+@media (max-width: 375px) {
+  .logout-modal-overlay {
+    padding: 8px;
+  }
+  
+  .logout-modal-content {
+    margin: 8px;
+  }
+  
+  .logout-modal-body {
+    padding: 12px;
+  }
+  
+  .logout-modal-header,
+  .logout-modal-footer {
+    padding: 10px 12px;
+  }
+  
+  .logout-modal-footer {
+    gap: 8px;
+  }
+  
+  /* Further reduce button font size */
+  .logout-cancel-btn,
+  .logout-confirm-btn {
+    font-size: 10px;
+    padding: 8px 9px;
+    gap: 4px;
+    letter-spacing: 0.2px;
+    min-width: 100px;
+  }
+  
+  .logout-btn-icon {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .logout-cancel-btn span,
+  .logout-confirm-btn span {
+    max-width: 70px;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 320px) {
+  .logout-modal-overlay {
+    padding: 5px;
+  }
+  
+  .logout-modal-content {
+    margin: 5px;
+  }
+  
+  .logout-modal-footer {
+    gap: 6px;
+  }
+  
+  /* Minimum font size for readability */
+  .logout-cancel-btn,
+  .logout-confirm-btn {
+    font-size: 9px;
+    padding: 7px 8px;
+    min-width: 90px;
+  }
+  
+  .logout-btn-icon {
+    width: 11px;
+    height: 11px;
+  }
+  
+  .logout-cancel-btn span,
+  .logout-confirm-btn span {
+    max-width: 60px;
+  }
+}
+
+/* For extremely small screens, show abbreviated text */
+@media (max-width: 280px) {
+  .logout-cancel-btn span {
+    content: "CANCEL";
+    font-size: 8px;
+  }
+  
+  .logout-confirm-btn span {
+    content: "LOGOUT";
+    font-size: 8px;
   }
   
   .logout-cancel-btn,
   .logout-confirm-btn {
-    width: 100%;
+    font-size: 8px;
+    padding: 6px;
+    min-width: 70px;
+  }
+  
+  .logout-btn-icon {
+    width: 10px;
+    height: 10px;
   }
 }
 
@@ -355,4 +573,23 @@
 .logout-checkbox-input:focus + .logout-checkbox-custom {
   outline: 2px solid #dc3545;
   outline-offset: 2px;
+}
+
+/* Touch device optimization */
+@media (hover: none) and (pointer: coarse) {
+  .logout-close-btn,
+  .logout-cancel-btn,
+  .logout-confirm-btn {
+    min-height: 44px; /* Minimum touch target size */
+  }
+  
+  .logout-checkbox-custom {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .logout-checkbox-label {
+    min-height: 44px;
+    align-items: center;
+  }
 }

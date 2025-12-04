@@ -1,5 +1,6 @@
 :root {
   --primary-blue: #0662aa;
+  --light-blue:linear-gradient(90deg, #5b5b5b5f, transparent);
   --primary-red: #e65c52;
   --primary-green: #37aa50;
   --primary-yellow: #f5c662;
@@ -1925,7 +1926,7 @@ html, body {
 
 .mobile-nav-link:hover,
 .mobile-nav-link.active {
-  background: var(--primary-blue);
+  background: var(--light-blue);
   color: white;
 }
 
@@ -2523,3 +2524,4 @@ input:focus {
 *:focus {
   outline: none !important;
 }
+

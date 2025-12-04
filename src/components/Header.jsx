@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate, NavLink } from 'react-router-dom';
+import { useNavigate, NavLink, useLocation } from 'react-router-dom';
 import { useCart } from './CartContext';
 import { 
   Container, 
@@ -54,6 +54,7 @@ const Header = () => {
   const [showUserDropdown, setShowUserDropdown] = useState(false);
   const { toggleCart, totalItems } = useCart();
   const navigate = useNavigate();
+  const location = useLocation();
   
   const userDropdownRef = useRef(null);
 
@@ -400,6 +401,29 @@ const Header = () => {
     }
   };
 
+  // Function to check if a path is active
+  const isActivePath = (path) => {
+    const currentPath = location.pathname + location.search;
+    
+    if (path === '/') {
+      return currentPath === '/';
+    }
+    
+    // For query parameters
+    if (path.includes('?')) {
+      return currentPath === path;
+    }
+    
+    // For regular paths
+    return currentPath.startsWith(path);
+  };
+
+  // Function to check if categories is active
+  const isCategoriesActive = () => {
+    const currentPath = location.pathname + location.search;
+    return currentPath.includes('/products');
+  };
+
   // Render Mobile Navigation
   const renderMobileNavigation = () => {
     switch (currentMobileView) {
@@ -591,7 +615,7 @@ const Header = () => {
               {/* Categories */}
               <div className="mobile-nav-item">
                 <div 
-                  className="mobile-nav-link"
+                  className={`mobile-nav-link ${isCategoriesActive() ? 'active' : ''}`}
                   onClick={navigateToCategories}
                 >
                   <div className="mobile-nav-link-content">
@@ -632,25 +656,10 @@ const Header = () => {
                 <span>Offers</span>
               </NavLink>
 
-              {/* Wishlist - Direct to My Account with wishlist tab */}
-              <div 
-                className="mobile-nav-link simple"
-                onClick={() => {
-                  handleOffcanvasClose();
-                  handleWishlistClick();
-                }}
-              >
-                <HeartIcon className="mobile-nav-icon wishlist-icon" />
-                <span>Wishlist</span>
-                {wishlistItems > 0 && (
-                  <span className="mobile-wishlist-count">{wishlistItems}</span>
-                )}
-              </div>
-
               {/* User Account */}
               <div className="mobile-nav-item">
                 <div 
-                  className="mobile-nav-link"
+                  className={`mobile-nav-link ${isActivePath('/my_account') || isActivePath('/profile') ? 'active' : ''}`}
                   onClick={navigateToUserMenu}
                 >
                   <div className="mobile-nav-link-content">
@@ -747,7 +756,8 @@ const Header = () => {
                 {/* Main Menu - Desktop */}
                 <nav className="main-menu desktop-menu">
                   <ul>
-                    <li className="current-list-item">
+                    {/* Home */}
+                    <li className={isActivePath('/') ? 'current-list-item' : ''}>
                       <NavLink 
                         to="/" 
                         className={({ isActive }) => isActive ? 'active' : ''}
@@ -759,11 +769,18 @@ const Header = () => {
                     
                     {/* Categories with Mega Dropdown */}
                     <li 
-                      className="mega-dropdown-parent"
+                      className={`mega-dropdown-parent ${isCategoriesActive() ? 'current-list-item' : ''}`}
                       onMouseEnter={() => setMegaDropdownOpen(true)}
                       onMouseLeave={() => setMegaDropdownOpen(false)}
                     >
-                      <a href="#" className="nav-link-with-dropdown">
+                      <a 
+                        href="#" 
+                        className={`nav-link-with-dropdown ${isCategoriesActive() ? 'active' : ''}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setMegaDropdownOpen(!megaDropdownOpen);
+                        }}
+                      >
                         <PuzzlePieceIcon className="nav-icon categories-icon" />
                         <span>Categories</span>
                         <ChevronDownIcon className="dropdown-arrow" />
@@ -902,7 +919,8 @@ const Header = () => {
                       </div>
                     </li>
 
-                    <li>
+                    {/* Best Sellers */}
+                    <li className={isActivePath('/bestseller') ? 'current-list-item' : ''}>
                       <NavLink 
                         to="/bestseller" 
                         className={({ isActive }) => isActive ? 'active' : ''}
@@ -912,7 +930,8 @@ const Header = () => {
                       </NavLink>
                     </li>
 
-                    <li>
+                    {/* New Arrivals */}
+                    <li className={isActivePath('/newarrival') ? 'current-list-item' : ''}>
                       <NavLink 
                         to="/newarrival" 
                         className={({ isActive }) => isActive ? 'active' : ''}
@@ -922,7 +941,8 @@ const Header = () => {
                       </NavLink>
                     </li>
 
-                    <li>
+                    {/* Offers */}
+                    <li className={isActivePath('/alloffer') ? 'current-list-item' : ''}>
                       <NavLink 
                         to="/alloffer" 
                         className={({ isActive }) => isActive ? 'active' : ''}
@@ -932,7 +952,8 @@ const Header = () => {
                       </NavLink>
                     </li>
 
-                    <li>
+                    {/* Help & Support */}
+                    <li className={isActivePath('/my_account?tab=support') ? 'current-list-item' : ''}>
                       <NavLink 
                         to="/my_account?tab=support" 
                         className={({ isActive }) => isActive ? 'active' : ''}

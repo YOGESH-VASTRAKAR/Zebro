@@ -32,7 +32,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   background: transparent;
-  padding-right: 0; /* Remove padding to prevent extra space */
+  padding-right: 0;
 }
 
 .my-addresses-container {
@@ -86,7 +86,7 @@
 }
 
 .my-addresses-new-address-btn {
-  background:#0662aa;
+  background: #0662aa;
   color: white;
   border: none;
   padding: 12px 20px;
@@ -188,11 +188,28 @@
   height: 12px;
 }
 
-/* Address Content */
+/* UPDATED: Address Content - Two Column Layout */
 .my-addresses-card-content {
+  display: flex;
+  gap: 20px;
+}
+
+/* Left Column - Name and Address */
+.my-addresses-left-column {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+/* Right Column - Pincode and Mobile */
+.my-addresses-right-column {
+  flex-shrink: 0;
+  min-width: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
 }
 
 .my-addresses-name-section,
@@ -220,6 +237,7 @@
   font-weight: 600;
   color: #333;
   margin: 0;
+  line-height: 1.4;
 }
 
 .my-addresses-line {
@@ -229,28 +247,47 @@
   line-height: 1.4;
 }
 
-.my-addresses-details-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 8px;
-}
-
-.my-addresses-detail-item {
+/* UPDATED: Pincode Section - Label and Value Side by Side */
+.my-addresses-pincode-section {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 13px;
 }
 
-.my-addresses-detail-label {
+.my-addresses-pincode-label {
   color: #666;
   font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
 }
 
-.my-addresses-detail-value {
+.my-addresses-pincode-value {
   color: #333;
   font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+/* UPDATED: Mobile Section - Icon and Value Side by Side, Vertically Centered */
+.my-addresses-mobile-section {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.my-addresses-mobile-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.my-addresses-mobile-value {
+  color: #333;
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
 }
 
 /* Address Actions - Side by Side Buttons */
@@ -557,7 +594,7 @@
   opacity: 1;
 }
 
-/* Modal Footer */
+/* Modal Footer - Buttons ALWAYS side by side */
 .my-addresses-modal-footer {
   display: flex;
   gap: 12px;
@@ -584,6 +621,7 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 .my-addresses-cancel-btn {
@@ -597,7 +635,7 @@
 }
 
 .my-addresses-save-btn {
-  background: #0662aa ;
+  background: #0662aa;
   color: white;
 }
 
@@ -612,25 +650,16 @@
   transform: none;
 }
 
-/* Responsive Design */
-@media (max-width: 868px) {
-  .my-addresses-modal-content {
-    max-width: 95%;
-    margin: 20px;
-  }
+.my-addresses-btn-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0; /* Prevent icon from shrinking */
 }
 
+/* ------------------ RESPONSIVE IMPROVEMENTS ------------------ */
+
+/* Tablet and below */
 @media (max-width: 768px) {
-  .my-addresses-header-content {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 15px;
-  }
-  
-  .my-addresses-header-actions {
-    align-self: flex-start;
-  }
-  
   .my-addresses-list {
     grid-template-columns: 1fr;
     gap: 15px;
@@ -652,16 +681,29 @@
     gap: 16px;
   }
   
-  .my-addresses-action-buttons {
-    flex-direction: column;
+  .my-addresses-modal-body {
+    padding: 20px;
   }
   
-  .my-addresses-set-default-btn,
-  .my-addresses-delete-btn {
-    width: 100%;
+  .my-addresses-modal-header,
+  .my-addresses-modal-footer {
+    padding: 16px 20px;
+  }
+  
+  /* Adjust button font size for tablet */
+  .my-addresses-cancel-btn,
+  .my-addresses-save-btn {
+    font-size: 13px;
+    padding: 11px 15px;
+  }
+  
+  .my-addresses-btn-icon {
+    width: 15px;
+    height: 15px;
   }
 }
 
+/* Mobile - Buttons STAY side by side */
 @media (max-width: 576px) {
   .my-addresses-content-title {
     font-size: 1.3rem;
@@ -672,6 +714,35 @@
     padding: 15px 20px;
   }
   
+  /* Header: "Manage your delivery addresses" and "NEW ADDRESS" side by side on mobile */
+  .my-addresses-header-content {
+    flex-direction: row; /* Keep side by side */
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .my-addresses-header-text {
+    flex: 1;
+    min-width: 0; /* Allow text to truncate if needed */
+  }
+  
+  .my-addresses-subtitle {
+    font-size: 12px; /* Slightly smaller on mobile */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .my-addresses-header-actions {
+    flex-shrink: 0;
+  }
+  
+  .my-addresses-new-address-btn {
+    padding: 10px 15px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  
   .my-addresses-card {
     padding: 12px;
   }
@@ -680,36 +751,287 @@
     font-size: 15px;
   }
   
-  .my-addresses-line,
-  .my-addresses-detail-item {
+  .my-addresses-line {
     font-size: 13px;
   }
   
-  .my-addresses-new-address-btn {
-    padding: 10px 16px;
-    font-size: 13px;
-    width: 100%;
+  /* Card Content: Keep Left and Right columns side by side on mobile */
+  .my-addresses-card-content {
+    flex-direction: row; /* Keep side by side */
+    gap: 15px;
+  }
+  
+  .my-addresses-left-column {
+    flex: 1;
+  }
+  
+  .my-addresses-right-column {
+    flex-shrink: 0;
+    min-width: 110px; /* Slightly smaller on mobile */
+  }
+  
+  .my-addresses-pincode-label,
+  .my-addresses-pincode-value,
+  .my-addresses-mobile-value {
+    font-size: 12px;
+  }
+  
+  /* Action Buttons: Keep "SET DEFAULT" and "DELETE" side by side on mobile */
+  .my-addresses-action-buttons {
+    flex-direction: row; /* Keep side by side */
+  }
+  
+  .my-addresses-set-default-btn,
+  .my-addresses-delete-btn {
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+  
+  .my-addresses-modal-overlay {
+    padding: 10px;
+  }
+  
+  .my-addresses-modal-content {
+    max-width: 100%;
+    margin: 10px;
   }
   
   .my-addresses-modal-body {
-    padding: 20px;
+    padding: 15px;
   }
   
   .my-addresses-modal-header,
   .my-addresses-modal-footer {
-    padding: 16px 20px;
+    padding: 12px 15px;
+  }
+  
+  /* Modal Footer: Buttons side by side with adjusted font size */
+  .my-addresses-modal-footer {
+    flex-direction: row; /* Keep side by side */
+    gap: 10px;
+  }
+  
+  .my-addresses-cancel-btn,
+  .my-addresses-save-btn {
+    font-size: 12px;
+    padding: 10px 12px;
+    gap: 6px;
+    min-width: 120px; /* Minimum width for buttons */
+  }
+  
+  .my-addresses-btn-icon {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .my-addresses-checkbox-label {
+    font-size: 13px;
   }
   
   .my-addresses-form {
     gap: 16px;
   }
   
-  .my-addresses-details-grid {
-    grid-template-columns: 1fr;
+  .my-addresses-new-address-btn {
+    width: auto; /* Remove full width on mobile */
   }
 }
 
-/* Scrollbar Styling - FIXED to match Wishlist */
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .my-addresses-modal-title {
+    font-size: 16px;
+  }
+  
+  .my-addresses-modal-title-icon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .my-addresses-close-icon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .my-addresses-form-label {
+    font-size: 12px;
+  }
+  
+  .my-addresses-form-input,
+  .my-addresses-form-select {
+    padding: 10px 10px 10px 32px;
+    font-size: 13px;
+  }
+  
+  .my-addresses-checkbox-label {
+    font-size: 12px;
+    gap: 8px;
+  }
+  
+  .my-addresses-checkbox-custom {
+    width: 16px;
+    height: 16px;
+  }
+  
+  /* Adjust button font size and padding */
+  .my-addresses-cancel-btn,
+  .my-addresses-save-btn {
+    font-size: 11px;
+    padding: 9px 10px;
+    gap: 5px;
+    letter-spacing: 0.3px;
+    min-width: 110px;
+  }
+  
+  .my-addresses-btn-icon {
+    width: 13px;
+    height: 13px;
+  }
+  
+  /* Adjust text on buttons */
+  .my-addresses-cancel-btn span,
+  .my-addresses-save-btn span {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 80px;
+  }
+}
+
+/* Extra small screens - buttons still side by side */
+@media (max-width: 375px) {
+  .my-addresses-modal-overlay {
+    padding: 8px;
+  }
+  
+  .my-addresses-modal-content {
+    margin: 8px;
+  }
+  
+  .my-addresses-modal-body {
+    padding: 12px;
+  }
+  
+  .my-addresses-modal-header,
+  .my-addresses-modal-footer {
+    padding: 10px 12px;
+  }
+  
+  .my-addresses-modal-footer {
+    gap: 8px;
+  }
+  
+  /* Further reduce button font size */
+  .my-addresses-cancel-btn,
+  .my-addresses-save-btn {
+    font-size: 10px;
+    padding: 8px 9px;
+    gap: 4px;
+    letter-spacing: 0.2px;
+    min-width: 100px;
+  }
+  
+  .my-addresses-btn-icon {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .my-addresses-cancel-btn span,
+  .my-addresses-save-btn span {
+    max-width: 70px;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 320px) {
+  .my-addresses-modal-overlay {
+    padding: 5px;
+  }
+  
+  .my-addresses-modal-content {
+    margin: 5px;
+  }
+  
+  .my-addresses-modal-footer {
+    gap: 6px;
+  }
+  
+  /* Minimum font size for readability */
+  .my-addresses-cancel-btn,
+  .my-addresses-save-btn {
+    font-size: 9px;
+    padding: 7px 8px;
+    min-width: 90px;
+  }
+  
+  .my-addresses-btn-icon {
+    width: 11px;
+    height: 11px;
+  }
+  
+  .my-addresses-cancel-btn span,
+  .my-addresses-save-btn span {
+    max-width: 60px;
+  }
+}
+
+/* For extremely small screens, show abbreviated text */
+@media (max-width: 280px) {
+  .my-addresses-cancel-btn span {
+    content: "CANCEL";
+    font-size: 8px;
+  }
+  
+  .my-addresses-save-btn span {
+    content: "SAVE";
+    font-size: 8px;
+  }
+  
+  .my-addresses-cancel-btn,
+  .my-addresses-save-btn {
+    font-size: 8px;
+    padding: 6px;
+    min-width: 70px;
+  }
+  
+  .my-addresses-btn-icon {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* Adjust for very small screens in main content */
+@media (max-width: 375px) {
+  .my-addresses-header-content {
+    gap: 10px;
+  }
+  
+  .my-addresses-subtitle {
+    font-size: 11px;
+  }
+  
+  .my-addresses-new-address-btn {
+    padding: 8px 12px;
+    font-size: 11px;
+  }
+  
+  .my-addresses-card-content {
+    gap: 10px;
+  }
+  
+  .my-addresses-right-column {
+    min-width: 100px;
+  }
+  
+  .my-addresses-set-default-btn,
+  .my-addresses-delete-btn {
+    padding: 6px 8px;
+    font-size: 10px;
+  }
+}
+
+/* Scrollbar Styling */
 .my-addresses-content-scrollable::-webkit-scrollbar {
   width: 6px;
 }
