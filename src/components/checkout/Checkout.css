@@ -417,15 +417,6 @@
   padding: 2rem 0;
 }
 
-/* Checkout Layout Columns */
-.checkout-left-column {
-  padding-right: 15px;
-}
-
-.checkout-right-column {
-  padding-left: 15px;
-}
-
 /* Responsive Design */
 @media (max-width: 991px) {
   .checkout-stats-col {
@@ -453,13 +444,9 @@
   }
   
   .checkout-left-column {
-    padding-right: 0;
     margin-bottom: 30px;
   }
   
-  .checkout-right-column {
-    padding-left: 0;
-  }
   
   .checkout-verification-title {
     font-size: 1.2rem;
