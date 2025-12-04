@@ -434,12 +434,6 @@
   background: var(--similar-products-green);
 }
 
-.similar-products-card-inner .similar-products-box .similar-products-icon .similar-products-iconBox svg {
-  color: #fff;
-  width: 20px;
-  height: 20px;
-}
-
 /* Content - Mobile के लिए adjust */
 .similar-products-content {
   padding: 0.8rem 0.5rem 0.5rem;
@@ -605,34 +599,50 @@
 }
 
 @media (max-width: 768px) {
-  /* Mobile view */
+  /* Mobile view - केवल size और gap के changes */
   .similar-products-section {
-    padding: 20px 0;
+    padding: 15px 0;
   }
   
   .similar-products-header {
-    margin-bottom: 15px;
-    padding: 0 20px;
+    margin-bottom: 10px;
+    padding: 0 15px;
   }
   
+  /* Cards के बीच gap कम करें */
   .similar-products-swiper-container {
-    padding: 0 15px;
+    padding: 0 10px;
     min-height: auto;
-    margin: 1em 0;
+    margin: 0.5em 0;
+  }
+  
+  .similar-products-swiper {
+    padding: 5px 0;
+  }
+  
+  /* Mobile pe cards के बीच vertical gap कम करें */
+  .similar-products-swiper .swiper-slide {
+    height: calc((100% - 8px) / 2) !important;
+    margin-bottom: 8px !important;
+  }
+  
+  /* Remove margin for last row in grid */
+  .similar-products-swiper .swiper-slide:nth-last-child(-n+2) {
+    margin-bottom: 0 !important;
   }
   
   .similar-products-header-content {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
+    gap: 8px;
     flex-wrap: nowrap;
   }
   
   .similar-products-header-left {
     flex: 1;
     min-width: auto;
-    margin-right: 10px;
+    margin-right: 5px;
   }
   
   .similar-products-header-right {
@@ -640,15 +650,15 @@
   }
   
   .similar-products-title {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     justify-content: flex-start;
     text-align: left;
-    margin-bottom: 5px;
-    gap: 5px;
+    margin-bottom: 3px;
+    gap: 4px;
   }
   
   .similar-products-subtitle {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     text-align: left;
     margin: 0;
   }
@@ -657,53 +667,157 @@
   .similar-products-header-navigation {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     margin-left: auto;
     flex-shrink: 0;
   }
   
   .similar-products-mobile-header-nav-btn {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
   }
   
   .similar-products-nav-icon {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
   }
   
-  /* Swiper को पूरी width दें */
-  .similar-products-swiper {
-    padding: 5px 0;
-  }
-  
+  /* Card के font size को decrease करें */
   .similar-products-card {
     max-width: 100%;
+    border-radius: 16px;
   }
   
-  /* Mobile View All Button - Cards ke niche */
+  .similar-products-card-inner {
+    height: 140px;
+  }
+  
+  .similar-products-content {
+    padding: 0.6rem 0.4rem 0.4rem;
+  }
+  
+  /* Product title font size mobile के लिए और छोटा */
+  .similar-products-title-text {
+    font-size: 0.8rem;
+    min-height: 2.2em;
+    margin-bottom: 4px;
+    line-height: 1.1;
+  }
+  
+  /* Cart icon size और cart container size mobile के लिए decrease */
+  .similar-products-card-inner .similar-products-box .similar-products-icon {
+    width: 3.2rem;
+    height: 3.2rem;
+    bottom: -0.25rem;
+    right: -0.25rem;
+  }
+  
+  .similar-products-card-inner .similar-products-box .similar-products-icon::before {
+    bottom: 0.25rem;
+    left: -1rem;
+    width: 1rem;
+    height: 1rem;
+    box-shadow: 0.25rem 0.25rem 0 0.25rem #fff;
+  }
+  
+  .similar-products-card-inner .similar-products-box .similar-products-icon::after {
+    top: -1rem;
+    right: 0.25rem;
+    width: 1rem;
+    height: 1rem;
+    box-shadow: 0.25rem 0.25rem 0 0.25rem var(--clr);
+  }
+  
+  .similar-products-card-inner .similar-products-box .similar-products-icon .similar-products-iconBox {
+    inset: 0.5rem;
+  }
+  
+  /* Rating and price के font sizes भी decrease */
+  .similar-products-rating {
+    gap: 2px;
+  }
+  
+  .similar-products-stars svg {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .similar-products-rating-text {
+    font-size: 0.65rem;
+  }
+  
+  .similar-products-rating-price-container {
+    gap: 4px;
+  }
+  
+  .similar-products-price {
+    gap: 4px;
+  }
+  
+  .similar-products-current-price {
+    font-size: 0.85rem;
+  }
+  
+  .similar-products-original-price {
+    font-size: 0.65rem;
+  }
+  
+  .similar-products-discount {
+    font-size: 0.6rem;
+    padding: 1px 3px;
+  }
+  
+  /* Hover overlay icons size decrease */
+  .similar-products-details-btn,
+  .similar-products-wishlist-btn {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .similar-products-details-icon,
+  .similar-products-wishlist-icon {
+    width: 14px;
+    height: 14px;
+  }
+  
+  /* Badges size decrease */
+  .similar-products-category-badge {
+    top: 6px;
+    left: 6px;
+    padding: 2px 4px;
+    font-size: 0.55rem;
+  }
+  
+  .similar-products-age-badge {
+    top: 28px;
+    left: 6px;
+    padding: 2px 4px;
+    font-size: 0.55rem;
+  }
+  
+  /* Mobile View All Button */
   .similar-products-mobile-view-all-container {
     display: flex;
     justify-content: center;
-    margin-top: 25px;
-    padding: 0 20px;
+    margin-top: 20px;
+    padding: 0 15px;
   }
   
   .similar-products-mobile-view-all-btn {
     background: var(--similar-products-blue);
     border: 2px solid var(--similar-products-blue);
     color: white;
-    padding: 10px 25px;
-    border-radius: 25px;
+    padding: 8px 20px;
+    border-radius: 20px;
     font-weight: 600;
     transition: all 0.3s ease;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     cursor: pointer;
     border: none;
     white-space: nowrap;
     display: block;
     width: auto;
-    min-width: 180px;
+    min-width: 160px;
   }
   
   .similar-products-mobile-view-all-btn:hover {
@@ -807,59 +921,98 @@
   }
   
   .similar-products-title-text {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 }
 
-@media (max-width: 575px) and (min-width: 480px) {
+/* Extra small screens के लिए और adjustments */
+@media (max-width: 575px) {
   .similar-products-header,
   .similar-products-swiper-container {
-    padding: 0 15px;
+    padding: 0 12px;
   }
   
   .similar-products-card-inner {
-    height: 150px;
-  }
-  
-  .similar-products-title {
-    font-size: 1.3rem;
-  }
-}
-
-@media (max-width: 479px) and (min-width: 375px) {
-  .similar-products-header,
-  .similar-products-swiper-container {
-    padding: 0 10px;
-  }
-  
-  .similar-products-card-inner {
-    height: 140px;
+    height: 130px;
   }
   
   .similar-products-title {
     font-size: 1.2rem;
   }
   
+  .similar-products-title-text {
+    font-size: 0.75rem;
+  }
+  
+  .similar-products-card-inner .similar-products-box .similar-products-icon {
+    width: 2.8rem;
+    height: 2.8rem;
+  }
+  
+  /* Cards gap और कम करें */
+  .similar-products-swiper .swiper-slide {
+    height: calc((100% - 6px) / 2) !important;
+    margin-bottom: 6px !important;
+  }
+}
+
+@media (max-width: 479px) {
+  .similar-products-header,
+  .similar-products-swiper-container {
+    padding: 0 10px;
+  }
+  
+  .similar-products-card-inner {
+    height: 120px;
+  }
+  
+  .similar-products-title {
+    font-size: 1.1rem;
+  }
+  
   .similar-products-subtitle {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
   
   .similar-products-mobile-header-nav-btn {
-    width: 34px;
-    height: 34px;
+    width: 30px;
+    height: 30px;
   }
   
   .similar-products-nav-icon {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
   }
   
   .similar-products-title-text {
-    font-size: 0.85rem;
+    font-size: 0.7rem;
   }
   
   .similar-products-current-price {
-    font-size: 0.9rem;
+    font-size: 0.75rem;
+  }
+  
+  .similar-products-card-inner .similar-products-box .similar-products-icon {
+    width: 2.6rem;
+    height: 2.6rem;
+  }
+  
+  .similar-products-card-inner .similar-products-box .similar-products-icon .similar-products-iconBox {
+    inset: 0.4rem;
+  }
+  
+  .similar-products-category-badge {
+    top: 4px;
+    left: 4px;
+    padding: 1px 3px;
+    font-size: 0.5rem;
+  }
+  
+  .similar-products-age-badge {
+    top: 24px;
+    left: 4px;
+    padding: 1px 3px;
+    font-size: 0.5rem;
   }
 }
 
@@ -870,38 +1023,48 @@
   }
   
   .similar-products-card-inner {
-    height: 130px;
+    height: 110px;
   }
   
   .similar-products-title {
-    font-size: 1.1rem;
-    gap: 3px;
+    font-size: 1rem;
+    gap: 2px;
   }
   
   .similar-products-subtitle {
-    font-size: 0.75rem;
+    font-size: 0.65rem;
   }
   
   .similar-products-header-navigation {
-    gap: 6px;
+    gap: 4px;
   }
   
   .similar-products-mobile-header-nav-btn {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
   }
   
   .similar-products-nav-icon {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
   }
   
   .similar-products-title-text {
-    font-size: 0.8rem;
+    font-size: 0.65rem;
+    min-height: 2em;
   }
   
   .similar-products-current-price {
-    font-size: 0.85rem;
+    font-size: 0.7rem;
+  }
+  
+  .similar-products-card-inner .similar-products-box .similar-products-icon {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+  
+  .similar-products-card-inner .similar-products-box .similar-products-icon .similar-products-iconBox {
+    inset: 0.35rem;
   }
 }
 

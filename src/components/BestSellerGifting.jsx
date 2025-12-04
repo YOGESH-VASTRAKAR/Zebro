@@ -424,7 +424,7 @@ const BestSellerGifting = () => {
                         {gift.occasion}
                       </div>
 
-                      {/* Shopping Cart Icon */}
+                      {/* Shopping Cart Icon - Mobile के लिए size adjust किया */}
                       <div className="bestseller-icon">
                         <a 
                           href="#" 
@@ -433,8 +433,8 @@ const BestSellerGifting = () => {
                         > 
                           <ShoppingCartIcon 
                             style={{
-                              width: '24px',
-                              height: '24px',
+                              width: isMobile ? '18px' : '24px',
+                              height: isMobile ? '18px' : '24px',
                               color: '#fff'
                             }}
                           />
@@ -453,8 +453,8 @@ const BestSellerGifting = () => {
                             <StarIcon 
                               key={i}
                               style={{
-                                width: '14px',
-                                height: '14px',
+                                width: isMobile ? '12px' : '14px',
+                                height: isMobile ? '12px' : '14px',
                                 fill: i < Math.floor(gift.rating) ? '#F2BB13' : 'none',
                                 stroke: i < gift.rating ? '#F2BB13' : '#BFBFBF'
                               }}

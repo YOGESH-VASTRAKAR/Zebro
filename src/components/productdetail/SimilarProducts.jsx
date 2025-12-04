@@ -371,7 +371,7 @@ const SimilarProducts = () => {
             {product.age}
           </div>
 
-          {/* Shopping Cart Icon */}
+          {/* Shopping Cart Icon - Mobile के लिए size adjust किया */}
           <div className="similar-products-icon">
             <a 
               href="#" 
@@ -380,8 +380,8 @@ const SimilarProducts = () => {
             > 
               <ShoppingCartIcon 
                 style={{
-                  width: '24px',
-                  height: '24px',
+                  width: isMobile ? '18px' : '24px',
+                  height: isMobile ? '18px' : '24px',
                   color: '#fff'
                 }}
               />
@@ -402,8 +402,8 @@ const SimilarProducts = () => {
                 <StarIcon 
                   key={i}
                   style={{
-                    width: '14px',
-                    height: '14px',
+                    width: isMobile ? '12px' : '14px',
+                    height: isMobile ? '12px' : '14px',
                     fill: i < Math.floor(product.rating) ? '#F2BB13' : 'none',
                     stroke: i < product.rating ? '#F2BB13' : '#BFBFBF'
                   }}

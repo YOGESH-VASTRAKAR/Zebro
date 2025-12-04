@@ -133,6 +133,17 @@ const Checkout = () => {
         </Container>
       </div>
 
+      {/* Please Verify Your Purchase Banner */}
+      <div className="checkout-verification-section">
+        <Container>
+          <div className="checkout-verification-banner">
+            <h2 className="checkout-verification-title">
+              FREE SHIPPING on your first order! 
+            </h2>
+          </div>
+        </Container>
+      </div>
+
       {/* Coupon Code Section */}
       <div className="checkout-coupon-section">
         <Container>

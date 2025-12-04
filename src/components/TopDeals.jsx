@@ -356,7 +356,7 @@ const TopDeals = () => {
             </div>
           </div>
 
-          {/* Shopping Cart Icon (Bottom Right) */}
+          {/* Shopping Cart Icon (Bottom Right) - Mobile के लिए size adjust किया */}
           <div className="top-deals-icon">
             <a 
               href="#" 
@@ -365,8 +365,8 @@ const TopDeals = () => {
             > 
               <ShoppingCartIcon 
                 style={{
-                  width: '24px',
-                  height: '24px',
+                  width: isMobile ? '18px' : '24px',
+                  height: isMobile ? '18px' : '24px',
                   color: '#fff'
                 }}
               />
@@ -388,8 +388,8 @@ const TopDeals = () => {
                 <StarIcon 
                   key={i}
                   style={{
-                    width: '14px',
-                    height: '14px',
+                    width: isMobile ? '12px' : '14px',
+                    height: isMobile ? '12px' : '14px',
                     fill: i < Math.floor(deal.rating) ? '#F2BB13' : 'none',
                     stroke: i < deal.rating ? '#F2BB13' : '#BFBFBF'
                   }}

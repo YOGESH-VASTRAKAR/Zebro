@@ -1,6 +1,5 @@
 /* Checkout Section */
 .checkout-section {
-  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
   min-height: 100vh;
 }
 
@@ -164,6 +163,28 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* Please Verify Your Purchase Banner */
+.checkout-verification-section {
+  padding: 0 0 25px 0;
+ 
+}
+
+.checkout-verification-banner {
+  background: linear-gradient(135deg, #0662aa 0%, #054a80 100%);
+  color: white;
+  padding: 0.8rem 0.6rem;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(6, 98, 170, 0.3);
+}
+
+.checkout-verification-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Coupon Code Section */
@@ -439,6 +460,10 @@
   .checkout-right-column {
     padding-left: 0;
   }
+  
+  .checkout-verification-title {
+    font-size: 1.2rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -503,6 +528,14 @@
   .checkout-have-coupon-content {
     flex-direction: column;
     gap: 10px;
+  }
+  
+  .checkout-verification-banner {
+    padding: 1rem 1.5rem;
+  }
+  
+  .checkout-verification-title {
+    font-size: 1.1rem;
   }
 }
 
@@ -601,6 +634,18 @@
   
   .checkout-content-section {
     padding: 1rem 0;
+  }
+  
+  .checkout-verification-section {
+    padding: 0 0 20px 0;
+  }
+  
+  .checkout-verification-banner {
+    padding: 0.8rem 1rem;
+  }
+  
+  .checkout-verification-title {
+    font-size: 1rem;
   }
 }
 
@@ -713,6 +758,10 @@
   
   .checkout-coupon-icon-text {
     font-size: 12px;
+  }
+  
+  .checkout-verification-title {
+    font-size: 0.9rem;
   }
 }
 
