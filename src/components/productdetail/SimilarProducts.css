@@ -11,6 +11,7 @@
   --similar-products-background: #FFFFFF;
 }
 
+
 /* Similar Products Section */
 .similar-products-section {
   padding: 30px 0;
@@ -229,6 +230,7 @@
   background: rgba(255, 255, 255, 0.95);
 }
 
+/* FIXED: Main issue - सभी nested elements को same border-radius दें */
 .similar-products-card-inner {
   position: relative;
   width: 100%;
@@ -241,7 +243,7 @@
   width: 100%;
   height: 100%;
   background: #fff;
-  border-radius: 20px 20px 0 0;
+  border-radius: 20px 20px 0 0; /* Same as card-inner */
   overflow: hidden;
   position: relative;
 }
@@ -254,6 +256,8 @@
 .similar-products-card-inner .similar-products-box .similar-products-imgBox {
   position: absolute;
   inset: 0;
+  border-radius: 20px 20px 0 0; /* Same as parent */
+  overflow: hidden; /* Important for image corner fix */
 }
 
 .similar-products-card-inner .similar-products-box .similar-products-imgBox img {
@@ -261,6 +265,7 @@
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
+  border-radius: 20px 20px 0 0; /* Same as parent */
 }
 
 .similar-products-card:hover .similar-products-card-inner .similar-products-box .similar-products-imgBox img {
@@ -281,7 +286,7 @@
   padding: 10px;
   opacity: 0;
   transition: all 0.3s ease;
-  border-radius: 20px 20px 0 0;
+  border-radius: 20px 20px 0 0; /* Same as card-inner */
   z-index: 3;
 }
 
@@ -428,6 +433,7 @@
   justify-content: center;
   align-items: center;
   transition: all 0.3s ease;
+  z-index: 6;
 }
 
 .similar-products-card-inner .similar-products-box .similar-products-icon .similar-products-iconBox:hover {
@@ -547,6 +553,15 @@
   
   .similar-products-card-inner {
     height: 250px;
+    border-radius: 24px 24px 0 0; /* Updated for desktop */
+  }
+  
+  /* FIXED: Desktop के लिए भी same border-radius maintain करें */
+  .similar-products-card-inner .similar-products-box,
+  .similar-products-card-inner .similar-products-box .similar-products-imgBox,
+  .similar-products-card-inner .similar-products-box .similar-products-imgBox img,
+  .similar-products-hover-overlay {
+    border-radius: 24px 24px 0 0; /* Desktop के लिए updated */
   }
   
   .similar-products-title-text {
@@ -688,8 +703,17 @@
     border-radius: 16px;
   }
   
+  /* FIXED: Mobile के लिए भी consistent border-radius */
   .similar-products-card-inner {
     height: 140px;
+    border-radius: 16px 16px 0 0;
+  }
+  
+  .similar-products-card-inner .similar-products-box,
+  .similar-products-card-inner .similar-products-box .similar-products-imgBox,
+  .similar-products-card-inner .similar-products-box .similar-products-imgBox img,
+  .similar-products-hover-overlay {
+    border-radius: 16px 16px 0 0; /* Mobile के लिए updated */
   }
   
   .similar-products-content {
@@ -730,6 +754,7 @@
   
   .similar-products-card-inner .similar-products-box .similar-products-icon .similar-products-iconBox {
     inset: 0.5rem;
+    z-index:6;
   }
   
   /* Rating and price के font sizes भी decrease */
@@ -918,6 +943,15 @@
   
   .similar-products-card-inner {
     height: 200px;
+    border-radius: 20px 20px 0 0; /* Tablet के लिए updated */
+  }
+  
+  /* Tablet के लिए भी consistent border-radius */
+  .similar-products-card-inner .similar-products-box,
+  .similar-products-card-inner .similar-products-box .similar-products-imgBox,
+  .similar-products-card-inner .similar-products-box .similar-products-imgBox img,
+  .similar-products-hover-overlay {
+    border-radius: 20px 20px 0 0; /* Tablet के लिए updated */
   }
   
   .similar-products-title-text {
@@ -934,6 +968,15 @@
   
   .similar-products-card-inner {
     height: 130px;
+    border-radius: 14px 14px 0 0; /* XS screen के लिए */
+  }
+  
+  /* FIXED: XS screen के लिए border-radius */
+  .similar-products-card-inner .similar-products-box,
+  .similar-products-card-inner .similar-products-box .similar-products-imgBox,
+  .similar-products-card-inner .similar-products-box .similar-products-imgBox img,
+  .similar-products-hover-overlay {
+    border-radius: 14px 14px 0 0; /* XS screen के लिए */
   }
   
   .similar-products-title {
@@ -962,8 +1005,21 @@
     padding: 0 10px;
   }
   
+  .similar-products-card {
+    border-radius: 12px;
+  }
+  
   .similar-products-card-inner {
     height: 120px;
+    border-radius: 12px 12px 0 0;
+  }
+  
+  /* FIXED: XXS screen के लिए border-radius */
+  .similar-products-card-inner .similar-products-box,
+  .similar-products-card-inner .similar-products-box .similar-products-imgBox,
+  .similar-products-card-inner .similar-products-box .similar-products-imgBox img,
+  .similar-products-hover-overlay {
+    border-radius: 12px 12px 0 0; /* XXS screen के लिए */
   }
   
   .similar-products-title {
@@ -1022,8 +1078,21 @@
     padding: 0 8px;
   }
   
+  .similar-products-card {
+    border-radius: 10px;
+  }
+  
   .similar-products-card-inner {
     height: 110px;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  /* FIXED: XXXS screen के लिए border-radius */
+  .similar-products-card-inner .similar-products-box,
+  .similar-products-card-inner .similar-products-box .similar-products-imgBox,
+  .similar-products-card-inner .similar-products-box .similar-products-imgBox img,
+  .similar-products-hover-overlay {
+    border-radius: 10px 10px 0 0; /* XXXS screen के लिए */
   }
   
   .similar-products-title {

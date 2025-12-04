@@ -352,6 +352,7 @@
   justify-content: center;
   align-items: center;
   transition: all 0.3s ease;
+  z-index: 6;
 }
 
 .categories-products-card-inner .categories-products-box .categories-products-icon .categories-products-iconBox:hover {
